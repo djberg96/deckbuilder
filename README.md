@@ -1,24 +1,18 @@
-# README
+# First, create some cards
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Card.create(:name => "Goblin", :faction => "Red")
+* Card.create(:name => "Lightning Bolt", :faction => "Red")
+* Card.create(:name => "Zombie", :faction => "Black")
 
-Things you may want to cover:
+# Then create a deck
+* Deck.create(:name => "Black Lightning", :description => "Test Deck")
 
-* Ruby version
+# Then add some cards to the deck
+* d = Deck.first
 
-* System dependencies
+* c1,c2,c3 = Card.all
+* d.deck_cards.create(:card => c1, :quantity => 4)
+* d.deck_cards.create(:card => c2, :quantity => 2)
+* d.deck_cards.create(:card => c3, :quantity => 3)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* d.cards
