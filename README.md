@@ -1,6 +1,5 @@
 ```
 # First, create some cards
-
 Card.create(:name => "Goblin", :faction => "Red")
 Card.create(:name => "Lightning Bolt", :faction => "Red")
 Card.create(:name => "Zombie", :faction => "Black")
