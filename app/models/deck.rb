@@ -12,4 +12,8 @@ class Deck < ApplicationRecord
   end
 
   alias add_card add
+
+  def total_cards
+    deck_cards.sum(:quantity)
+  end
 end
