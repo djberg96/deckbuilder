@@ -6,7 +6,7 @@ class Game < ApplicationRecord
     game_decks.create(:deck => deck, :quantity => quantity)
   end
 
-  def total_cards
+  def total_decks
     game_decks.sum(:quantity)
   end
 end
