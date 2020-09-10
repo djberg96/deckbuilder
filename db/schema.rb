@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120224855) do
+ActiveRecord::Schema.define(version: 2020_09_10_124721) do
 
   create_table "cards", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "faction"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string "name"
+    t.text "description"
+    t.string "faction"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "deck_cards", force: :cascade do |t|
@@ -30,10 +30,26 @@ ActiveRecord::Schema.define(version: 20170120224855) do
   end
 
   create_table "decks", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "game_decks", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "deck_id"
+    t.integer "quantity"
+    t.index ["deck_id"], name: "index_game_decks_on_deck_id"
+    t.index ["game_id", "deck_id"], name: "index_game_decks_on_game_id_and_deck_id", unique: true
+    t.index ["game_id"], name: "index_game_decks_on_game_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
