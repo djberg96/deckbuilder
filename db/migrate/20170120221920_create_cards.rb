@@ -3,7 +3,7 @@ class CreateCards < ActiveRecord::Migration[5.0]
     create_table :cards do |t|
       t.string :name
       t.text :description
-      t.string :faction
+      t.json :data
 
       t.timestamps
     end

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2020_09_10_124721) do
   create_table "cards", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "faction"
+    t.json "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 2020_09_10_124721) do
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.integer "maximum_cards_per_deck"
+    t.integer "minimum_cards_per_deck"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
