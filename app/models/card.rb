@@ -9,6 +9,10 @@ class Card < ApplicationRecord
     deck_cards.create(:card => self, :deck => deck, :quantity => quantity)
   end
 
+  def quantity
+    deck_cards.find(self.id).quantity
+  end
+
   def data
     @data ||= OpenStruct.new(self[:data])
   end
