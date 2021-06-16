@@ -19,4 +19,16 @@ class Deck < ApplicationRecord
   def total_cards
     deck_cards.sum(:quantity)
   end
+
+  def legal?
+    bool = true
+
+    if game
+      bool = false if game.minimum_cards_per_deck and total_cards <= game.minimum_cards_per_deck
+      bool = false if game.maximum_cards_per_deck and total_cards >= game.maximum_cards_per_deck
+      bool = false if game.maximum_individual_cards and cards.any?{ |card| card.quantity > game.maximum_individual_cards }
+    end
+
+    bool
+  end
 end
