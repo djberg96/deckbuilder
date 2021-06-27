@@ -5,6 +5,8 @@ class Deck < ApplicationRecord
   has_one :game_deck
   has_one :game, :through => :game_deck
 
+  belongs_to :user
+
   def add(card, quantity = 1)
     if dc = deck_cards.find_by(:card_id => card.id)
       dc.quantity += quantity
