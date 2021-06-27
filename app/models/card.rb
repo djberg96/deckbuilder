@@ -6,6 +6,8 @@ class Card < ApplicationRecord
   serialize :data
   delegate_missing_to :data
 
+  validates :name, :uniqueness => {:scope => :game_id}
+
   # Add cards to the specified deck. If no quantity is specified, then one
   # is the default.
   #
