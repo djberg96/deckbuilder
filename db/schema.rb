@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2021_06_28_024814) do
 
-  create_table "cards", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "cards", id: :serial, force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.json "data"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_024814) do
     t.integer "game_id"
   end
 
-  create_table "deck_cards", force: :cascade do |t|
+  create_table "deck_cards", id: :serial, force: :cascade do |t|
     t.integer "card_id"
     t.integer "deck_id"
     t.integer "quantity"
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_024814) do
     t.index ["deck_id"], name: "index_deck_cards_on_deck_id"
   end
 
-  create_table "decks", force: :cascade do |t|
+  create_table "decks", id: :serial, force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
@@ -40,8 +43,8 @@ ActiveRecord::Schema.define(version: 2021_06_28_024814) do
   end
 
   create_table "game_decks", force: :cascade do |t|
-    t.integer "game_id"
-    t.integer "deck_id"
+    t.bigint "game_id"
+    t.bigint "deck_id"
     t.integer "quantity"
     t.index ["deck_id"], name: "index_game_decks_on_deck_id"
     t.index ["game_id", "deck_id"], name: "index_game_decks_on_game_id_and_deck_id", unique: true
