@@ -8,15 +8,19 @@ module Loggers
     # Redefine the add method from the core Logger class so that it
     # writes to the database.
     #
-    def add(severity, message = nil, _progname = nil)
+    def add(severity, message = nil, progname = nil, &block)
       severity ||= UNKNOWN
       return true if severity < @level
 
-      ::Log.create(
-        :message   => message,
-        :severity  => severity,
-        :timestamp => Time.now,
-      )
+      # Prevent the Log.create call from logging itself, which
+      # otherwise causes an infinite loop.
+      silence do
+        ::Log.create(
+          :message   => message,
+          :severity  => severity,
+          :timestamp => Time.now,
+        )
+      end
     end
   end
 end
