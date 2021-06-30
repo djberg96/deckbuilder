@@ -12,5 +12,6 @@ module Deckbuilder
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.lograge.enabled = true
+    config.lograge.formatter = Lograge::Formatters::Logstash.new
   end
 end
