@@ -1,4 +1,4 @@
-class AddUserIdColumnToDecks < ActiveRecord::Migration[6.1]
+class AddUserIdColumnToDecks < ActiveRecord::Migration
   def change
     add_column :decks, :user_id, :integer
   end

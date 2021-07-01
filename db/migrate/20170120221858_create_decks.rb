@@ -1,4 +1,4 @@
-class CreateDecks < ActiveRecord::Migration[5.0]
+class CreateDecks < ActiveRecord::Migration
   def change
     create_table :decks do |t|
       t.string :name

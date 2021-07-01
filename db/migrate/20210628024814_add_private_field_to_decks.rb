@@ -1,4 +1,4 @@
-class AddPrivateFieldToDecks < ActiveRecord::Migration[6.1]
+class AddPrivateFieldToDecks < ActiveRecord::Migration
   def change
     add_column :decks, :private, :boolean, :default => false
   end
