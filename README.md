@@ -1,4 +1,16 @@
-```
+## Description
+How did you get here? You must be lost.
+
+This is just a pet project where I fumble around trying to create a Rails
+project for deckbuilding games like Magic: The Gathering or Ashes: Rise of
+the Phoenixborn.
+
+I've no plans for now to publish the thing, it's mostly for my own enjoyment
+and gives me a break from the abomination that is the Go programming language.
+
+## Synopsis
+
+```ruby
 # First, create some cards
 Card.create(:name => "Goblin", :faction => "Red")
 Card.create(:name => "Lightning Bolt", :faction => "Red")
@@ -24,3 +36,7 @@ deck.add(:card => c3, :quantity => 3)
 
 p d.cards
 ```
+
+## Other stuff
+
+There's also "games", "users", and "groups" with various attributes.
