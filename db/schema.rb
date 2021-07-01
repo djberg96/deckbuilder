@@ -70,12 +70,6 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "logs", force: :cascade do |t|
-    t.string "severity"
-    t.string "message"
-    t.datetime "timestamp"
-  end
-
   create_table "user_groups", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "group_id"
