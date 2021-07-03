@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<table>
+  <tr><td>Name: <%= @game.name %></td></tr>
+  <tr><td>Description: <%= @game.description %></td></tr>
+  <tr><td>Minimum deck size: <%= @game.minimum_cards_per_deck %></td></tr>
+</table
+
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

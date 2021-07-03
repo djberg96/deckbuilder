@@ -1,4 +1,19 @@
 <%= form_with(model: game) do |form| %>
+  <%= form.label "Name" %>
+  <%= form.text_field :name, :size => 50 %>
+
+  <%= form.label "Description" %>
+  <%= form.text_area :description, :size => "50x5" %>
+
+  <%= form.label "Minimum number of cards required" %>
+  <%= form.number_field :minimum_cards_per_deck, :in => 30..60 %>
+
+  <%= form.label "Maximum number of cards allowed" %>
+  <%= form.number_field :maximum_cards_per_deck, :in => 30..100 %>
+
+  <%= form.label "Maximum number of card copies" %>
+  <%= form.select :maximum_individual_cards, 1..6 %>
+
   <% if game.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -10,6 +25,8 @@
       </ul>
     </div>
   <% end %>
+
+  <p>
 
   <div class="actions">
     <%= form.submit %>

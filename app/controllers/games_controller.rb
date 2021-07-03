@@ -64,6 +64,13 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.fetch(:game, {})
+      params.require(:game).permit(
+        :name,
+        :description,
+        :minimum_cards_per_deck,
+        :maximum_cards_per_deck,
+        :maximum_individual_cards,
+        :data
+      )
     end
 end
