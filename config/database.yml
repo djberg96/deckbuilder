@@ -8,11 +8,13 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 10
+  username: dberger
 
 development:
   <<: *default
   database: deckbuilder_development
-  username: deckbuilder-dev-user
+  username: dberger
+  password:
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -21,7 +23,7 @@ development:
 test:
   <<: *default
   database: deckbuilder_test
-  username: deckbuilder-test-user
+  username: dberger
   host: localhost
 
 production:

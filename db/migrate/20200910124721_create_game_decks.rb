@@ -1,4 +1,4 @@
-class CreateGameDecks < ActiveRecord::Migration
+class CreateGameDecks < ActiveRecord::Migration[6.1]
   def change
     create_table :game_decks do |t|
       t.references :game, foreign_key: true

@@ -15,29 +15,29 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cards", id: :serial, force: :cascade do |t|
+  create_table "cards", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.json "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "game_id"
   end
 
-  create_table "deck_cards", id: :serial, force: :cascade do |t|
-    t.integer "card_id"
-    t.integer "deck_id"
+  create_table "deck_cards", force: :cascade do |t|
+    t.bigint "card_id"
+    t.bigint "deck_id"
     t.integer "quantity"
     t.index ["card_id", "deck_id"], name: "index_deck_cards_on_card_id_and_deck_id", unique: true
     t.index ["card_id"], name: "index_deck_cards_on_card_id"
     t.index ["deck_id"], name: "index_deck_cards_on_deck_id"
   end
 
-  create_table "decks", id: :serial, force: :cascade do |t|
+  create_table "decks", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.boolean "private", default: false
   end
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.integer "minimum_cards_per_deck"
     t.integer "maximum_individual_cards"
     t.json "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "groups", force: :cascade do |t|
