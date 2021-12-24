@@ -9,7 +9,10 @@
   <%= form.text_field :username, :size => 50 %>
 
   <%= form.label "Password" %>
-  <%= form.password_field :password_digest, :size => 50 %>
+  <%= form.password_field :password, :size => 50 %>
+
+  <%= form.label "Password Confirmation" %>
+  <%= form.password_field :password_confirmation, :size => 50 %>
 
   <% if user.errors.any? %>
     <div id="error_explanation">

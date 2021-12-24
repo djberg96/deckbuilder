@@ -68,8 +68,7 @@ class UsersController < ApplicationController
         :first_name,
         :last_name,
         :username,
-        :password_digest
+        :password
       )
-      #params.fetch(:user, {})
     end
 end
