@@ -68,7 +68,8 @@ class UsersController < ApplicationController
         :first_name,
         :last_name,
         :username,
-        :password
+        :password,
+        :password_confirmation
       )
     end
 end

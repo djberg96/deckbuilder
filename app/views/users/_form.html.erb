@@ -1,6 +1,6 @@
 <%= form_with(model: user) do |form| %>
   <%= form.label "First Name" %>
-  <%= form.text_field :first_name, :size => 50 %>
+  <%= form.text_field :first_name, :size => 50, :autofocus => true %>
 
   <%= form.label "Last Name" %>
   <%= form.text_field :last_name, :size => 50 %>

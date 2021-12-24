@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :groups, :through => :user_groups
 
   validates :username, :length => {:minimum => 3, :maximum => 16}, :allow_blank => false
+  validates :password, :confirmation => true
 
   def add_to_group(group)
     user_groups.create(:user => self, :group => group)
