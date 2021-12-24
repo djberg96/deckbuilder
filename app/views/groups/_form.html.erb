@@ -1,4 +1,13 @@
 <%= form_with(model: group) do |form| %>
+  <%= form.label "Name" %>
+  <%= form.text_field :name, :size => 50 %>
+
+  <%= form.label "Description" %>
+  <%= form.text_field :description, :size => 50 %>
+
+  <%= form.label "Private?" %>
+  <%= form.check_box :private %>
+
   <% if group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
