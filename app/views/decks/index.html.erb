@@ -1,3 +1,7 @@
+<% if flash[:alert] %>
+  <aside class="notice"><%= flash[:alert] %></aside>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Decks</h1>
