@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  root 'games#index'
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  root 'decks#index'
+
   resources :games
   resources :decks
   resources :cards
   resources :groups
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
