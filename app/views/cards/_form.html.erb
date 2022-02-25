@@ -11,6 +11,17 @@
     </div>
   <% end %>
 
+  <body>
+    <%= form.label "Name" %>
+    <%= form.text_field :name, :size => 50 %>
+
+    <%= form.label "Description" %>
+    <%= form.text_field :description, :size => "50x3" %>
+
+    <%= form.label "Game" %>
+    <%= form.select :game_id, Game.all.map{ |game| [game.name, game.id ] } %>
+  </body>
+
   <div class="actions">
     <%= form.submit %>
   </div>
