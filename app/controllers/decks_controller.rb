@@ -22,6 +22,7 @@ class DecksController < ApplicationController
   # POST /decks or /decks.json
   def create
     @deck = Deck.new(deck_params)
+    @deck.user_id = session[:user_id]
 
     respond_to do |format|
       if @deck.save
@@ -64,6 +65,6 @@ class DecksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deck_params
-      params.fetch(:deck, {})
+      params.require(:deck).permit(:deck, :name, :description, :private)
     end
 end
