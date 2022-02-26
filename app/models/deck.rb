@@ -7,7 +7,12 @@ class Deck < ApplicationRecord
 
   belongs_to :user
 
-  validates :name, :presence => true, :uniqueness => {:scope => :user_id}
+  validates :name,
+    :presence => true,
+    :uniqueness => {
+      :scope   => :user_id,
+      :message => "The deck name cannot be duplicated by the same user."
+    }
 
   def add(card, quantity = 1)
     if dc = deck_cards.find_by(:card_id => card.id)
