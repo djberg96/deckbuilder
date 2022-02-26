@@ -7,6 +7,8 @@ class Deck < ApplicationRecord
 
   belongs_to :user
 
+  validates :name, :presence => true, :uniqueness => {:scope => :user_id}
+
   def add(card, quantity = 1)
     if dc = deck_cards.find_by(:card_id => card.id)
       dc.quantity += quantity
