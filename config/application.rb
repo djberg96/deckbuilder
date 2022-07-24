@@ -13,5 +13,8 @@ module Deckbuilder
     # -- all .rb files in that directory are automatically loaded.
     config.lograge.enabled = true
     config.lograge.formatter = Lograge::Formatters::Logstash.new
+    config.generators do |g|
+      g.test_framework :rspec
+    end
   end
 end
