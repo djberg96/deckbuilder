@@ -24,13 +24,11 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.integer "game_id"
   end
 
-  create_table "deck_cards", force: :cascade do |t|
-    t.bigint "card_id"
-    t.bigint "deck_id"
+  create_table "cards_decks", id: false, force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.bigint "deck_id", null: false
     t.integer "quantity"
-    t.index ["card_id", "deck_id"], name: "index_deck_cards_on_card_id_and_deck_id", unique: true
-    t.index ["card_id"], name: "index_deck_cards_on_card_id"
-    t.index ["deck_id"], name: "index_deck_cards_on_deck_id"
+    t.index ["card_id", "deck_id"], name: "cards_decks_index", unique: true
   end
 
   create_table "decks", force: :cascade do |t|
@@ -42,13 +40,11 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.boolean "private", default: false
   end
 
-  create_table "game_decks", force: :cascade do |t|
-    t.bigint "game_id"
-    t.bigint "deck_id"
+  create_table "decks_games", id: false, force: :cascade do |t|
+    t.bigint "deck_id", null: false
+    t.bigint "game_id", null: false
     t.integer "quantity"
-    t.index ["deck_id"], name: "index_game_decks_on_deck_id"
-    t.index ["game_id", "deck_id"], name: "index_game_decks_on_game_id_and_deck_id", unique: true
-    t.index ["game_id"], name: "index_game_decks_on_game_id"
+    t.index ["deck_id", "game_id"], name: "decks_games_index", unique: true
   end
 
   create_table "games", force: :cascade do |t|
@@ -88,10 +84,6 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "deck_cards", "cards"
-  add_foreign_key "deck_cards", "decks"
-  add_foreign_key "game_decks", "decks"
-  add_foreign_key "game_decks", "games"
   add_foreign_key "user_groups", "groups"
   add_foreign_key "user_groups", "users"
 end

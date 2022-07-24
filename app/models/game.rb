@@ -1,6 +1,6 @@
 class Game < ApplicationRecord
-  has_many :game_decks
-  has_many :decks, :through => :game_decks
+  has_many :decks_games
+  has_many :decks, :through => :decks_games
   has_many :cards
 
   validates :maximum_individual_cards,

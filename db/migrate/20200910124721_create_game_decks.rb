@@ -1,10 +1,8 @@
 class CreateGameDecks < ActiveRecord::Migration[6.1]
   def change
-    create_table :game_decks do |t|
-      t.references :game, foreign_key: true
-      t.references :deck, foreign_key: true
+    create_join_table :decks, :games do |t|
       t.integer :quantity
-      t.index [:game_id, :deck_id], :unique => true
+      t.index [:deck_id, :game_id], :unique => true, :name => 'decks_games_index'
     end
   end
 end

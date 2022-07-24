@@ -1,6 +1,6 @@
 class Deck < ApplicationRecord
-  has_many :deck_cards
-  has_many :cards, :through => :deck_cards
+  has_many :cards_decks
+  has_many :cards, :through => :cards_decks
 
   has_one :game_deck
   has_one :game, :through => :game_deck
@@ -15,18 +15,18 @@ class Deck < ApplicationRecord
     }
 
   def add(card, quantity = 1)
-    if dc = deck_cards.find_by(:card_id => card.id)
-      dc.quantity += quantity
-      dc.save
+    if cd = cards_decks.find_by(:card_id => card.id)
+      cd.quantity += quantity
+      cd.save
     else
-      deck_cards.create(:card => card, :quantity => quantity)
+      cards_decks.create(:card => card, :quantity => quantity)
     end
   end
 
   alias add_card add
 
   def total_cards
-    deck_cards.sum(:quantity)
+    cards_decks.sum(:quantity)
   end
 
   def legal?

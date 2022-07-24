@@ -1,10 +1,8 @@
 class CreateDeckCards < ActiveRecord::Migration[6.1]
   def change
-    create_table :deck_cards do |t|
-      t.references :card, foreign_key: true
-      t.references :deck, foreign_key: true
+    create_join_table :cards, :decks do |t|
       t.integer :quantity
-      t.index [:card_id, :deck_id], :unique => true
+      t.index [:card_id, :deck_id], :unique => true, :name => 'cards_decks_index'
     end
   end
 end
