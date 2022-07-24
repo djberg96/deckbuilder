@@ -66,12 +66,10 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_groups", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "group_id"
-    t.index ["group_id"], name: "index_user_groups_on_group_id"
-    t.index ["user_id", "group_id"], name: "index_user_groups_on_user_id_and_group_id", unique: true
-    t.index ["user_id"], name: "index_user_groups_on_user_id"
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -84,6 +82,4 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "user_groups", "groups"
-  add_foreign_key "user_groups", "users"
 end
