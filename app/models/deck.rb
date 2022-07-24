@@ -2,8 +2,8 @@ class Deck < ApplicationRecord
   has_many :cards_decks
   has_many :cards, :through => :cards_decks
 
-  has_one :game_deck
-  has_one :game, :through => :game_deck
+  has_one :decks_games
+  has_one :game, :through => :decks_games
 
   belongs_to :user
 
