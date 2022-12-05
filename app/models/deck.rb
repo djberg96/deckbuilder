@@ -10,7 +10,7 @@ class Deck < ApplicationRecord
   validates :name,
     :presence   => true,
     :format     => {
-      :with    => /\A[[:alnum:]\s]+\z/,
+      :with    => /\A[[:alnum:]\s]+\S\z/,
       :message => "only alphanumeric characters and spaces allowed"
     },
     :uniqueness => {
@@ -20,17 +20,9 @@ class Deck < ApplicationRecord
 
   validates :description,
     :format => {
-      :with    => /\A[[:alnum:]\s]+\z/,
+      :with    => /\A[[:alnum:]\s]+\S\z/,
       :message => "only alphanumeric characters and spaces allowed"
     }
-
-  def name=(value)
-    super(value.strip)
-  end
-
-  def description=(value)
-    super(value.strip)
-  end
 
   def add(card, quantity = 1)
     if dc = deck_cards.find_by(:card_id => card.id)
