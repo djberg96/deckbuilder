@@ -10,12 +10,18 @@ class Deck < ApplicationRecord
   validates :name,
     :presence   => true,
     :format     => {
-      :with    => /\A[[:alnum:]]+\z/,
-      :message => "only alphanumeric characters allowed"
+      :with    => /\A[[:alnum:]\s]+\z/,
+      :message => "only alphanumeric characters and spaces allowed"
     },
     :uniqueness => {
       :scope   => :user_id,
       :message => "The deck name cannot be duplicated by the same user."
+    }
+
+  validates :description,
+    :format => {
+      :with    => /\A[[:alnum:]\s]+\z/,
+      :message => "only alphanumeric characters and spaces allowed"
     }
 
   def add(card, quantity = 1)
