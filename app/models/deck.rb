@@ -8,7 +8,11 @@ class Deck < ApplicationRecord
   belongs_to :user
 
   validates :name,
-    :presence => true,
+    :presence   => true,
+    :format     => {
+      :with    => /\A[[:alnum:]]+\z/,
+      :message => "only alphanumeric characters allowed"
+    },
     :uniqueness => {
       :scope   => :user_id,
       :message => "The deck name cannot be duplicated by the same user."
