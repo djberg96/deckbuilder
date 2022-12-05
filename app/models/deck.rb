@@ -24,6 +24,14 @@ class Deck < ApplicationRecord
       :message => "only alphanumeric characters and spaces allowed"
     }
 
+  def name=(value)
+    super(value.strip)
+  end
+
+  def description=(value)
+    super(value.strip)
+  end
+
   def add(card, quantity = 1)
     if dc = deck_cards.find_by(:card_id => card.id)
       dc.quantity += quantity
