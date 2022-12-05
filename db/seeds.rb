@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-games = Game.create([
+Game.create([
   {
     :name                     => "Magic: The Gathering",
     :description              => "Cardboard crack",
@@ -17,5 +17,14 @@ games = Game.create([
     :description              => "Fantasy Flight remake of original Netrunner",
     :minimum_cards_per_deck   => 30,
     :maximum_individual_cards => 3
+  }
+])
+
+User.create([
+  {
+    :first_name => "Daniel",
+    :last_name => "Berger",
+    :username => "dberger",
+    :password => "asdf"
   }
 ])
