@@ -11,22 +11,13 @@ class Deck < ApplicationRecord
 
   validates :name,
     :presence   => true,
-    :format     => {
-      :with    => /\A[[:alnum:]\s]+\S\z/,
-      :message => "only alphanumeric characters and spaces allowed"
-    },
     :uniqueness => {
       :scope   => :user_id,
       :message => "The deck name cannot be duplicated by the same user."
     }
 
-  sanitize_method :name
-
-  validates :description,
-    :format => {
-      :with    => /\A[[:alnum:]\s]+\S\z/,
-      :message => "only alphanumeric characters and spaces allowed"
-    }
+  autostrip :description
+  autostrip_and_validate :name
 
   def add(card, quantity = 1)
     if dc = deck_cards.find_by(:card_id => card.id)
