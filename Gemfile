@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'auto_strip_attributes', '~> 2.6'
 gem 'rails', '~> 6.1'
 gem 'puma', '~> 4.0'
 gem 'sass-rails', '~> 5.0'

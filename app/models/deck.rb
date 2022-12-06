@@ -16,9 +16,6 @@ class Deck < ApplicationRecord
       :message => "The deck name cannot be duplicated by the same user."
     }
 
-  autostrip :description
-  autostrip_and_validate :name
-
   def add(card, quantity = 1)
     if dc = deck_cards.find_by(:card_id => card.id)
       dc.quantity += quantity
