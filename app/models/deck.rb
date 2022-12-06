@@ -1,4 +1,6 @@
 class Deck < ApplicationRecord
+  include FieldSanitizer
+
   has_many :deck_cards
   has_many :cards, :through => :deck_cards
 
@@ -17,6 +19,8 @@ class Deck < ApplicationRecord
       :scope   => :user_id,
       :message => "The deck name cannot be duplicated by the same user."
     }
+
+  sanitize_method :name
 
   validates :description,
     :format => {
