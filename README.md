@@ -25,7 +25,7 @@ magic = Game.create(
 # Then, create some cards, and associate them with the game
 Card.create(:name => "Goblin", :data => {:faction => "Red", :cost => 1}, :game => magic)
 Card.create(:name => "Lightning Bolt", :data => {:faction => "Red", :cost => 1}, :game => magic)
-Card.create(:name => "Zombie", :data => {:faction => "Black"}, :cost => 1, :game => magic)
+Card.create(:name => "Zombie", :data => {:faction => "Black", :cost => 1}, :game => magic)
 
 # Then create a deck, and associate it with your account
 user = User.find_by(:username => "noobcrusher")
