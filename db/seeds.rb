@@ -34,3 +34,8 @@ Card.create([
   {:name => "Lightning Bolt", :data => {:faction => "Red", :cost => 1}, :game => Game.first},
   {:name => "Zombie", :data => {:faction => "Black", :cost => 1}, :game => Game.first},
 ])
+
+Deck.create([
+  {:name => "Black Lightning", :description => "Test black deck", :user => User.first},
+  {:name => "Red Lightning", :description => "Test red deck", :user => User.first}
+])
