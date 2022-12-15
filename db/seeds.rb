@@ -28,3 +28,9 @@ User.create([
     :password => "asdf"
   }
 ])
+
+Card.create([
+  {:name => "Goblin", :data => {:faction => "Red", :cost => 1}, :game => Game.first},
+  {:name => "Lightning Bolt", :data => {:faction => "Red", :cost => 1}, :game => Game.first},
+  {:name => "Zombie", :data => {:faction => "Black", :cost => 1}, :game => Game.first},
+])
