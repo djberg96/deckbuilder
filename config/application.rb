@@ -13,5 +13,6 @@ module Deckbuilder
     # -- all .rb files in that directory are automatically loaded.
     config.lograge.enabled = true
     config.lograge.formatter = Lograge::Formatters::Logstash.new
+    config.active_record.yaml_column_permitted_classes = [Symbol]
   end
 end
