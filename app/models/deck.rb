@@ -17,7 +17,7 @@ class Deck < ApplicationRecord
     }
 
   def add(card, quantity = 1)
-    if dc = deck_cards.find_by(:card_id => card.id)
+    if dc = deck_cards.find_by(:card => card)
       dc.quantity += quantity
       dc.save
     else
