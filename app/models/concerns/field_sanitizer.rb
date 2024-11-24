@@ -2,7 +2,8 @@ module FieldSanitizer
   extend ActiveSupport::Concern
 
   # Only POSIX alphanumeric characters, with no leading or trailing spaces.
-  ALPHANUM_REGEX = /\A[[:alnum:]\s\-\(\)]+\S\z/
+  # I'll also allow hyphens, parens, spaces and pound signs.
+  ALPHANUM_REGEX = /\A[[:alnum:]\s\-\(\)\#]+\S\z/
 
   included do
     # Strip string and squish to remove excess inline whitespace.
