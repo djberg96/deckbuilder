@@ -5,19 +5,19 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'auto_strip_attributes', '~> 2.6'
-gem 'rails', '~> 6.1'
-gem 'puma', '~> 4.0'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
+gem 'rails', '~> 7.1'
+
+gem 'auto_strip_attributes'
+gem 'puma'
+gem 'terser'
+gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
-gem 'bcrypt', '~> 3.1.7'
-gem 'pg', '~> 1.4.5'
-gem 'lograge', '~> 0.11'
-gem 'logstash-event', '~> 1.2'
+gem 'turbolinks'
+gem 'jbuilder'
+gem 'bcrypt'
+gem 'pg'
+gem 'lograge'
+gem 'logstash-event'
 gem 'net-smtp'
 
 group :development, :test do
