@@ -3,7 +3,7 @@ class Card < ApplicationRecord
   has_many :decks, :through => :deck_cards
   belongs_to :game
 
-  serialize :data
+  serialize :data, coder: YAML
   delegate_missing_to :data
 
   validates :name, :uniqueness => {:scope => :game_id}
