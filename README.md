@@ -47,3 +47,7 @@ p d.cards
 
 There's also a Group model with various attributes that you can use
 to form groups of users, e.g. your local gaming club.
+
+## The UI
+
+Is minimal at best for now. In progress.
