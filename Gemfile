@@ -22,6 +22,7 @@ gem 'net-smtp'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'listen'
 end
 
 group :development do
