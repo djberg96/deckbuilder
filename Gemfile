@@ -19,6 +19,7 @@ gem 'pg'
 gem 'lograge'
 gem 'logstash-event'
 gem 'net-smtp'
+gem 'sassc-rails'
 gem 'sprockets-rails'
 
 group :development, :test do
