@@ -10,11 +10,11 @@
   </thead>
 
   <tbody>
+    <tr class="header">
+      <td>Name</td>
+      <td>Game</td>
+    </tr>
     <% @cards.each do |card| %>
-      <tr class="header">
-        <td>Name</td>
-        <td>Game</td>
-      </tr>
       <tr>
         <td><%= card.name %></td>
         <td><%= card.game.name %></td>
