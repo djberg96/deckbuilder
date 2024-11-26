@@ -12,7 +12,6 @@ gem 'puma'
 gem 'terser'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder'
 gem 'bcrypt'
 gem 'pg'
@@ -21,6 +20,7 @@ gem 'logstash-event'
 gem 'net-smtp'
 gem 'sassc-rails'
 gem 'sprockets-rails'
+gem 'turbolinks'
 
 group :development, :test do
   gem 'byebug', platform: :mri
