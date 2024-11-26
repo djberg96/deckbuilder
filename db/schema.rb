@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_030331) do
-
+ActiveRecord::Schema[7.2].define(version: 2024_11_26_181231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,8 +18,8 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.string "name"
     t.text "description"
     t.json "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "game_id"
   end
 
@@ -36,8 +35,8 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
   create_table "decks", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "user_id"
     t.boolean "private", default: false
   end
@@ -58,16 +57,16 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.integer "minimum_cards_per_deck"
     t.integer "maximum_individual_cards"
     t.json "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.boolean "private"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_groups", force: :cascade do |t|
@@ -84,8 +83,8 @@ ActiveRecord::Schema.define(version: 2021_07_01_030331) do
     t.string "username"
     t.string "password_digest"
     t.boolean "private", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "deck_cards", "cards"
