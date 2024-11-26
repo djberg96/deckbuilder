@@ -10,6 +10,8 @@ class Game < ApplicationRecord
       :less_than_or_equal_to => :minimum_cards_per_deck,
     }
 
+  validates :name, uniqueness: {scope: :edition, message: "Game/Edition already exists"}
+
   def add_deck(deck, quantity = 1)
     game_decks.create(:deck => deck, :quantity => quantity)
   end
