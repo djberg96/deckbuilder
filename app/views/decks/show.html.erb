@@ -1,4 +1,27 @@
 <p id="notice"><%= notice %></p>
 
+DECK: <%= @deck.name %>
+<br>
+<% if @deck.game %>
+GAME: <%= @deck.game.name %>
+<% end %>
+<p>
+
+<table>
+  <thead>
+    <tr class="header">
+      <td>Card Name</td>
+      <td>Quantity</td>
+    </tr> 
+  </thead>
+
+  <% @deck.cards.each do |card| %>
+  <tr>
+    <td><%= card.name %></td>
+    <td><%= card.quantity %></td>
+  </tr>
+  <% end %>
+</table>
+
 <%= link_to 'Edit', edit_deck_path(@deck) %> |
 <%= link_to 'Back', decks_path %>
