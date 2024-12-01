@@ -3,7 +3,7 @@
 DECK: <%= @deck.name %>
 <br>
 <% if @deck.game %>
-GAME: <%= @deck.game.name %>
+  GAME: <%= @deck.game.name + ' (' + @deck.game.edition + ')' %>
 <% end %>
 <p>
 
