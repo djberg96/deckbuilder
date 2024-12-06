@@ -20,7 +20,7 @@
   <p>
 
   <footer>
-    <% if @user %>
+    <% if session[:user_id] %>
       <%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, :method => "delete" %> 
     <% end %>
   </footer>
