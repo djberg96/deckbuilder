@@ -5,6 +5,8 @@ DECK: <%= @deck.name %>
 <% if @deck.game %>
   GAME: <%= @deck.game.name + ' (' + @deck.game.edition + ')' %>
 <% end %>
+<br>
+OWNER: <%= @deck.user.username %>
 <p>
 
 <table>
