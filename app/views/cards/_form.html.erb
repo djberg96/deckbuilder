@@ -19,7 +19,8 @@
     <%= form.text_field :description, :size => "50x3" %>
 
     <%= form.label "Game" %>
-    <%= form.select :game_id, Game.all.map{ |game| [game.name, game.id ] } %>
+    <%= form.select :game_id, Game.all.map{ |game| ["#{game.name} (#{game.edition})", game.id ] } %>
+    <p>
   </body>
 
   <div class="actions">
