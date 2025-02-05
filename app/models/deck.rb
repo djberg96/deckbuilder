@@ -9,6 +9,8 @@ class Deck < ApplicationRecord
 
   belongs_to :user
 
+  # The same user cannot have the same deck name more than once.
+  #
   validates :name,
     :presence   => true,
     :uniqueness => {
@@ -16,6 +18,8 @@ class Deck < ApplicationRecord
       :message => "The deck name cannot be duplicated by the same user."
     }
 
+  # Add +quantity+ of +card+ to the deck. By default it will add one card.
+  #
   def add(card, quantity = 1)
     if dc = deck_cards.find_by(:card => card)
       dc.quantity += quantity
@@ -27,10 +31,17 @@ class Deck < ApplicationRecord
 
   alias add_card add
 
+  # Returns the total number of cards in the deck.
+  #
   def total_cards
     deck_cards.sum(:quantity)
   end
 
+  # Returns false if the deck does not have the minimum number of cards, exceeds
+  # the maximum number of cards, or has too many of the same card. If none of
+  # those conditions fail, or if those conditions don't apply, then it
+  # returns true.
+  #
   def legal?
     bool = true
 
