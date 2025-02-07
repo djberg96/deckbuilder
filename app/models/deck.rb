@@ -53,4 +53,17 @@ class Deck < ApplicationRecord
 
     bool
   end
+
+  def inspect
+    str = "#<#{self.class.name}\n  name => #{name}\n  description => #{description}\n  "
+    str << "owner => #{user.username}\n  private => #{private?}\n  Cards (#{total_cards}):"
+
+    cards.each do |c|
+      str << "\n    #{c.name} => #{c.quantity}"
+    end
+
+    str << "\n>"
+
+    str
+  end
 end
