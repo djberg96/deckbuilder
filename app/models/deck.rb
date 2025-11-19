@@ -23,13 +23,20 @@ class Deck < ApplicationRecord
   def add(card, quantity = 1)
     if dc = deck_cards.find_by(:card => card)
       dc.quantity += quantity
-      dc.save
+      dc.save!
     else
-      deck_cards.create(:card => card, :quantity => quantity)
+      deck_cards.create!(:card => card, :quantity => quantity)
     end
   end
 
   alias add_card add
+
+  def delete_card(card, quantity = 1)
+    if dc = deck_cards.find_by(:card => card)
+      dc.quantity -= quantity
+      dc.save!
+    end
+  end
 
   # Returns the total number of cards in the deck.
   #
@@ -55,8 +62,11 @@ class Deck < ApplicationRecord
   end
 
   def inspect
-    str = "#<#{self.class.name}\n  name => #{name}\n  description => #{description}\n  "
-    str << "owner => #{user.username}\n  private => #{private?}\n  Cards (#{total_cards}):"
+    str = "#<#{self.class.name}\n  name => #{name}\n  description => #{description}"
+    str << "\n  owner => #{user.username}"
+    str << "\n  private => #{private?}"
+    str << "\n  game => #{game.name}" if game&.name
+    str << "\n  Cards (#{total_cards}):"
 
     cards.each do |c|
       str << "\n    #{c.name} => #{c.quantity}"
