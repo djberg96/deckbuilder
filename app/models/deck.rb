@@ -9,6 +9,8 @@ class Deck < ApplicationRecord
 
   belongs_to :user
 
+  validates :game, :presence => true
+
   # The same user cannot have the same deck name more than once.
   #
   validates :name,
@@ -62,6 +64,8 @@ class Deck < ApplicationRecord
   end
 
   def inspect
+    reload
+
     str = "#<#{self.class.name}\n  name => #{name}\n  description => #{description}"
     str << "\n  owner => #{user.username}"
     str << "\n  private => #{private?}"
