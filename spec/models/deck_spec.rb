@@ -11,6 +11,7 @@ RSpec.describe Deck, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:game_deck) }
 
     context 'uniqueness validation' do
       let(:user) { create(:user) }
@@ -32,7 +33,7 @@ RSpec.describe Deck, type: :model do
 
   describe '#add' do
     let(:game) { create(:game) }
-    let(:deck) { create(:deck, :with_game, game: game) }
+    let(:deck) { create(:deck, game: game) }
     let(:card) { create(:card, game: game) }
 
     it 'adds a card to the deck' do
@@ -61,7 +62,7 @@ RSpec.describe Deck, type: :model do
 
   describe '#add_card' do
     let(:game) { create(:game) }
-    let(:deck) { create(:deck, :with_game, game: game) }
+    let(:deck) { create(:deck, game: game) }
     let(:card) { create(:card, game: game) }
 
     it 'is an alias for #add' do
@@ -71,7 +72,7 @@ RSpec.describe Deck, type: :model do
 
   describe '#delete_card' do
     let(:game) { create(:game) }
-    let(:deck) { create(:deck, :with_game, game: game) }
+    let(:deck) { create(:deck, game: game) }
     let(:card) { create(:card, game: game) }
 
     before do
@@ -93,7 +94,7 @@ RSpec.describe Deck, type: :model do
 
   describe '#total_cards' do
     let(:game) { create(:game) }
-    let(:deck) { create(:deck, :with_game, game: game) }
+    let(:deck) { create(:deck, game: game) }
 
     it 'returns 0 when no cards are in the deck' do
       expect(deck.total_cards).to eq(0)
@@ -110,15 +111,7 @@ RSpec.describe Deck, type: :model do
 
   describe '#legal?' do
     let(:game) { create(:game, minimum_cards_per_deck: 40, maximum_cards_per_deck: 60, maximum_individual_cards: 4) }
-    let(:deck) { create(:deck, :with_game, game: game) }
-
-    context 'when deck has no game' do
-      let(:deck_without_game) { build(:deck) }
-
-      it 'returns true' do
-        expect(deck_without_game.legal?).to be true
-      end
-    end
+    let(:deck) { create(:deck, game: game) }
 
     context 'when deck meets all requirements' do
       it 'returns true' do
@@ -132,6 +125,7 @@ RSpec.describe Deck, type: :model do
       it 'returns false' do
         card = create(:card, game: game)
         deck.add(card, 2)
+        deck.reload
         expect(deck.legal?).to be false
       end
     end
@@ -139,6 +133,7 @@ RSpec.describe Deck, type: :model do
     context 'when deck has too many cards' do
       it 'returns false' do
         70.times { deck.add(create(:card, game: game), 1) }
+        deck.reload
         expect(deck.legal?).to be false
       end
     end
@@ -150,6 +145,7 @@ RSpec.describe Deck, type: :model do
         deck_card = deck.deck_cards.find_by(card: card)
         deck_card.update_column(:quantity, 5) # Bypass validation
         40.times { deck.add(create(:card, game: game), 1) }
+        deck.reload
         expect(deck.legal?).to be false
       end
     end

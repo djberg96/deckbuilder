@@ -28,7 +28,7 @@ RSpec.describe Card, type: :model do
   describe '#add_to_deck' do
     let(:game) { create(:game) }
     let(:card) { create(:card, game: game) }
-    let(:deck) { create(:deck, :with_game, game: game) }
+    let(:deck) { create(:deck, game: game) }
 
     it 'adds the card to a deck' do
       expect { card.add_to_deck(deck) }.to change(DeckCard, :count).by(1)
@@ -50,7 +50,7 @@ RSpec.describe Card, type: :model do
   describe '#quantity' do
     let(:game) { create(:game) }
     let(:card) { create(:card, game: game) }
-    let(:deck) { create(:deck, :with_game, game: game) }
+    let(:deck) { create(:deck, game: game) }
 
     it 'returns the quantity of the card in the deck' do
       create(:deck_card, card: card, deck: deck, quantity: 3)

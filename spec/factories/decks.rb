@@ -5,15 +5,20 @@ FactoryBot.define do
     private { false }
     association :user
 
-    trait :with_game do
-      transient do
-        game { nil }
-      end
+    transient do
+      game { nil }
+    end
 
-      after(:create) do |deck, evaluator|
-        game = evaluator.game || create(:game)
-        create(:game_deck, deck: deck, game: game) unless deck.game_deck
+    after(:build) do |deck, evaluator|
+      if deck.new_record? && deck.game.nil?
+        game_to_use = evaluator.game || build(:game)
+        deck.build_game_deck(game: game_to_use)
       end
+    end
+
+    trait :with_game do
+      # This trait is now redundant but kept for backward compatibility
+      # The factory now always creates a game_deck by default
     end
   end
 end

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe DecksController, type: :controller do
   let(:user) { create(:user) }
-  let(:valid_attributes) { { name: 'Test Deck', description: 'A test deck', private: false } }
+  let(:game) { create(:game) }
+  let(:valid_attributes) { { name: 'Test Deck', description: 'A test deck', private: false, game_deck_attributes: { game_id: game.id } } }
   let(:invalid_attributes) { { name: '' } }
 
   before do
@@ -11,13 +12,13 @@ RSpec.describe DecksController, type: :controller do
 
   describe 'GET #index' do
     it 'returns a success response' do
-      deck = create(:deck, :with_game, user: user)
+      deck = create(:deck, user: user)
       get :index
       expect(response).to be_successful
     end
 
     it 'assigns all decks as @decks' do
-      deck = create(:deck, :with_game, user: user)
+      deck = create(:deck, user: user)
       get :index
       expect(assigns(:decks)).to eq([deck])
     end
@@ -25,7 +26,7 @@ RSpec.describe DecksController, type: :controller do
 
   describe 'GET #show' do
     it 'returns a success response' do
-      deck = create(:deck, :with_game, user: user)
+      deck = create(:deck, user: user)
       get :show, params: { id: deck.to_param }
       expect(response).to be_successful
     end
@@ -40,7 +41,7 @@ RSpec.describe DecksController, type: :controller do
 
   describe 'GET #edit' do
     it 'returns a success response' do
-      deck = create(:deck, :with_game, user: user)
+      deck = create(:deck, user: user)
       get :edit, params: { id: deck.to_param }
       expect(response).to be_successful
     end
@@ -78,14 +79,14 @@ RSpec.describe DecksController, type: :controller do
       let(:new_attributes) { { name: 'Updated Deck' } }
 
       it 'updates the requested deck' do
-        deck = create(:deck, :with_game, user: user)
+        deck = create(:deck, user: user)
         put :update, params: { id: deck.to_param, deck: new_attributes }
         deck.reload
         expect(deck.name).to eq('Updated Deck')
       end
 
       it 'redirects to the deck' do
-        deck = create(:deck, :with_game, user: user)
+        deck = create(:deck, user: user)
         put :update, params: { id: deck.to_param, deck: valid_attributes }
         expect(response).to redirect_to(deck)
       end
@@ -93,7 +94,7 @@ RSpec.describe DecksController, type: :controller do
 
     context 'with invalid params' do
       it 'returns a success response (i.e. to display the edit template)' do
-        deck = create(:deck, :with_game, user: user)
+        deck = create(:deck, user: user)
         put :update, params: { id: deck.to_param, deck: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -102,14 +103,14 @@ RSpec.describe DecksController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys the requested deck' do
-      deck = create(:deck, :with_game, user: user)
+      deck = create(:deck, user: user)
       expect {
         delete :destroy, params: { id: deck.to_param }
       }.to change(Deck, :count).by(-1)
     end
 
     it 'redirects to the decks list' do
-      deck = create(:deck, :with_game, user: user)
+      deck = create(:deck, user: user)
       delete :destroy, params: { id: deck.to_param }
       expect(response).to redirect_to(decks_url)
     end

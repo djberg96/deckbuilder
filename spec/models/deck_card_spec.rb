@@ -9,7 +9,7 @@ RSpec.describe DeckCard, type: :model do
   describe 'validations' do
     context 'uniqueness validation' do
       let(:game) { create(:game) }
-      let(:deck) { create(:deck, :with_game, game: game) }
+      let(:deck) { create(:deck, game: game) }
       let(:card) { create(:card, game: game) }
       let!(:existing_deck_card) { create(:deck_card, deck: deck, card: card) }
 
@@ -19,7 +19,7 @@ RSpec.describe DeckCard, type: :model do
       end
 
       it 'allows same card in different decks' do
-        other_deck = create(:deck, :with_game, game: game)
+        other_deck = create(:deck, game: game)
         new_deck_card = build(:deck_card, deck: other_deck, card: card)
         expect(new_deck_card).to be_valid
       end
@@ -27,7 +27,7 @@ RSpec.describe DeckCard, type: :model do
 
     context 'card_limits validation' do
       let(:game) { create(:game, maximum_individual_cards: 4) }
-      let(:deck) { create(:deck, :with_game, game: game) }
+      let(:deck) { create(:deck, game: game) }
       let(:card) { create(:card, game: game) }
 
       it 'is invalid when quantity is 0' do

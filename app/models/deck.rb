@@ -4,12 +4,14 @@ class Deck < ApplicationRecord
   has_many :deck_cards, :dependent => :destroy
   has_many :cards, :through => :deck_cards
 
-  has_one :game_deck, :dependent => :destroy
+  has_one :game_deck, :dependent => :destroy, :autosave => true, :inverse_of => :deck
   has_one :game, :through => :game_deck
 
   belongs_to :user
 
-  validates :game, :presence => true
+  accepts_nested_attributes_for :game_deck
+
+  validates :game_deck, :presence => true
 
   # The same user cannot have the same deck name more than once.
   #
@@ -55,8 +57,8 @@ class Deck < ApplicationRecord
     bool = true
 
     if game
-      bool = false if game.minimum_cards_per_deck and total_cards <= game.minimum_cards_per_deck
-      bool = false if game.maximum_cards_per_deck and total_cards >= game.maximum_cards_per_deck
+      bool = false if game.minimum_cards_per_deck and total_cards < game.minimum_cards_per_deck
+      bool = false if game.maximum_cards_per_deck and total_cards > game.maximum_cards_per_deck
       bool = false if game.maximum_individual_cards and cards.any?{ |card| card.quantity > game.maximum_individual_cards }
     end
 
