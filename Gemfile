@@ -26,6 +26,8 @@ gem 'turbolinks'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'listen'
+  gem 'rspec'
+  gem 'rspec-rails', '~> 7.0'
 end
 
 group :development do
