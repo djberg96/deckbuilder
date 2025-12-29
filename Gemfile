@@ -26,6 +26,15 @@ gem 'turbolinks'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'listen'
+  gem 'rspec-rails', '~> 6.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rails-controller-testing'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'database_cleaner-active_record'
 end
 
 group :development do
