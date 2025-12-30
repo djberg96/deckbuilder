@@ -4,7 +4,7 @@ class Deck < ApplicationRecord
   has_many :deck_cards, :dependent => :destroy
   has_many :cards, :through => :deck_cards
 
-  has_one :game_deck, :dependent => :destroy
+  has_one :game_deck, :dependent => :destroy, :autosave => true, :inverse_of => :deck
   has_one :game, :through => :game_deck
 
   belongs_to :user
