@@ -25,7 +25,64 @@
     <%= form.select :game_id, Game.all.map { |game| [game.edition.present? ? "#{game.name} (#{game.edition})" : game.name, game.id] }, {}, class: 'form-select' %>
   </div>
 
+  <h5>Data Attributes</h5>
+  <div id="data-attributes">
+    <% if card.data.present? && card.data.is_a?(Hash) %>
+      <% card.data.each do |key, value| %>
+        <div class="row mb-2 data-attribute">
+          <div class="col-md-4">
+            <input type="text" class="form-control data-key" value="<%= key %>" readonly>
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control data-value" name="card[data][<%= key %>]" value="<%= value %>">
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-danger btn-sm remove-attribute">Remove</button>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <button type="button" id="add-attribute" class="btn btn-secondary mb-3">Add Attribute</button>
+
+  <div id="attribute-template" style="display:none">
+    <div class="row mb-2 data-attribute">
+      <div class="col-md-4">
+        <input type="text" class="form-control data-key" placeholder="Key">
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control data-value" name="card[data][__new__]" placeholder="Value">
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-danger btn-sm remove-attribute">Remove</button>
+      </div>
+    </div>
+  </div>
+
   <div class="actions">
     <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script>
+$(document).off('click', '#add-attribute').on('click', '#add-attribute', function(e) {
+  e.preventDefault();
+  var template = $('#attribute-template').html();
+  $('#data-attributes').append(template);
+  return false;
+});
+
+$(document).off('click', '.remove-attribute').on('click', '.remove-attribute', function() {
+  $(this).closest('.data-attribute').remove();
+});
+
+$(document).off('input', '.data-key').on('input', '.data-key', function() {
+  var key = $(this).val();
+  var valueInput = $(this).closest('.data-attribute').find('.data-value');
+  if (key) {
+    valueInput.attr('name', 'card[data][' + key + ']');
+  } else {
+    valueInput.attr('name', 'card[data][__new__]');
+  }
+});
+</script>
