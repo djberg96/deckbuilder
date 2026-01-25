@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Game.create([
+Game.create!([
   {
     :name                     => "Magic: The Gathering",
     :description              => "Cardboard crack",
@@ -20,7 +20,7 @@ Game.create([
   }
 ])
 
-User.create([
+User.create!([
   {
     :first_name => "Daniel",
     :last_name => "Berger",
@@ -29,13 +29,13 @@ User.create([
   }
 ])
 
-Card.create([
+Card.create!([
   {:name => "Goblin", :data => {:faction => "Red", :cost => 1}, :game => Game.first},
   {:name => "Lightning Bolt", :data => {:faction => "Red", :cost => 1}, :game => Game.first},
   {:name => "Zombie", :data => {:faction => "Black", :cost => 1}, :game => Game.first},
 ])
 
-Deck.create([
+Deck.create!([
   {:name => "Black Lightning", :description => "Test black deck", :user => User.first},
   {
     :name        => "Red Lightning",
