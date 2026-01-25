@@ -36,7 +36,44 @@
     <% end %>
   </div>
 
+  <div class="mb-3">
+    <label class="form-label">Attributes</label>
+    <% existing_keys = card.game ? card.game.cards.where.not(id: card.id).pluck(:data).compact.flat_map { |d| d.respond_to?(:keys) ? d.keys : [] }.uniq : [] %>
+    <% if existing_keys.any? %>
+      <small class="form-text text-muted">Suggested attributes from other cards in this game: <%= existing_keys.join(', ') %></small>
+    <% end %>
+    <div id="attributes-container">
+      <% (card.data || {}).each_with_index do |(key, value), index| %>
+        <div class="attribute-row d-flex mb-2">
+          <input type="text" name="card[attributes][<%= index %>][key]" value="<%= key %>" class="form-control me-2" placeholder="Attribute name" style="flex: 1;">
+          <input type="text" name="card[attributes][<%= index %>][value]" value="<%= value %>" class="form-control me-2" placeholder="Value" style="flex: 2;">
+          <button type="button" class="btn btn-outline-danger" onclick="removeAttribute(this)">Remove</button>
+        </div>
+      <% end %>
+    </div>
+    <button type="button" class="btn btn-outline-secondary btn-sm mt-2" onclick="addAttribute()">+ Add Attribute</button>
+  </div>
+
   <div class="actions">
     <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script>
+function addAttribute() {
+  const container = document.getElementById('attributes-container');
+  const index = container.children.length;
+  const row = document.createElement('div');
+  row.className = 'attribute-row d-flex mb-2';
+  row.innerHTML = `
+    <input type="text" name="card[attributes][${index}][key]" class="form-control me-2" placeholder="Attribute name" style="flex: 1;">
+    <input type="text" name="card[attributes][${index}][value]" class="form-control me-2" placeholder="Value" style="flex: 2;">
+    <button type="button" class="btn btn-outline-danger" onclick="removeAttribute(this)">Remove</button>
+  `;
+  container.appendChild(row);
+}
+
+function removeAttribute(button) {
+  button.closest('.attribute-row').remove();
+}
+</script>
