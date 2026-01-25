@@ -14,12 +14,15 @@ class DecksController < ApplicationController
   def new
     @deck = Deck.new
     @deck.build_game_deck
+    3.times { @deck.deck_cards.build }
     @games = Game.all
+    @cards_by_game = Card.all.group_by(&:game_id).transform_values { |cards| cards.map { |c| {id: c.id, name: c.name} } }
   end
 
   # GET /decks/1/edit
   def edit
     @games = Game.all
+    @cards_by_game = Card.all.group_by(&:game_id).transform_values { |cards| cards.map { |c| {id: c.id, name: c.name} } }
   end
 
   # POST /decks or /decks.json
@@ -68,6 +71,6 @@ class DecksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deck_params
-      params.require(:deck).permit(:deck, :name, :description, :private, game_deck_attributes: [:game_id])
+      params.require(:deck).permit(:deck, :name, :description, :private, game_deck_attributes: [:game_id], deck_cards_attributes: [:card_id, :quantity])
     end
 end

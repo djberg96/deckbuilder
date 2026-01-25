@@ -10,6 +10,7 @@ class Deck < ApplicationRecord
   belongs_to :user
 
   accepts_nested_attributes_for :game_deck
+  accepts_nested_attributes_for :deck_cards
 
   validates :game_deck, :presence => true
 

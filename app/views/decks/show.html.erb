@@ -28,10 +28,10 @@
         </tr>
       </thead>
       <tbody>
-        <% @deck.cards.each do |card| %>
+        <% @deck.deck_cards.each do |deck_card| %>
           <tr>
-            <td><%= link_to card.name, card %></td>
-            <td class="text-end"><%= card.quantity %></td>
+            <td><%= link_to deck_card.card.name, deck_card.card %></td>
+            <td class="text-end"><%= deck_card.quantity %></td>
           </tr>
         <% end %>
       </tbody>
