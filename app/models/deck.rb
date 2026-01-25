@@ -59,7 +59,7 @@ class Deck < ApplicationRecord
     if game
       bool = false if game.minimum_cards_per_deck and total_cards < game.minimum_cards_per_deck
       bool = false if game.maximum_cards_per_deck and total_cards > game.maximum_cards_per_deck
-      bool = false if game.maximum_individual_cards and cards.any?{ |card| card.quantity > game.maximum_individual_cards }
+      bool = false if game.maximum_individual_cards and deck_cards.any?{ |dc| dc.quantity > game.maximum_individual_cards }
     end
 
     bool
@@ -74,8 +74,8 @@ class Deck < ApplicationRecord
     str << "\n  game => #{game.name}" if game&.name
     str << "\n  Cards (#{total_cards}):"
 
-    cards.each do |c|
-      str << "\n    #{c.name} => #{c.quantity}"
+    deck_cards.each do |dc|
+      str << "\n    #{dc.card.name} => #{dc.quantity}"
     end
 
     str << "\n>"
