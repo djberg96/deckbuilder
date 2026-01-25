@@ -65,7 +65,6 @@
       <%= form.select :user_ids, User.where.not(id: group.users.pluck(:id)).collect { |u| [u.username, u.id] }, {}, { multiple: true, class: 'form-select', size: 5 } %>
       <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple users</small>
     </div>
-  </div>
 
   <div class="actions">
     <%= form.submit class: 'btn btn-primary' %>
