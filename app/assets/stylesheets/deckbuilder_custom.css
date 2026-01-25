@@ -6,15 +6,21 @@ body {
 .navbar-brand {
   font-weight: bold;
   letter-spacing: 1px;
+  color: #ffffff !important;
 }
 
 .navbar-nav .nav-link {
   font-weight: 500;
+  color: #ffffff !important;
   transition: color 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #e0e0e0 !important;
+}
+
+.navbar-text {
+  color: #ffffff !important;
 }
 
 .card {
