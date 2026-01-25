@@ -2,5 +2,7 @@
 
 <%= render 'form', game: @game %>
 
-<%= link_to 'Show', @game %> |
-<%= link_to 'Back', games_path %>
+<div class="text-end mt-3 mb-4">
+  <%= link_to 'Show', @game, class: 'btn btn-outline-primary me-2' %>
+  <%= link_to 'Back', games_path, class: 'btn btn-outline-primary' %>
+</div>

@@ -2,5 +2,7 @@
 
 <%= render 'form', group: @group %>
 
-<%= link_to 'Show', @group %> |
-<%= link_to 'Back', groups_path %>
+<div class="text-end mt-3 mb-4">
+  <%= link_to 'Show', @group, class: 'btn btn-outline-primary me-2' %>
+  <%= link_to 'Back', groups_path, class: 'btn btn-outline-primary' %>
+</div>
