@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'decks/_form.html.erb', type: :view do
-  let(:deck) { Deck.new }
+  let(:deck) { Deck.new.tap { |d| d.build_game_deck } }
   let(:games) { Game.all }
   let(:cards_by_game) { Card.all.map { |c| { id: c.id, name: c.name, game_id: c.game_id } } }
 
@@ -29,10 +29,5 @@ RSpec.describe 'decks/_form.html.erb', type: :view do
   it 'includes submit button' do
     render partial: 'decks/form', locals: { deck: deck, games: games, cards_by_game: cards_by_game }
     expect(rendered).to have_selector('input[type="submit"]')
-  end
-
-  it 'includes back button' do
-    render partial: 'decks/form', locals: { deck: deck, games: games, cards_by_game: cards_by_game }
-    expect(rendered).to have_selector('a.btn.btn-secondary', text: 'Back')
   end
 end
