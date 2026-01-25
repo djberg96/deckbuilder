@@ -25,7 +25,108 @@
     <%= form.label :private, class: 'form-check-label' %>
   </div>
 
+  <%= form.fields_for :game_deck do |game_deck_form| %>
+    <div class="mb-3">
+      <%= game_deck_form.label :game_id, "Game", class: 'form-label' %>
+      <%= game_deck_form.select :game_id, options_from_collection_for_select(@games || [], :id, :name), { prompt: "Select a game" }, class: 'form-control' %>
+    </div>
+  <% end %>
+
+  <div id="cards-section" style="display:none">
+    <h5><%= deck.new_record? ? 'Add cards' : 'Add or Edit cards' %></h5>
+    <div id="cards-container">
+      <%= form.fields_for :deck_cards do |deck_card_form| %>
+        <div class="row mb-3 deck-card-fields">
+          <div class="col-md-8">
+            <% if deck_card_form.object.persisted? %>
+              <%= deck_card_form.hidden_field :card_id %>
+              <label class="form-label">Card</label>
+              <input type="text" class="form-control" value="<%= deck_card_form.object.card.name %>" disabled>
+            <% else %>
+              <%= deck_card_form.label :card_id, "Card", class: 'form-label' %>
+              <%= deck_card_form.select :card_id, options_for_select((@cards_by_game || []).map { |c| [c[:name], c[:id]] }, deck_card_form.object.card_id), { prompt: "Select a card" }, class: 'form-control card-select' %>
+            <% end %>
+          </div>
+          <div class="col-md-3">
+            <%= deck_card_form.label :quantity, "Quantity", class: 'form-label' %>
+            <%= deck_card_form.number_field :quantity, class: 'form-control', min: 1, value: deck_card_form.object.quantity || 1 %>
+          </div>
+          <div class="col-md-1 d-flex align-items-end">
+            <%= deck_card_form.check_box :_destroy, class: 'form-check-input me-2' %>
+            <label class="form-check-label">Delete</label>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <button type="button" id="add-card" class="btn btn-secondary mb-3">Add Card</button>
+  </div>
+
+  <div id="card-template" style="display:none">
+    <div class="row mb-3 deck-card-fields">
+      <div class="col-md-8">
+        <label class="form-label">Card</label>
+        <select class="form-control card-select" name="deck[deck_cards_attributes][INDEX][card_id]"><option value="">Select a card</option></select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Quantity</label>
+        <input type="number" class="form-control" name="deck[deck_cards_attributes][INDEX][quantity]" min="1" value="1">
+      </div>
+      <div class="col-md-1 d-flex align-items-end">
+        <button type="button" class="btn btn-danger btn-sm remove-card">Remove</button>
+      </div>
+    </div>
+  </div>
+
   <div class="actions">
     <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script>
+var cardsByGame = <%= @cards_by_game.to_json.html_safe %>;
+var nextIndex = <%= @deck.deck_cards.size %>;
+
+$(document).ready(function() {
+  $('#deck_game_deck_attributes_game_id').trigger('change');
+});
+
+$(document).off('change', '#deck_game_deck_attributes_game_id').on('change', '#deck_game_deck_attributes_game_id', function() {
+  var gameId = $(this).val();
+  var cards = gameId ? cardsByGame.filter(c => c.game_id == gameId) : cardsByGame;
+  $('.card-select').each(function() {
+    var select = $(this);
+    var currentValue = select.val();
+    select.empty();
+    select.append('<option value="">Select a card</option>');
+    cards.forEach(function(card) {
+      select.append('<option value="' + card.id + '">' + card.name + '</option>');
+    });
+    if (currentValue) {
+      select.val(currentValue);
+    }
+  });
+  if (gameId) {
+    $('#cards-section').show();
+  } else {
+    $('#cards-section').hide();
+  }
+});
+
+$(document).off('click', '#add-card').on('click', '#add-card', function(e) {
+  e.preventDefault();
+  var $button = $(this);
+  $button.prop('disabled', true);
+  var template = $('#card-template').html();
+  var newHtml = template.replace(/INDEX/g, nextIndex);
+  $('#cards-container').append(newHtml);
+  nextIndex++;
+  // Trigger change to populate the new select
+  $('#deck_game_deck_attributes_game_id').trigger('change');
+  $button.prop('disabled', false);
+  return false;
+});
+
+$(document).off('click', '.remove-card').on('click', '.remove-card', function() {
+  $(this).closest('.deck-card-fields').remove();
+});
+</script>

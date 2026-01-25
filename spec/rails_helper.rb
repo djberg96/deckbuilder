@@ -9,6 +9,7 @@ require 'rspec/rails'
 
 require 'shoulda/matchers'
 require 'database_cleaner/active_record'
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -80,6 +81,7 @@ RSpec.configure do |config|
 
   # Factory Bot configuration
   config.include FactoryBot::Syntax::Methods
+  config.include Capybara::RSpecMatchers, type: :view
 end
 
 # Shoulda Matchers configuration

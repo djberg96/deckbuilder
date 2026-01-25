@@ -13,10 +13,15 @@ class DecksController < ApplicationController
   # GET /decks/new
   def new
     @deck = Deck.new
+    @deck.build_game_deck
+    @games = Game.all
+    @cards_by_game = Card.all.map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
   end
 
   # GET /decks/1/edit
   def edit
+    @games = Game.all
+    @cards_by_game = Card.all.map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
   end
 
   # POST /decks or /decks.json
@@ -29,6 +34,8 @@ class DecksController < ApplicationController
         format.html { redirect_to @deck, notice: "Deck was successfully created." }
         format.json { render :show, status: :created, location: @deck }
       else
+        @games = Game.all
+        @cards_by_game = Card.all.map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
         format.html { render :new, status: :unprocessable_content }
         format.json { render json: @deck.errors, status: :unprocessable_content }
       end
@@ -37,6 +44,8 @@ class DecksController < ApplicationController
 
   # PATCH/PUT /decks/1 or /decks/1.json
   def update
+    @games = Game.all
+    @cards_by_game = Card.all.map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
     respond_to do |format|
       if @deck.update(deck_params)
         format.html { redirect_to @deck, notice: "Deck was successfully updated." }
@@ -52,7 +61,7 @@ class DecksController < ApplicationController
   def destroy
     @deck.destroy
     respond_to do |format|
-      format.html { redirect_to decks_url, notice: "Deck was successfully destroyed." }
+      format.html { redirect_to decks_url, notice: "Deck '#{@deck.name}' was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +74,6 @@ class DecksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deck_params
-      params.require(:deck).permit(:deck, :name, :description, :private, game_deck_attributes: [:game_id])
+      params.require(:deck).permit(:deck, :name, :description, :private, game_deck_attributes: [:game_id], deck_cards_attributes: [:id, :card_id, :quantity, :_destroy])
     end
 end
