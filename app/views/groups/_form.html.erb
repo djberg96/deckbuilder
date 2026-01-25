@@ -25,7 +25,29 @@
     <%= form.label :private, 'Private?', class: 'form-check-label' %>
   </div>
 
+  <div class="mb-3">
+    <label class="form-label">Add Users</label>
+    <button type="button" class="btn btn-outline-secondary btn-sm mb-2" onclick="toggleUserSelection()">
+      + Add User
+    </button>
+    <div id="user-selection" style="display: none;">
+      <%= form.select :user_ids, User.all.collect { |u| [u.username, u.id] }, {}, { multiple: true, class: 'form-select', size: 5 } %>
+      <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple users</small>
+    </div>
+  </div>
+
   <div class="actions">
     <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script>
+function toggleUserSelection() {
+  var element = document.getElementById('user-selection');
+  if (element.style.display === 'none') {
+    element.style.display = 'block';
+  } else {
+    element.style.display = 'none';
+  }
+}
+</script>
