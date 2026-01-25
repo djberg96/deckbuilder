@@ -9,7 +9,9 @@ class Deck < ApplicationRecord
 
   belongs_to :user
 
-  validates :game, :presence => true
+  accepts_nested_attributes_for :game_deck
+
+  validates :game_deck, :presence => true
 
   # The same user cannot have the same deck name more than once.
   #
