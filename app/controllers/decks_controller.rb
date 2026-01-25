@@ -13,10 +13,13 @@ class DecksController < ApplicationController
   # GET /decks/new
   def new
     @deck = Deck.new
+    @deck.build_game_deck
+    @games = Game.all
   end
 
   # GET /decks/1/edit
   def edit
+    @games = Game.all
   end
 
   # POST /decks or /decks.json
