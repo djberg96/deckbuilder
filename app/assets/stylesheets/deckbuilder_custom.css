@@ -58,6 +58,12 @@ a {
   border-radius: 12px 12px 0 0 !important;
 }
 
+.light-brown-header {
+  background: linear-gradient(90deg, #d2b48c 0%, #f4e4bc 100%);
+  color: #000000 !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
 .user-info-header {
   background: linear-gradient(90deg, #4a90e2 0%, #87ceeb 100%);
   color: #ffffff !important;
