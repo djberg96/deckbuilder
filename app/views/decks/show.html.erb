@@ -6,7 +6,7 @@
   </div>
   <div class="card-body">
     <% if @deck.game %>
-      <p class="card-text"><strong>Game:</strong> <%= @deck.game.name %><% if @deck.game.edition.present? %> (<%= @deck.game.edition %>)<% end %></p>
+      <p class="card-text"><strong>Game:</strong> <%= link_to @deck.game.name, @deck.game %><% if @deck.game.edition.present? %> (<%= @deck.game.edition %>)<% end %></p>
     <% end %>
     <p class="card-text"><strong>Owner:</strong> <%= link_to @deck.user.username, @deck.user %></p>
     <% if @deck.private? %>

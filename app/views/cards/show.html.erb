@@ -6,7 +6,7 @@
   </div>
   <div class="card-body">
     <p class="card-text"><strong>Description:</strong> <%= @card.description %></p>
-    <p class="card-text"><strong>Game:</strong> <%= @card.game.name %><% if @card.game.edition.present? %> (<%= @card.game.edition %>)<% end %></p>
+    <p class="card-text"><strong>Game:</strong> <%= link_to @card.game.name, @card.game %><% if @card.game.edition.present? %> (<%= @card.game.edition %>)<% end %></p>
   </div>
 </div>
 
