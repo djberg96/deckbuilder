@@ -48,8 +48,8 @@ Deck.create!([
     :user        => User.first,
     :game        => Game.first,
     :deck_cards  => DeckCard.create([
-      {:id => Card.find_by(:name => "Lightning Bolt").id, :quantity => 3},
-      {:id => Card.find_by(:name => "Zombie").id, :quantity => 3},
+      {:card_id => Card.find_by(:name => "Lightning Bolt").id, :quantity => 3},
+      {:card_id => Card.find_by(:name => "Zombie").id, :quantity => 3},
     ])
   }
 ])
