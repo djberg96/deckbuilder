@@ -137,13 +137,28 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'authorization' do
-    it 'requires login for index' do
+    it 'does not require login for index' do
       get :index
+      expect(response).to be_successful
+    end
+
+    it 'does not require login for show' do
+      get :show, params: { id: user.to_param }
+      expect(response).to be_successful
+    end
+
+    it 'requires login for edit' do
+      get :edit, params: { id: user.to_param }
       expect(response).to redirect_to(login_url)
     end
 
-    it 'requires login for show' do
-      get :show, params: { id: user.to_param }
+    it 'requires login for update' do
+      put :update, params: { id: user.to_param, user: { first_name: 'No' } }
+      expect(response).to redirect_to(login_url)
+    end
+
+    it 'requires login for destroy' do
+      delete :destroy, params: { id: user.to_param }
       expect(response).to redirect_to(login_url)
     end
 
