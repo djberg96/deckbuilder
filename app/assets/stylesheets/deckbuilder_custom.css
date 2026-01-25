@@ -3,6 +3,10 @@ body {
   background-color: #f8f9fa;
 }
 
+a {
+  text-decoration: none;
+}
+
 .navbar-brand {
   font-weight: bold;
   letter-spacing: 1px;
