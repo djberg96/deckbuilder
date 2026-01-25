@@ -3,6 +3,8 @@ class Card < ApplicationRecord
   has_many :decks, :through => :deck_cards
   belongs_to :game
 
+  has_one_attached :image
+
   delegate_missing_to :data
 
   validates :name, :uniqueness => {:scope => :game_id}

@@ -7,6 +7,11 @@
   <div class="card-body">
     <p class="card-text"><strong>Description:</strong> <%= @card.description %></p>
     <p class="card-text"><strong>Game:</strong> <%= link_to @card.game.name, @card.game %><% if @card.game.edition.present? %> (<%= @card.game.edition %>)<% end %></p>
+    <% if @card.image.attached? %>
+      <div class="mt-3">
+        <%= image_tag @card.image, class: 'img-fluid rounded', style: 'max-width: 300px;' %>
+      </div>
+    <% end %>
   </div>
 </div>
 
