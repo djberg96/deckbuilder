@@ -19,7 +19,7 @@
             <td><%= link_to group.name, group %></td>
             <td class="text-end">
               <%= link_to 'Edit', edit_group_path(group), class: 'btn btn-outline-primary btn-sm me-1' %>
-              <%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
+              <%= link_to 'Delete', group, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
             </td>
           </tr>
         <% end %>
