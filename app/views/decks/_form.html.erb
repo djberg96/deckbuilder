@@ -90,7 +90,7 @@ $(document).ready(function() {
   $('#deck_game_deck_attributes_game_id').trigger('change');
 });
 
-$(document).on('change', '#deck_game_deck_attributes_game_id', function() {
+$(document).off('change', '#deck_game_deck_attributes_game_id').on('change', '#deck_game_deck_attributes_game_id', function() {
   var gameId = $(this).val();
   var cards = gameId ? cardsByGame.filter(c => c.game_id == gameId) : cardsByGame;
   $('.card-select').each(function() {
@@ -112,16 +112,21 @@ $(document).on('change', '#deck_game_deck_attributes_game_id', function() {
   }
 });
 
-$(document).on('click', '#add-card', function() {
+$(document).off('click', '#add-card').on('click', '#add-card', function(e) {
+  e.preventDefault();
+  var $button = $(this);
+  $button.prop('disabled', true);
   var template = $('#card-template').html();
   var newHtml = template.replace(/INDEX/g, nextIndex);
   $('#cards-container').append(newHtml);
   nextIndex++;
   // Trigger change to populate the new select
   $('#deck_game_deck_attributes_game_id').trigger('change');
+  $button.prop('disabled', false);
+  return false;
 });
 
-$(document).on('click', '.remove-card', function() {
+$(document).off('click', '.remove-card').on('click', '.remove-card', function() {
   $(this).closest('.deck-card-fields').remove();
 });
 </script>
