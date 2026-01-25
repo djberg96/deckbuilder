@@ -1,9 +1,8 @@
-<%= form_with(model: deck) do |form| %>
+<%= form_with(model: deck, html: { class: 'needs-validation' }) do |form| %>
   <% if deck.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(deck.errors.count, "error") %> prohibited this deck from being saved:</h4>
+      <ul class="mb-0">
         <% deck.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,18 +10,22 @@
     </div>
   <% end %>
 
-  <body>
-    <%= form.label "Name" %>
-    <%= form.text_field :name, :size => 50 %>
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control', size: 50, autofocus: true %>
+  </div>
 
-    <%= form.label "Description" %>
-    <%= form.text_field :description, :size => "50x3" %>
+  <div class="mb-3">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control', rows: 3 %>
+  </div>
 
-    <%= form.label "Private" %>
-    <%= form.check_box :private %>
-  </body>
+  <div class="form-check mb-3">
+    <%= form.check_box :private, class: 'form-check-input' %>
+    <%= form.label :private, class: 'form-check-label' %>
+  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
