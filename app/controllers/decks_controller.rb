@@ -34,6 +34,8 @@ class DecksController < ApplicationController
         format.html { redirect_to @deck, notice: "Deck was successfully created." }
         format.json { render :show, status: :created, location: @deck }
       else
+        @games = Game.all
+        @cards_by_game = Card.all.map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
         format.html { render :new, status: :unprocessable_content }
         format.json { render json: @deck.errors, status: :unprocessable_content }
       end
