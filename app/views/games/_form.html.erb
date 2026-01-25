@@ -1,27 +1,8 @@
-<%= form_with(model: game) do |form| %>
-  <%= form.label "Name" %>
-  <%= form.text_field :name, :size => 50 %>
-
-  <%= form.label "Edition" %>
-  <%= form.text_field :name, :size => 50 %>
-
-  <%= form.label "Description" %>
-  <%= form.text_area :description, :size => "50x5" %>
-
-  <%= form.label "Minimum number of cards required" %>
-  <%= form.number_field :minimum_cards_per_deck, :in => 30..60 %>
-
-  <%= form.label "Maximum number of cards allowed" %>
-  <%= form.number_field :maximum_cards_per_deck, :in => 30..100 %>
-
-  <%= form.label "Maximum number of card copies" %>
-  <%= form.select :maximum_individual_cards, 1..6 %>
-
+<%= form_with(model: game, html: { class: 'needs-validation' }) do |form| %>
   <% if game.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h4>
+      <ul class="mb-0">
         <% game.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -29,9 +10,37 @@
     </div>
   <% end %>
 
-  <p>
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control', size: 50, autofocus: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :edition, class: 'form-label' %>
+    <%= form.text_field :edition, class: 'form-control', size: 50 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control', rows: 5 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :minimum_cards_per_deck, 'Minimum number of cards required', class: 'form-label' %>
+    <%= form.number_field :minimum_cards_per_deck, in: 30..60, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :maximum_cards_per_deck, 'Maximum number of cards allowed', class: 'form-label' %>
+    <%= form.number_field :maximum_cards_per_deck, in: 30..100, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :maximum_individual_cards, 'Maximum number of card copies', class: 'form-label' %>
+    <%= form.select :maximum_individual_cards, 1..6, {}, class: 'form-select' %>
+  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

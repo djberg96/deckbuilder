@@ -1,4 +1,56 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="card shadow-sm mb-4">
+  <div class="card-header user-info-header">
+    <h3 class="mb-0"><%= @user.username %></h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><strong>First Name:</strong> <%= @user.first_name %></p>
+    <p class="card-text"><strong>Last Name:</strong> <%= @user.last_name %></p>
+    <p class="card-text"><strong>Username:</strong> <%= @user.username %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card shadow-sm mb-4">
+      <div class="card-header decks-header">
+        <h5 class="mb-0">Decks (<%= @user.decks.count %>)</h5>
+      </div>
+      <div class="card-body">
+        <% if @user.decks.any? %>
+          <ul class="list-group list-group-flush">
+            <% @user.decks.each do |deck| %>
+              <li class="list-group-item"><%= link_to deck.name, deck %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-muted">No decks created.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-sm mb-4">
+      <div class="card-header groups-header">
+        <h5 class="mb-0">Groups (<%= @user.groups.count %>)</h5>
+      </div>
+      <div class="card-body">
+        <% if @user.groups.any? %>
+          <ul class="list-group list-group-flush">
+            <% @user.groups.each do |group| %>
+              <li class="list-group-item"><%= link_to group.name, group %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-muted">Not a member of any groups.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-end mt-3 mb-4">
+  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary me-2' %>
+  <%= link_to 'Back', users_path, class: 'btn btn-outline-primary' %>
+</div>

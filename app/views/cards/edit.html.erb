@@ -2,5 +2,7 @@
 
 <%= render 'form', card: @card %>
 
-<%= link_to 'Show', @card %> |
-<%= link_to 'Back', cards_path %>
+<div class="text-end mt-3 mb-4">
+  <%= link_to 'Show', @card, class: 'btn btn-outline-primary me-2' %>
+  <%= link_to 'Back', cards_path, class: 'btn btn-outline-primary' %>
+</div>

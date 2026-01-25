@@ -1,4 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<div class="card shadow-sm mb-4">
+  <div class="card-header">
+    <h3 class="mb-0"><%= @group.name %></h3>
+  </div>
+  <div class="card-body">
+    <h5>Members</h5>
+    <% if @group.users.any? %>
+      <ul class="list-group list-group-flush">
+        <% @group.users.each do |user| %>
+          <li class="list-group-item"><%= link_to user.username, user_path(user) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-muted">No members in this group.</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="text-end mt-3 mb-4">
+  <%= link_to 'Edit', edit_group_path(@group), class: 'btn btn-primary me-2' %>
+  <%= link_to 'Back', groups_path, class: 'btn btn-outline-primary' %>
+</div>

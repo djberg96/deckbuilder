@@ -1,9 +1,8 @@
-<%= form_with(model: card) do |form| %>
+<%= form_with(model: card, html: { class: 'needs-validation' }) do |form| %>
   <% if card.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h4>
+      <ul class="mb-0">
         <% card.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,19 +10,22 @@
     </div>
   <% end %>
 
-  <body>
-    <%= form.label "Name" %>
-    <%= form.text_field :name, :size => 50 %>
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control', size: 50, autofocus: true %>
+  </div>
 
-    <%= form.label "Description" %>
-    <%= form.text_field :description, :size => "50x3" %>
+  <div class="mb-3">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control', rows: 3 %>
+  </div>
 
-    <%= form.label "Game" %>
-    <%= form.select :game_id, Game.all.map{ |game| ["#{game.name} (#{game.edition})", game.id ] } %>
-    <p>
-  </body>
+  <div class="mb-3">
+    <%= form.label :game_id, 'Game', class: 'form-label' %>
+    <%= form.select :game_id, Game.all.map { |game| [game.edition.present? ? "#{game.name} (#{game.edition})" : game.name, game.id] }, {}, class: 'form-select' %>
+  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

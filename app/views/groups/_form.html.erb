@@ -1,18 +1,8 @@
-<%= form_with(model: group) do |form| %>
-  <%= form.label "Name" %>
-  <%= form.text_field :name, :size => 50 %>
-
-  <%= form.label "Description" %>
-  <%= form.text_field :description, :size => 50 %>
-
-  <%= form.label "Private?" %>
-  <%= form.check_box :private %>
-
+<%= form_with(model: group, html: { class: 'needs-validation' }) do |form| %>
   <% if group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h4>
+      <ul class="mb-0">
         <% group.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -20,7 +10,22 @@
     </div>
   <% end %>
 
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control', size: 50, autofocus: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_field :description, class: 'form-control', size: 50 %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :private, class: 'form-check-input' %>
+    <%= form.label :private, 'Private?', class: 'form-check-label' %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

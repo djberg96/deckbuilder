@@ -1,24 +1,8 @@
-<%= form_with(model: user) do |form| %>
-  <%= form.label "First Name" %>
-  <%= form.text_field :first_name, :size => 50, :autofocus => true %>
-
-  <%= form.label "Last Name" %>
-  <%= form.text_field :last_name, :size => 50 %>
-
-  <%= form.label "Username" %>
-  <%= form.text_field :username, :size => 50 %>
-
-  <%= form.label "Password" %>
-  <%= form.password_field :password, :size => 50 %>
-
-  <%= form.label "Password Confirmation" %>
-  <%= form.password_field :password_confirmation, :size => 50 %>
-
+<%= form_with(model: user, html: { class: 'needs-validation' }) do |form| %>
   <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h4>
+      <ul class="mb-0">
         <% user.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -26,7 +10,32 @@
     </div>
   <% end %>
 
+  <div class="mb-3">
+    <%= form.label :first_name, class: 'form-label' %>
+    <%= form.text_field :first_name, class: 'form-control', size: 50, autofocus: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :last_name, class: 'form-label' %>
+    <%= form.text_field :last_name, class: 'form-control', size: 50 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :username, class: 'form-label' %>
+    <%= form.text_field :username, class: 'form-control', size: 50 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password, class: 'form-label' %>
+    <%= form.password_field :password, class: 'form-control', size: 50 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password_confirmation, class: 'form-label' %>
+    <%= form.password_field :password_confirmation, class: 'form-control', size: 50 %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit @user.new_record? ? "New User" : "Update User", class: 'btn btn-primary' %>
   </div>
 <% end %>
