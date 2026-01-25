@@ -52,7 +52,7 @@ a {
   margin-bottom: 0;
 }
 
-.deck-header {
+.yellow-header {
   background: linear-gradient(90deg, #ffd700 0%, #fffacd 100%);
   color: #000000 !important;
   border-radius: 12px 12px 0 0 !important;
