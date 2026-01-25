@@ -58,6 +58,24 @@ a {
   border-radius: 12px 12px 0 0 !important;
 }
 
+.user-info-header {
+  background: linear-gradient(90deg, #4a90e2 0%, #87ceeb 100%);
+  color: #ffffff !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.decks-header {
+  background: linear-gradient(90deg, #ffd700 0%, #fffacd 100%);
+  color: #000000 !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.groups-header {
+  background: linear-gradient(90deg, #32cd32 0%, #90ee90 100%);
+  color: #000000 !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
 .navbar-brand {
   font-weight: bold;
   letter-spacing: 1px;

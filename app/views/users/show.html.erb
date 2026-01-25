@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="card shadow-sm mb-4">
-  <div class="card-header">
+  <div class="card-header user-info-header">
     <h3 class="mb-0"><%= @user.username %></h3>
   </div>
   <div class="card-body">
@@ -14,7 +14,7 @@
 <div class="row">
   <div class="col-md-6">
     <div class="card shadow-sm mb-4">
-      <div class="card-header">
+      <div class="card-header decks-header">
         <h5 class="mb-0">Decks (<%= @user.decks.count %>)</h5>
       </div>
       <div class="card-body">
@@ -32,7 +32,7 @@
   </div>
   <div class="col-md-6">
     <div class="card shadow-sm mb-4">
-      <div class="card-header">
+      <div class="card-header groups-header">
         <h5 class="mb-0">Groups (<%= @user.groups.count %>)</h5>
       </div>
       <div class="card-body">
