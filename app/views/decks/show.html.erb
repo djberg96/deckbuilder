@@ -3,7 +3,7 @@
 DECK: <%= @deck.name %>
 <br>
 <% if @deck.game %>
-  GAME: <%= @deck.game.name + ' (' + @deck.game.edition + ')' %>
+  GAME: <%= @deck.game.name %><% if @deck.game.edition.present? %> (<%= @deck.game.edition %>)<% end %>
 <% end %>
 <br>
 OWNER: <%= @deck.user.username %>
@@ -14,7 +14,7 @@ OWNER: <%= @deck.user.username %>
     <tr class="header">
       <td>Card Name</td>
       <td>Quantity</td>
-    </tr> 
+    </tr>
   </thead>
 
   <% @deck.cards.each do |card| %>

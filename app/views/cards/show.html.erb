@@ -6,13 +6,13 @@ Name: <%= @card.name %>
 <br>
 Description: <%= @card.description %>
 <br>
-Game: <%= @card.game.name %> (<%= @card.game.edition %>)
+Game: <%= @card.game.name %><% if @card.game.edition.present? %> (<%= @card.game.edition %>)<% end %>
 <p>
 
 <h4>DETAILS</h4>
 <% if @card.data %>
   <% @card.data.each_pair do |key, value| %>
-    <%= key.upcase %>: <%= value %>    
+    <%= key.upcase %>: <%= value %>
     <br>
   <% end %>
 <% end %>
