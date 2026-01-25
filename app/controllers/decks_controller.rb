@@ -60,7 +60,7 @@ class DecksController < ApplicationController
   def destroy
     @deck.destroy
     respond_to do |format|
-      format.html { redirect_to decks_url, notice: "Deck was successfully destroyed." }
+      format.html { redirect_to decks_url, notice: "Deck '#{@deck.name}' was successfully deleted." }
       format.json { head :no_content }
     end
   end
