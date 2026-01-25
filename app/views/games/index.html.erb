@@ -16,9 +16,8 @@
       <tbody>
         <% @games.each do |game| %>
           <tr>
-            <td><%= game.name %></td>
+            <td><%= link_to game.name, game %></td>
             <td class="text-end">
-              <%= link_to 'Show', game, class: 'btn btn-outline-secondary btn-sm me-1' %>
               <%= link_to 'Edit', edit_game_path(game), class: 'btn btn-outline-primary btn-sm me-1' %>
               <%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
             </td>

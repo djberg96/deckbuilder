@@ -16,9 +16,8 @@
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.username %></td>
+            <td><%= link_to user.username, user %></td>
             <td class="text-end">
-              <%= link_to 'Show', user, class: 'btn btn-outline-secondary btn-sm me-1' %>
               <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-outline-primary btn-sm me-1' %>
               <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
             </td>

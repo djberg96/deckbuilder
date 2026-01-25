@@ -17,10 +17,9 @@
       <tbody>
         <% @cards.each do |card| %>
           <tr>
-            <td><%= card.name %></td>
+            <td><%= link_to card.name, card %></td>
             <td><%= link_to card.game.name, game_path(card.game) %></td>
             <td class="text-end">
-              <%= link_to 'Show', card, class: 'btn btn-outline-secondary btn-sm me-1' %>
               <%= link_to 'Edit', edit_card_path(card), class: 'btn btn-outline-primary btn-sm me-1' %>
               <%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
             </td>
