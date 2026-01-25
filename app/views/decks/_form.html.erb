@@ -32,32 +32,34 @@
     </div>
   <% end %>
 
-  <h5><%= deck.new_record? ? 'Add cards' : 'Add or Edit cards' %></h5>
-  <div id="cards-container">
-    <%= form.fields_for :deck_cards do |deck_card_form| %>
-      <div class="row mb-3 deck-card-fields">
-        <div class="col-md-8">
-          <% if deck_card_form.object.persisted? %>
-            <%= deck_card_form.hidden_field :card_id %>
-            <label class="form-label">Card</label>
-            <input type="text" class="form-control" value="<%= deck_card_form.object.card.name %>" disabled>
-          <% else %>
-            <%= deck_card_form.label :card_id, "Card", class: 'form-label' %>
-            <%= deck_card_form.select :card_id, options_for_select(@cards_by_game.map { |c| [c[:name], c[:id]] }, deck_card_form.object.card_id), { prompt: "Select a card" }, class: 'form-control card-select' %>
-          <% end %>
+  <div id="cards-section" style="display:none">
+    <h5><%= deck.new_record? ? 'Add cards' : 'Add or Edit cards' %></h5>
+    <div id="cards-container">
+      <%= form.fields_for :deck_cards do |deck_card_form| %>
+        <div class="row mb-3 deck-card-fields">
+          <div class="col-md-8">
+            <% if deck_card_form.object.persisted? %>
+              <%= deck_card_form.hidden_field :card_id %>
+              <label class="form-label">Card</label>
+              <input type="text" class="form-control" value="<%= deck_card_form.object.card.name %>" disabled>
+            <% else %>
+              <%= deck_card_form.label :card_id, "Card", class: 'form-label' %>
+              <%= deck_card_form.select :card_id, options_for_select(@cards_by_game.map { |c| [c[:name], c[:id]] }, deck_card_form.object.card_id), { prompt: "Select a card" }, class: 'form-control card-select' %>
+            <% end %>
+          </div>
+          <div class="col-md-3">
+            <%= deck_card_form.label :quantity, "Quantity", class: 'form-label' %>
+            <%= deck_card_form.number_field :quantity, class: 'form-control', min: 1, value: deck_card_form.object.quantity || 1 %>
+          </div>
+          <div class="col-md-1 d-flex align-items-end">
+            <%= deck_card_form.check_box :_destroy, class: 'form-check-input me-2' %>
+            <label class="form-check-label">Delete</label>
+          </div>
         </div>
-        <div class="col-md-3">
-          <%= deck_card_form.label :quantity, "Quantity", class: 'form-label' %>
-          <%= deck_card_form.number_field :quantity, class: 'form-control', min: 1, value: deck_card_form.object.quantity || 1 %>
-        </div>
-        <div class="col-md-1 d-flex align-items-end">
-          <%= deck_card_form.check_box :_destroy, class: 'form-check-input me-2' %>
-          <label class="form-check-label">Delete</label>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+    <button type="button" id="add-card" class="btn btn-secondary mb-3">Add Card</button>
   </div>
-  <button type="button" id="add-card" class="btn btn-secondary mb-3">Add Card</button>
 
   <div id="card-template" style="display:none">
     <div class="row mb-3 deck-card-fields">
@@ -103,6 +105,11 @@ $(document).on('change', '#deck_game_deck_attributes_game_id', function() {
       select.val(currentValue);
     }
   });
+  if (gameId) {
+    $('#cards-section').show();
+  } else {
+    $('#cards-section').hide();
+  }
 });
 
 $(document).on('click', '#add-card', function() {
