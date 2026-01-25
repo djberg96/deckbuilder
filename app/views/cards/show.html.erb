@@ -1,22 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<h3>CARD INFORMATION</h3>
+<div class="card shadow-sm mb-4">
+  <div class="card-header">
+    <h3 class="mb-0"><%= @card.name %></h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><strong>Description:</strong> <%= @card.description %></p>
+    <p class="card-text"><strong>Game:</strong> <%= @card.game.name %><% if @card.game.edition.present? %> (<%= @card.game.edition %>)<% end %></p>
+  </div>
+</div>
 
-Name: <%= @card.name %>
-<br>
-Description: <%= @card.description %>
-<br>
-Game: <%= @card.game.name %><% if @card.game.edition.present? %> (<%= @card.game.edition %>)<% end %>
-<p>
-
-<h4>DETAILS</h4>
 <% if @card.data %>
-  <% @card.data.each_pair do |key, value| %>
-    <%= key.upcase %>: <%= value %>
-    <br>
-  <% end %>
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h4 class="mb-0">Details</h4>
+    </div>
+    <div class="card-body">
+      <% data_hash = @card.data.respond_to?(:to_h) ? @card.data.to_h : @card.data %>
+      <% if data_hash.is_a?(Hash) %>
+        <dl class="row">
+          <% data_hash.each_pair do |key, value| %>
+            <dt class="col-sm-3"><%= key.upcase %></dt>
+            <dd class="col-sm-9"><%= value %></dd>
+          <% end %>
+        </dl>
+      <% else %>
+        <pre><%= JSON.pretty_generate(data_hash) %></pre>
+      <% end %>
+    </div>
+  </div>
 <% end %>
-<p>
 
-<%= link_to 'Edit', edit_card_path(@card) %> |
-<%= link_to 'Back', cards_path %>
+<div class="text-end mt-3">
+  <%= link_to 'Edit', edit_card_path(@card), class: 'btn btn-primary me-2' %>
+  <%= link_to 'Back', cards_path, class: 'btn btn-secondary' %>
+</div>
