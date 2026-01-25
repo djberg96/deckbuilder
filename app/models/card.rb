@@ -1,13 +1,29 @@
 class Card < ApplicationRecord
-  has_many :deck_cards
+  has_many :deck_cards, dependent: :destroy
   has_many :decks, :through => :deck_cards
   belongs_to :game
 
-  has_one_attached :image
+  # Remove Active Storage attachment
+  # has_one_attached :image
 
   delegate_missing_to :data
 
   validates :name, :uniqueness => {:scope => :game_id}
+
+  # Handle image data storage in database
+  attr_accessor :image_file
+
+  def image_file=(uploaded_file)
+    if uploaded_file.present?
+      self.image_data = uploaded_file.read
+      self.image_content_type = uploaded_file.content_type
+      self.image_filename = uploaded_file.original_filename
+    end
+  end
+
+  def has_image?
+    image_data.present?
+  end
 
   # Add cards to the specified deck. If no quantity is specified, then one
   # is the default.

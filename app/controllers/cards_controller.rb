@@ -68,7 +68,7 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:name, :description, :data, :game_id, :image, attributes: [:key, :value])
+      params.require(:card).permit(:name, :description, :data, :game_id, :image_file, :image_content_type, :image_filename, attributes: [:key, :value])
     end
 
     def process_attributes(attributes_params)

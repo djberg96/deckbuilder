@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
-  has_many :game_decks
+  has_many :game_decks, dependent: :destroy
   has_many :decks, :through => :game_decks
-  has_many :cards
+  has_many :cards, dependent: :destroy
 
   validates :maximum_individual_cards,
     :numericality => {

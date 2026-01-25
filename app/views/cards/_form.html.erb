@@ -26,12 +26,12 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :image, 'Card Image', class: 'form-label' %>
-    <%= form.file_field :image, class: 'form-control', accept: 'image/*' %>
-    <% if card.image.attached? %>
+    <%= form.label :image_file, 'Card Image', class: 'form-label' %>
+    <%= form.file_field :image_file, class: 'form-control', accept: 'image/*' %>
+    <% if card.has_image? %>
       <div class="mt-2">
         <small class="text-muted">Current image:</small><br>
-        <%= image_tag card.image, size: "200x200", class: 'img-thumbnail mt-1' %>
+        <%= image_tag "data:#{card.image_content_type};base64,#{Base64.encode64(card.image_data)}", size: "200x200", class: 'img-thumbnail mt-1' %>
       </div>
     <% end %>
   </div>
