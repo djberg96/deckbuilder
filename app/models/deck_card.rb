@@ -12,6 +12,7 @@ class DeckCard < ApplicationRecord
   # the maximum allowed for the game.
   def card_limits
     return if quantity.blank? || deck.blank? || deck.game_deck.blank?
+    return if deck.game_deck.game.blank?
 
     max_cards = deck.game_deck.game.maximum_individual_cards
 

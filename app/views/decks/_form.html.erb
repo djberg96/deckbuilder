@@ -44,7 +44,7 @@
               <input type="text" class="form-control" value="<%= deck_card_form.object.card.name %>" disabled>
             <% else %>
               <%= deck_card_form.label :card_id, "Card", class: 'form-label' %>
-              <%= deck_card_form.select :card_id, options_for_select(@cards_by_game.map { |c| [c[:name], c[:id]] }, deck_card_form.object.card_id), { prompt: "Select a card" }, class: 'form-control card-select' %>
+              <%= deck_card_form.select :card_id, options_for_select((@cards_by_game || []).map { |c| [c[:name], c[:id]] }, deck_card_form.object.card_id), { prompt: "Select a card" }, class: 'form-control card-select' %>
             <% end %>
           </div>
           <div class="col-md-3">
