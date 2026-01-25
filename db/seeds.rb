@@ -36,11 +36,17 @@ Card.create!([
 ])
 
 Deck.create!([
-  {:name => "Black Lightning", :description => "Test black deck", :user => User.first},
+  {
+    :name => "Black Lightning",
+    :description => "Test black deck",
+    :user => User.first,
+    :game => Game.first
+  },
   {
     :name        => "Red Lightning",
     :description => "Test red deck",
     :user        => User.first,
+    :game        => Game.first,
     :deck_cards  => DeckCard.create([
       {:id => Card.find_by(:name => "Lightning Bolt").id, :quantity => 3},
       {:id => Card.find_by(:name => "Zombie").id, :quantity => 3},
