@@ -23,7 +23,7 @@ RSpec.describe 'decks/_form.html.erb', type: :view do
 
   it 'includes card addition section' do
     render partial: 'decks/form', locals: { deck: deck, games: games, cards_by_game: cards_by_game }
-    expect(rendered).to have_selector('h5', text: 'Add or Edit Cards')
+    expect(rendered).to have_selector('h5', text: 'Add cards')
   end
 
   it 'includes submit button' do

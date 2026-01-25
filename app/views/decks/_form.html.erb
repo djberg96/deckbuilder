@@ -32,7 +32,7 @@
     </div>
   <% end %>
 
-  <h5>Add or Edit Cards</h5>
+  <h5><%= deck.new_record? ? 'Add cards' : 'Add or Edit cards' %></h5>
   <div id="cards-container">
     <%= form.fields_for :deck_cards do |deck_card_form| %>
       <div class="row mb-3 deck-card-fields">
