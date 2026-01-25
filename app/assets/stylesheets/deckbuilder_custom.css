@@ -28,6 +28,10 @@ a {
   font-weight: 600;
 }
 
+.details-list {
+  margin-bottom: 0;
+}
+
 .details-list dt {
   font-weight: 600;
   color: #000000;
@@ -40,8 +44,12 @@ a {
 .details-list dd {
   font-size: 1.05rem;
   color: #495057;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   padding-left: 0;
+}
+
+.details-list dd:last-child {
+  margin-bottom: 0;
 }
 
 .navbar-brand {
