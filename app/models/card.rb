@@ -1,7 +1,8 @@
 class Card < ApplicationRecord
-  has_many :deck_cards
+  has_many :deck_cards, dependent: :destroy
   has_many :decks, :through => :deck_cards
   belongs_to :game
+  has_one :card_image, dependent: :destroy
 
   delegate_missing_to :data
 
@@ -24,5 +25,9 @@ class Card < ApplicationRecord
   #
   def data
     @data ||= OpenStruct.new(self[:data])
+  end
+
+  def has_image?
+    card_image&.has_image?
   end
 end

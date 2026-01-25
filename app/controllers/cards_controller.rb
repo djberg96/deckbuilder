@@ -21,7 +21,10 @@ class CardsController < ApplicationController
 
   # POST /cards or /cards.json
   def create
-    @card = Card.new(card_params)
+    @card = Card.new(card_params.except(:image_file))
+    if params[:card][:image_file].present?
+      @card.build_card_image(image_file: params[:card][:image_file])
+    end
 
     respond_to do |format|
       if @card.save
@@ -36,8 +39,17 @@ class CardsController < ApplicationController
 
   # PATCH/PUT /cards/1 or /cards/1.json
   def update
+    @card.assign_attributes(card_params.except(:image_file))
+    if params[:card][:image_file].present?
+      if @card.card_image
+        @card.card_image.image_file = params[:card][:image_file]
+      else
+        @card.build_card_image(image_file: params[:card][:image_file])
+      end
+    end
+
     respond_to do |format|
-      if @card.update(card_params)
+      if @card.save
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
       else
@@ -64,6 +76,6 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:name, :description, :data, :game_id)
+      params.require(:card).permit(:name, :description, :data, :game_id, :image_file)
     end
 end

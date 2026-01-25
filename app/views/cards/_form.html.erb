@@ -1,4 +1,4 @@
-<%= form_with(model: card, html: { class: 'needs-validation' }) do |form| %>
+<%= form_with(model: card, html: { class: 'needs-validation' }, multipart: true) do |form| %>
   <% if card.errors.any? %>
     <div class="alert alert-danger">
       <h4 class="alert-heading"><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h4>
@@ -23,6 +23,17 @@
   <div class="mb-3">
     <%= form.label :game_id, 'Game', class: 'form-label' %>
     <%= form.select :game_id, Game.all.map { |game| [game.edition.present? ? "#{game.name} (#{game.edition})" : game.name, game.id] }, {}, class: 'form-select' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :image_file, 'Card Image', class: 'form-label' %>
+    <%= form.file_field :image_file, class: 'form-control', accept: 'image/*' %>
+    <% if card.has_image? %>
+      <div class="mt-2">
+        <small class="text-muted">Current image:</small><br>
+        <%= image_tag "data:#{card.card_image.content_type};base64,#{Base64.encode64(card.card_image.image_data)}", size: "200x200", class: 'img-thumbnail mt-1' %>
+      </div>
+    <% end %>
   </div>
 
   <div class="actions">

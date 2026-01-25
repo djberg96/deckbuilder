@@ -7,6 +7,12 @@
   <div class="card-body">
     <p class="card-text"><strong>Description:</strong> <%= @card.description %></p>
     <p class="card-text"><strong>Game:</strong> <%= link_to @card.game.name, @card.game %><% if @card.game.edition.present? %> (<%= @card.game.edition %>)<% end %></p>
+    <% if @card.has_image? %>
+      <div class="mt-3">
+        <strong>Card Image:</strong><br>
+        <%= image_tag "data:#{@card.card_image.content_type};base64,#{Base64.encode64(@card.card_image.image_data)}", size: "300x300", class: 'img-fluid mt-2' %>
+      </div>
+    <% end %>
   </div>
 </div>
 
