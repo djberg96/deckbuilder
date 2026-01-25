@@ -23,6 +23,10 @@ body {
   color: #ffffff !important;
 }
 
+.btn-primary {
+  color: white !important;
+}
+
 .card {
   margin-bottom: 1.5rem;
 }
