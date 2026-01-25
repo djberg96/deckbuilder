@@ -63,7 +63,7 @@ RSpec.describe GroupsController, type: :controller do
     context 'with invalid params' do
       it 'returns a success response (i.e. to display the new template)' do
         post :create, params: { group: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -90,7 +90,7 @@ RSpec.describe GroupsController, type: :controller do
       it 'returns a success response (i.e. to display the edit template)' do
         group = Group.create! valid_attributes
         put :update, params: { id: group.to_param, group: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

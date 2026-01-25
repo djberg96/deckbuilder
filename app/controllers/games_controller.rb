@@ -28,8 +28,8 @@ class GamesController < ApplicationController
         format.html { redirect_to @game, notice: "Game was successfully created." }
         format.json { render :show, status: :created, location: @game }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @game.errors, status: :unprocessable_content }
       end
     end
   end
@@ -41,8 +41,8 @@ class GamesController < ApplicationController
         format.html { redirect_to @game, notice: "Game was successfully updated." }
         format.json { render :show, status: :ok, location: @game }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @game.errors, status: :unprocessable_content }
       end
     end
   end

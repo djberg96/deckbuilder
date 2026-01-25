@@ -69,7 +69,7 @@ RSpec.describe DecksController, type: :controller do
     context 'with invalid params' do
       it 'returns a success response (i.e. to display the new template)' do
         post :create, params: { deck: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -96,7 +96,7 @@ RSpec.describe DecksController, type: :controller do
       it 'returns a success response (i.e. to display the edit template)' do
         deck = create(:deck, user: user)
         put :update, params: { id: deck.to_param, deck: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

@@ -28,8 +28,8 @@ class CardsController < ApplicationController
         format.html { redirect_to @card, notice: "Card was successfully created." }
         format.json { render :show, status: :created, location: @card }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @card.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @card.errors, status: :unprocessable_content }
       end
     end
   end
@@ -41,8 +41,8 @@ class CardsController < ApplicationController
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @card.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @card.errors, status: :unprocessable_content }
       end
     end
   end

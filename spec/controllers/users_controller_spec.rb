@@ -63,25 +63,28 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'does not create a User without authorization' do
+      it 'creates a new User' do
         expect {
           post :create, params: { user: valid_attributes }
-        }.not_to change(User, :count)
+        }.to change(User, :count).by(1)
       end
 
-      it 'redirects to login (requires authentication)' do
+      it 'redirects to the created user' do
         post :create, params: { user: valid_attributes }
-        # Since user is not logged in, gets redirected to login
-        expect(response).to redirect_to(login_url)
+        expect(response).to redirect_to(User.last)
       end
     end
 
     context 'with invalid params' do
-      it 'redirects to login without creating user' do
+      it 'does not create a user' do
         expect {
           post :create, params: { user: invalid_attributes }
         }.not_to change(User, :count)
-        expect(response).to redirect_to(login_url)
+      end
+
+      it 'returns unprocessable_content status' do
+        post :create, params: { user: invalid_attributes }
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -109,7 +112,7 @@ RSpec.describe UsersController, type: :controller do
     context 'with invalid params' do
       it 'returns a success response (i.e. to display the edit template)' do
         put :update, params: { id: user.to_param, user: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

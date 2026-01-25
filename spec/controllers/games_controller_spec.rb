@@ -100,7 +100,7 @@ RSpec.describe GamesController, type: :controller do
       it 'returns a success response (i.e. to display the edit template)' do
         game = Game.create! valid_attributes
         put :update, params: { id: game.to_param, game: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
