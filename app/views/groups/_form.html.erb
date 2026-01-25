@@ -1,4 +1,4 @@
-<%= form_with(model: group, html: { class: 'needs-validation' }) do |form| %>
+<%= form_with(model: group, class: 'needs-validation') do |form| %>
   <% if group.errors.any? %>
     <div class="alert alert-danger">
       <h4 class="alert-heading"><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h4>
@@ -25,7 +25,60 @@
     <%= form.label :private, 'Private?', class: 'form-check-label' %>
   </div>
 
+  <% if group.persisted? %>
+    <div class="mb-3">
+      <label class="form-label">Current Users</label>
+      <% if group.users.any? %>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="table-light">
+              <tr>
+                <th>Username</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="align-middle border-start border-end">
+              <% group.users.each do |user| %>
+                <tr>
+                  <td><%= link_to user.username, user %></td>
+                  <td class="text-end">
+                    <%= link_to 'Remove', group_remove_user_path(group, user.id),
+                                method: :delete,
+                                class: 'btn btn-outline-danger btn-sm',
+                                data: { confirm: 'Are you sure you want to remove this user from the group?' } %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="text-muted">No users in this group yet.</p>
+      <% end %>
+    </div>
+  <% end %>
+    <label class="form-label">Add Users</label>
+    <button type="button" class="btn btn-outline-secondary btn-sm mb-2" onclick="toggleUserSelection()">
+      + Add User
+    </button>
+    <div id="user-selection" style="display: none;">
+      <%= form.select :user_ids, User.where.not(id: group.users.pluck(:id)).collect { |u| [u.username, u.id] }, {}, { multiple: true, class: 'form-select', size: 5 } %>
+      <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple users</small>
+    </div>
+  </div>
+
   <div class="actions">
     <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script>
+function toggleUserSelection() {
+  var element = document.getElementById('user-selection');
+  if (element.style.display === 'none') {
+    element.style.display = 'block';
+  } else {
+    element.style.display = 'none';
+  }
+}
+</script>

@@ -56,6 +56,19 @@ class GroupsController < ApplicationController
     end
   end
 
+  # DELETE /groups/:id/remove_user/:user_id
+  def remove_user
+    @group = Group.find(params[:id])
+    @user = User.find(params[:user_id])
+
+    @group.users.delete(@user)
+
+    respond_to do |format|
+      format.html { redirect_to edit_group_path(@group), notice: "User was successfully removed from the group." }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
@@ -64,6 +77,6 @@ class GroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def group_params
-      params.require(:group).permit(:name, :description, :private)
+      params.require(:group).permit(:name, :description, :private, user_ids: [])
     end
 end
