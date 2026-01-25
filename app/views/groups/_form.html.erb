@@ -25,13 +25,34 @@
     <%= form.label :private, 'Private?', class: 'form-check-label' %>
   </div>
 
+  <% if group.persisted? %>
+    <div class="mb-3">
+      <label class="form-label">Current Users</label>
+      <% if group.users.any? %>
+        <div class="border rounded p-3 mb-2">
+          <% group.users.each do |user| %>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span><%= user.username %></span>
+              <%= link_to 'Remove', group_remove_user_path(group, user.id),
+                          method: :delete,
+                          class: 'btn btn-outline-danger btn-sm',
+                          data: { confirm: 'Are you sure you want to remove this user from the group?' } %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-muted">No users in this group yet.</p>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="mb-3">
     <label class="form-label">Add Users</label>
     <button type="button" class="btn btn-outline-secondary btn-sm mb-2" onclick="toggleUserSelection()">
       + Add User
     </button>
     <div id="user-selection" style="display: none;">
-      <%= form.select :user_ids, User.all.collect { |u| [u.username, u.id] }, {}, { multiple: true, class: 'form-select', size: 5 } %>
+      <%= form.select :user_ids, User.where.not(id: group.users.pluck(:id)).collect { |u| [u.username, u.id] }, {}, { multiple: true, class: 'form-select', size: 5 } %>
       <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple users</small>
     </div>
   </div>
