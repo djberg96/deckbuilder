@@ -14,7 +14,7 @@ class DecksController < ApplicationController
   def new
     @deck = Deck.new
     @deck.build_game_deck
-    3.times { @deck.deck_cards.build }
+    @deck.deck_cards.build
     @games = Game.all
     @cards_by_game = Card.all.map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
   end
