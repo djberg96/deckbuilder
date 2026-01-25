@@ -1,15 +1,56 @@
 <p id="notice"><%= notice %></p>
 
-<div class="card mb-4 shadow-sm">
-	<div class="card-body">
-		<h3 class="card-title mb-3"><%= @user.username %></h3>
-		<ul class="list-group list-group-flush mb-3">
-			<li class="list-group-item"><strong>First Name:</strong> <%= @user.first_name %></li>
-			<li class="list-group-item"><strong>Last Name:</strong> <%= @user.last_name %></li>
-			<li class="list-group-item"><strong>Username:</strong> <%= @user.username %></li>
-		</ul>
-	</div>
+<div class="card shadow-sm mb-4">
+  <div class="card-header">
+    <h3 class="mb-0"><%= @user.username %></h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><strong>First Name:</strong> <%= @user.first_name %></p>
+    <p class="card-text"><strong>Last Name:</strong> <%= @user.last_name %></p>
+    <p class="card-text"><strong>Username:</strong> <%= @user.username %></p>
+  </div>
 </div>
 
-<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary me-2' %>
-<%= link_to 'Back', users_path, class: 'btn btn-secondary' %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card shadow-sm mb-4">
+      <div class="card-header">
+        <h5 class="mb-0">Decks (<%= @user.decks.count %>)</h5>
+      </div>
+      <div class="card-body">
+        <% if @user.decks.any? %>
+          <ul class="list-group list-group-flush">
+            <% @user.decks.each do |deck| %>
+              <li class="list-group-item"><%= link_to deck.name, deck %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-muted">No decks created.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-sm mb-4">
+      <div class="card-header">
+        <h5 class="mb-0">Groups (<%= @user.groups.count %>)</h5>
+      </div>
+      <div class="card-body">
+        <% if @user.groups.any? %>
+          <ul class="list-group list-group-flush">
+            <% @user.groups.each do |group| %>
+              <li class="list-group-item"><%= link_to group.name, group %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-muted">Not a member of any groups.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-end mt-3">
+  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary me-2' %>
+  <%= link_to 'Back', users_path, class: 'btn btn-secondary' %>
+</div>
