@@ -32,14 +32,15 @@
     </div>
   <% end %>
 
-  <h5>Add Cards</h5>
+  <h5>Add or Edit Cards</h5>
   <div id="cards-container">
     <%= form.fields_for :deck_cards do |deck_card_form| %>
       <div class="row mb-3 deck-card-fields">
         <div class="col-md-8">
           <% if deck_card_form.object.persisted? %>
             <%= deck_card_form.hidden_field :card_id %>
-            <span class="form-control-plaintext"><%= deck_card_form.object.card.name %></span>
+            <label class="form-label">Card</label>
+            <input type="text" class="form-control" value="<%= deck_card_form.object.card.name %>" disabled>
           <% else %>
             <%= deck_card_form.label :card_id, "Card", class: 'form-label' %>
             <%= deck_card_form.select :card_id, options_for_select(@cards_by_game.map { |c| [c[:name], c[:id]] }, deck_card_form.object.card_id), { prompt: "Select a card" }, class: 'form-control card-select' %>
