@@ -7,6 +7,15 @@ a {
   text-decoration: none;
 }
 
+.table th {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  font-size: 1.05rem;
+}
+
 .navbar-brand {
   font-weight: bold;
   letter-spacing: 1px;
