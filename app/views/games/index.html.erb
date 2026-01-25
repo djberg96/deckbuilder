@@ -10,16 +10,18 @@
       <thead class="table-light">
         <tr>
           <th>Name</th>
-          <th colspan="3" class="text-end">Actions</th>
+          <th class="text-end">Actions</th>
         </tr>
       </thead>
       <tbody>
         <% @games.each do |game| %>
           <tr>
             <td><%= game.name %></td>
-            <td class="text-end"><%= link_to 'Show', game, class: 'btn btn-outline-secondary btn-sm' %></td>
-            <td class="text-end"><%= link_to 'Edit', edit_game_path(game), class: 'btn btn-outline-primary btn-sm' %></td>
-            <td class="text-end"><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %></td>
+            <td class="text-end">
+              <%= link_to 'Show', game, class: 'btn btn-outline-secondary btn-sm me-1' %>
+              <%= link_to 'Edit', edit_game_path(game), class: 'btn btn-outline-primary btn-sm me-1' %>
+              <%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
+            </td>
           </tr>
         <% end %>
       </tbody>
