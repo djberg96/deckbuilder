@@ -3,6 +3,7 @@ class DeckCard < ApplicationRecord
   belongs_to :deck
 
   validates :deck_id, :uniqueness => {:scope => :card_id}
+  validates :card_id, :presence => true
   validate :card_limits
 
   private
