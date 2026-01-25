@@ -31,7 +31,7 @@
       <% card.data.each do |key, value| %>
         <div class="row mb-2 data-attribute">
           <div class="col-md-4">
-            <input type="text" class="form-control data-key" value="<%= key %>" readonly>
+            <input type="text" class="form-control data-key" name="card[data][<%= key %>]" value="<%= key %>">
           </div>
           <div class="col-md-6">
             <input type="text" class="form-control data-value" name="card[data][<%= key %>]" value="<%= value %>">

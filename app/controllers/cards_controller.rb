@@ -64,6 +64,13 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:name, :description, :data, :game_id)
+      cp = params.require(:card).permit(:name, :description, :game_id, data: {})
+      if cp[:data].is_a?(Hash)
+        # Remove placeholder/new attribute entries and blank keys
+        cp[:data] = cp[:data].transform_keys(&:to_s).reject do |k, _|
+          k.strip.empty? || k.match?(/\A(__new__|new_)/i)
+        end
+      end
+      cp
     end
 end
