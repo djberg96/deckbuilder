@@ -6,7 +6,7 @@ RSpec.describe 'cards/_form.html.erb', type: :view do
     assign(:card, card)
     render partial: 'cards/form', locals: { card: card }
 
-    expect(rendered).to match(/Add Image\?/)    
+    expect(rendered).to match(/Add Image\?/)
     expect(rendered).to match(/card\[new_images\]\[\]/)
   end
 end
