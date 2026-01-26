@@ -10,19 +10,73 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= form.label :name, class: 'form-label' %>
-    <%= form.text_field :name, class: 'form-control', size: 50, autofocus: true %>
-  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :name, class: 'form-label' %>
+        <%= form.text_field :name, class: 'form-control', size: 50, autofocus: true %>
+      </div>
 
-  <div class="mb-3">
-    <%= form.label :description, class: 'form-label' %>
-    <%= form.text_area :description, class: 'form-control', rows: 3 %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :description, class: 'form-label' %>
+        <%= form.text_area :description, class: 'form-control', rows: 3 %>
+      </div>
 
-  <div class="mb-3">
-    <%= form.label :game_id, 'Game', class: 'form-label' %>
-    <%= form.select :game_id, Game.all.map { |game| [game.edition.present? ? "#{game.name} (#{game.edition})" : game.name, game.id] }, {}, class: 'form-select' %>
+      <div class="mb-3">
+        <%= form.label :game_id, 'Game', class: 'form-label' %>
+        <%= form.select :game_id, Game.all.map { |game| [game.edition.present? ? "#{game.name} (#{game.edition})" : game.name, game.id] }, {}, class: 'form-select' %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div id="card-images" class="mb-3">
+        <% if card.card_images.any? %>
+          <div class="mb-2 d-flex justify-content-center flex-wrap">
+            <% card.card_images.each do |img| %>
+              <div class="card mb-2 me-2" style="width: 10rem;">
+                <% if img.data.present? && img.content_type.present? %>
+                  <%= image_tag("data:#{img.content_type};base64,#{Base64.strict_encode64(img.data)}", class: 'card-img-top', style: 'max-width:100%; height:auto;') %>
+                <% else %>
+                  <div class="card-body">No preview</div>
+                <% end %>
+                <div class="card-footer text-center">
+                  <label class="form-check-label">
+                    <input type="checkbox" name="card[remove_image_ids][]" value="<%= img.id %>"> Delete
+                  </label>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="d-flex flex-column justify-content-center align-items-center" style="min-height:200px;">
+            <h6 class="mb-3">Add Image?</h6>
+            <div class="mb-2 text-center w-100">
+              <%= file_field_tag 'card[new_images][]', multiple: true, accept: 'image/*', class: 'form-control d-inline-block w-75' %>
+              <div class="form-text">Maximum size per image: 64 KB.</div>
+              <% if @card && @card.errors[:base].any? %>
+                <% msgs = @card.errors[:base].select { |m| m =~ /Image upload failed/ } %>
+                <% if msgs.any? %>
+                  <div class="alert alert-danger mt-2" id="server-image-error"><%= msgs.join('; ') %></div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if card.card_images.any? %>
+          <div class="mb-2 text-center">
+            <div class="form-text">Maximum size per image: 64 KB.</div>
+            <% if @card && @card.errors[:base].any? %>
+              <% msgs = @card.errors[:base].select { |m| m =~ /Image upload failed/ } %>
+              <% if msgs.any? %>
+                <div class="alert alert-danger mt-2" id="server-image-error"><%= msgs.join('; ') %></div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
   </div>
 
   <h5>Data Attributes</h5>
@@ -72,39 +126,6 @@
       <div class="col-md-2">
         <button type="button" class="btn btn-danger btn-sm remove-attribute">Remove</button>
       </div>
-    </div>
-  </div>
-
-  <h5>Images</h5>
-  <div id="card-images" class="mb-3">
-    <% if card.card_images.any? %>
-      <div class="mb-2">
-        <% card.card_images.each do |img| %>
-          <div class="card mb-2" style="width: 10rem; display:inline-block; margin-right: 8px;">
-            <% if img.data.present? && img.content_type.present? %>
-              <%= image_tag("data:#{img.content_type};base64,#{Base64.strict_encode64(img.data)}", class: 'card-img-top', style: 'max-width:100%; height:auto;') %>
-            <% else %>
-              <div class="card-body">No preview</div>
-            <% end %>
-            <div class="card-footer">
-              <label class="form-check-label">
-                <input type="checkbox" name="card[remove_image_ids][]" value="<%= img.id %>"> Delete
-              </label>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-
-    <div class="mb-2">
-      <%= file_field_tag 'card[new_images][]', multiple: true, accept: 'image/*', class: 'form-control' %>
-      <div class="form-text">Maximum size per image: 64 KB.</div>
-      <% if @card && @card.errors[:base].any? %>
-        <% msgs = @card.errors[:base].select { |m| m =~ /Image upload failed/ } %>
-        <% if msgs.any? %>
-          <div class="alert alert-danger mt-2" id="server-image-error"><%= msgs.join('; ') %></div>
-        <% end %>
-      <% end %>
     </div>
   </div>
 
