@@ -1,4 +1,4 @@
-<%= form_with(model: card, html: { class: 'needs-validation' }) do |form| %>
+<%= form_with(model: card, html: { class: 'needs-validation', id: 'card-form' }) do |form| %>
   <% if card.errors.any? %>
     <div class="alert alert-danger">
       <h4 class="alert-heading"><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h4>
@@ -100,5 +100,38 @@ $(document).off('input', '.data-key').on('input', '.data-key', function() {
   } else {
     valueInput.attr('name', 'card[data][__new__]');
   }
+});
+
+// On-submit serializer: ensure only alphanumeric keys are submitted and avoid duplicate inputs
+$(document).off('submit', '#card-form').on('submit', '#card-form', function(e) {
+  var form = $(this);
+  var valid = true;
+  // Remove hidden helper inputs we may have previously injected
+  form.find('input[type="hidden"][name^="card[data]"]').remove();
+
+  $('.data-attribute').each(function() {
+    // skip hidden template
+    if (this.offsetParent === null) { return; }
+
+    var key = $(this).find('.data-key').val() || '';
+    key = key.toString().trim();
+    var val = $(this).find('.data-value').val() || '';
+
+    if (key === '') { return; }
+
+    if (!/^[A-Za-z0-9]+$/.test(key)) {
+      alert('Invalid key: ' + key + '. Keys may contain only letters and numbers.');
+      valid = false;
+      return false; // break out
+    }
+
+    // create a hidden input to reliably submit the pair
+    $('<input>').attr({ type: 'hidden', name: 'card[data][' + key + ']', value: val }).appendTo(form);
+
+    // remove name attribute from visible value input so it doesn't duplicate submission
+    $(this).find('.data-value').removeAttr('name');
+  });
+
+  if (!valid) { e.preventDefault(); return false; }
 });
 </script>

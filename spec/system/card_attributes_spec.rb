@@ -35,12 +35,9 @@ RSpec.describe 'Card attributes editor', type: :system do
 
     # Add an attribute but leave key blank (placeholder name should be __new__)
     expect(page).to have_selector('#add-attribute')
-    # Click the button; if JS binding doesn't run reliably in this environment, append the template directly
+    before_count = all('.data-attribute', visible: :visible).size
     find('#add-attribute').click
-    unless all('.data-attribute', visible: :visible).size >= 2
-      page.execute_script("$('#data-attributes').append($('#attribute-template').html())")
-    end
-    expect(all('.data-attribute', visible: :visible).size).to be >= 2
+    expect(all('.data-attribute', visible: :visible).size).to eq(before_count + 1)
     within all('.data-attribute', visible: :visible).last do
       find('.data-value').set('secret')
     end
@@ -79,12 +76,9 @@ RSpec.describe 'Card attributes editor', type: :system do
 
     expect(page).to have_selector('#add-attribute')
     find('#add-attribute').click
-    unless all('.data-attribute', visible: :visible).size >= 2
-      page.execute_script("$('#data-attributes').append($('#attribute-template').html())")
-    end
-    expect(all('.data-attribute', visible: :visible).size).to be >= 2
-    within all('.data-attribute', visible: :visible).last do
-      # Use send_keys to simulate user typing so delegated input events fire
+    expect(page).to have_selector('.data-attribute', minimum: 2)
+    within all('.data-attribute').last do
+      # Type the key so validations pass
       dk = find('.data-key')
       dk.click
       dk.send_keys('type')
