@@ -1,6 +1,10 @@
 class Card < ApplicationRecord
   has_many :deck_cards
   has_many :decks, :through => :deck_cards
+
+  # images stored separately in card_images table
+  has_many :card_images, dependent: :destroy
+
   belongs_to :game
 
   validates :name, :uniqueness => {:scope => :game_id}

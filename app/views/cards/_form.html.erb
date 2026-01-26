@@ -1,4 +1,4 @@
-<%= form_with(model: card, html: { class: 'needs-validation', id: 'card-form' }) do |form| %>
+<%= form_with(model: card, html: { class: 'needs-validation', id: 'card-form', multipart: true }) do |form| %>
   <% if card.errors.any? %>
     <div class="alert alert-danger">
       <h4 class="alert-heading"><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h4>
@@ -72,6 +72,39 @@
       <div class="col-md-2">
         <button type="button" class="btn btn-danger btn-sm remove-attribute">Remove</button>
       </div>
+    </div>
+  </div>
+
+  <h5>Images</h5>
+  <div id="card-images" class="mb-3">
+    <% if card.card_images.any? %>
+      <div class="mb-2">
+        <% card.card_images.each do |img| %>
+          <div class="card mb-2" style="width: 10rem; display:inline-block; margin-right: 8px;">
+            <% if img.data.present? && img.content_type.present? %>
+              <%= image_tag("data:#{img.content_type};base64,#{Base64.strict_encode64(img.data)}", class: 'card-img-top', style: 'max-width:100%; height:auto;') %>
+            <% else %>
+              <div class="card-body">No preview</div>
+            <% end %>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input type="checkbox" name="card[remove_image_ids][]" value="<%= img.id %>"> Delete
+              </label>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="mb-2">
+      <%= file_field_tag 'card[new_images][]', multiple: true, accept: 'image/*', class: 'form-control' %>
+      <div class="form-text">Maximum size per image: 64 KB.</div>
+      <% if @card && @card.errors[:base].any? %>
+        <% msgs = @card.errors[:base].select { |m| m =~ /Image upload failed/ } %>
+        <% if msgs.any? %>
+          <div class="alert alert-danger mt-2" id="server-image-error"><%= msgs.join('; ') %></div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
@@ -172,4 +205,58 @@ $(document).off('submit', '#card-form').on('submit', '#card-form', function(e) {
 
   // allow submit to continue
 });
+
+// Client-side validation for image file size (64 KB)
+(function() {
+  var MAX_BYTES = 64 * 1024;
+
+  function showImageSizeError(msg) {
+    var existing = $('#image-size-error');
+    if (existing.length === 0) {
+      $('<div id="image-size-error" class="alert alert-danger mt-2" role="alert"></div>').insertBefore('#card-images');
+    }
+    $('#image-size-error').text(msg);
+    // disable submit buttons
+    $('#card-form').find('input[type=submit], button[type=submit]').prop('disabled', true).attr('disabled', 'disabled');
+  }
+
+  function clearImageSizeError() {
+    $('#image-size-error').remove();
+    $('#card-form').find('input[type=submit], button[type=submit]').prop('disabled', false).removeAttr('disabled');
+  }
+
+  $(document).off('change', 'input[name="card[new_images][]"]').on('change', 'input[name="card[new_images][]"]', function() {
+    var files = this.files || [];
+    var tooBig = [];
+    for (var i = 0; i < files.length; i++) {
+      var f = files[i];
+      if (f.size > MAX_BYTES) {
+        tooBig.push(f.name + ' (' + Math.round(f.size / 1024) + ' KB)');
+      }
+    }
+    if (tooBig.length > 0) {
+      var msg = 'The following files exceed 64 KB: ' + tooBig.join(', ') + '. Please choose smaller files.';
+      showImageSizeError(msg);
+    } else {
+      clearImageSizeError();
+    }
+  });
+
+  // double-check on submit (do not unbind existing submit handlers)
+  $(document).on('submit', '#card-form', function(e) {
+    var input = document.querySelector('input[name="card[new_images][]"]');
+    if (!input) { return true; }
+    var files = input.files || [];
+    for (var i = 0; i < files.length; i++) {
+      if (files[i].size > MAX_BYTES) {
+        e.preventDefault();
+        var msg = 'One or more selected files exceed 64 KB. Please remove them.';
+        showImageSizeError(msg);
+        input.focus();
+        return false;
+      }
+    }
+    return true;
+  });
+})();
 </script>

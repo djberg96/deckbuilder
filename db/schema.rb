@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_02_033818) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_26_160000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "card_images", force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.string "filename"
+    t.string "content_type"
+    t.binary "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_card_images_on_card_id"
+  end
 
   create_table "cards", force: :cascade do |t|
     t.string "name"
@@ -88,6 +98,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_02_033818) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "card_images", "cards"
   add_foreign_key "cards", "games"
   add_foreign_key "deck_cards", "cards"
   add_foreign_key "deck_cards", "decks"
