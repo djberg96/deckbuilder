@@ -100,18 +100,25 @@ $(document).off('input', '.data-key').on('input', '.data-key', function() {
   } else {
     valueInput.attr('name', 'card[data][__new__]');
   }
+  // Clear any inline validation markers when the key changes
+  $(this).removeClass('is-invalid');
+  $(this).closest('.data-attribute').find('.invalid-feedback').remove();
+
+  // Re-enable submit buttons on change (in case they were disabled earlier)
+  var btns = $('#card-form').find('input[type=submit], button[type=submit]');
+  btns.prop('disabled', false).removeAttr('disabled');
 });
 
 // On-submit serializer: ensure only alphanumeric keys are submitted and avoid duplicate inputs
 $(document).off('submit', '#card-form').on('submit', '#card-form', function(e) {
   var form = $(this);
+  var pairs = [];
   var valid = true;
-  // Remove hidden helper inputs we may have previously injected
-  form.find('input[type="hidden"][name^="card[data]"]').remove();
+  var invalidElem = null;
 
+  // Collect and validate visible attribute rows without mutating the DOM yet
   $('.data-attribute').each(function() {
-    // skip hidden template
-    if (this.offsetParent === null) { return; }
+    if (this.offsetParent === null) { return; } // skip template
 
     var key = $(this).find('.data-key').val() || '';
     key = key.toString().trim();
@@ -120,18 +127,49 @@ $(document).off('submit', '#card-form').on('submit', '#card-form', function(e) {
     if (key === '') { return; }
 
     if (!/^[A-Za-z0-9]+$/.test(key)) {
-      alert('Invalid key: ' + key + '. Keys may contain only letters and numbers.');
       valid = false;
-      return false; // break out
+      invalidElem = $(this).find('.data-key');
+      return false; // break
     }
 
-    // create a hidden input to reliably submit the pair
-    $('<input>').attr({ type: 'hidden', name: 'card[data][' + key + ']', value: val }).appendTo(form);
-
-    // remove name attribute from visible value input so it doesn't duplicate submission
-    $(this).find('.data-value').removeAttr('name');
+    pairs.push({ key: key, value: val, row: $(this) });
   });
 
-  if (!valid) { e.preventDefault(); return false; }
+  if (!valid) {
+    e.preventDefault();
+    // show inline error next to the offending key
+    if (invalidElem) {
+      invalidElem.addClass('is-invalid');
+      invalidElem.after('<div class="invalid-feedback">Keys may contain only letters and numbers.</div>');
+      invalidElem.focus();
+    }
+
+    // Re-enable submit buttons in case Rails UJS or other handlers disabled them on click
+    // Use setTimeout to ensure this runs after other click handlers that may disable the button
+    setTimeout(function() {
+      var btns = form.find('input[type=submit], button[type=submit]');
+      btns.each(function() {
+        var $b = $(this);
+        // restore original text if rails-ujs stored it
+        var original = $b.data('ujs:enable-with') || $b.data('enable-with');
+        if (original) {
+          if ($b.is('input')) { $b.val(original); } else { $b.html(original); }
+        }
+        $b.prop('disabled', false);
+        $b.removeAttr('disabled');
+      });
+    }, 0);
+
+    return false;
+  }
+
+  // Passed validation: remove previous hidden helper inputs, then inject fresh ones and remove visible names
+  form.find('input[type="hidden"][name^="card[data]"]').remove();
+  pairs.forEach(function(p) {
+    $('<input>').attr({ type: 'hidden', name: 'card[data][' + p.key + ']', value: p.value }).appendTo(form);
+    p.row.find('.data-value').removeAttr('name');
+  });
+
+  // allow submit to continue
 });
 </script>
