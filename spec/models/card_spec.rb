@@ -4,6 +4,7 @@ RSpec.describe Card, type: :model do
   describe 'associations' do
     it { should have_many(:deck_cards) }
     it { should have_many(:decks).through(:deck_cards) }
+    it { should have_many(:card_images).dependent(:destroy) }
     it { should belong_to(:game) }
   end
 
