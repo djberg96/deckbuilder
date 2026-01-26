@@ -5,6 +5,16 @@
   <div class="card-body">
     <p class="card-text"><strong>Description:</strong> <%= @card.description %></p>
     <p class="card-text"><strong>Game:</strong> <%= link_to @card.game.name, @card.game %><% if @card.game.edition.present? %> (<%= @card.game.edition %>)<% end %></p>
+
+    <% if @card.card_images.any? %>
+      <div class="mt-3">
+        <% @card.card_images.each do |img| %>
+          <% if img.data.present? && img.content_type.present? %>
+            <%= image_tag "data:#{img.content_type};base64,#{Base64.strict_encode64(img.data)}", class: 'img-thumbnail me-2', style: 'max-width:200px; height:auto;' %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 

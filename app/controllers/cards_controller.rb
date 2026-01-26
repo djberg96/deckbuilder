@@ -24,25 +24,31 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
 
     respond_to do |format|
-      if @card.save
-        # Process new uploads
-        if params[:card] && params[:card][:new_images]
-          params[:card][:new_images].each do |uploaded|
-            next unless uploaded.respond_to?(:read)
-            img = @card.card_images.build(upload: uploaded)
-            unless img.save
-              @card.errors.add(:base, "Image upload failed: #{img.errors.full_messages.join(', ')}")
+      failed_messages = []
+      Card.transaction do
+        if @card.save
+          # Process new uploads
+          if params[:card] && params[:card][:new_images]
+            params[:card][:new_images].each do |uploaded|
+              next unless uploaded.respond_to?(:read)
+              img = @card.card_images.build
+              img.upload = uploaded
+              unless img.save
+                failed_messages << img.errors.full_messages.join(', ')
+                raise ActiveRecord::Rollback
+              end
             end
           end
         end
+      end
 
-        if @card.errors.any?
-          format.html { render :new, status: :unprocessable_content }
-          format.json { render json: @card.errors, status: :unprocessable_content }
-        else
-          format.html { redirect_to @card, notice: "Card was successfully created." }
-          format.json { render :show, status: :created, location: @card }
-        end
+      if failed_messages.any?
+        @card.errors.add(:base, "Image upload failed: #{failed_messages.join('; ')}")
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @card.errors, status: :unprocessable_content }
+      elsif @card.persisted?
+        format.html { redirect_to @card, notice: "Card was successfully created." }
+        format.json { render :show, status: :created, location: @card }
       else
         format.html { render :new, status: :unprocessable_content }
         format.json { render json: @card.errors, status: :unprocessable_content }
@@ -53,35 +59,41 @@ class CardsController < ApplicationController
   # PATCH/PUT /cards/1 or /cards/1.json
   def update
     respond_to do |format|
-      if @card.update(card_params)
-        # Process new uploads
-        if params[:card] && params[:card][:new_images]
-          params[:card][:new_images].each do |uploaded|
-            next unless uploaded.respond_to?(:read)
-            img = @card.card_images.build(upload: uploaded)
-            unless img.save
-              @card.errors.add(:base, "Image upload failed: #{img.errors.full_messages.join(', ')}")
+      failed_messages = []
+      Card.transaction do
+        if @card.update(card_params)
+          # Process new uploads
+          if params[:card] && params[:card][:new_images]
+            params[:card][:new_images].each do |uploaded|
+              next unless uploaded.respond_to?(:read)
+              img = @card.card_images.build
+              img.upload = uploaded
+              unless img.save
+                failed_messages << img.errors.full_messages.join(', ')
+                raise ActiveRecord::Rollback
+              end
+            end
+          end
+
+          # Process removals
+          if params[:card] && params[:card][:remove_image_ids]
+            params[:card][:remove_image_ids].reject(&:blank?).map(&:to_i).each do |id|
+              @card.card_images.where(id: id).destroy_all
             end
           end
         end
+      end
 
-        # Process removals
-        if params[:card] && params[:card][:remove_image_ids]
-          params[:card][:remove_image_ids].reject(&:blank?).map(&:to_i).each do |id|
-            @card.card_images.where(id: id).destroy_all
-          end
-        end
-
-        if @card.errors.any?
-          format.html { render :edit, status: :unprocessable_content }
-          format.json { render json: @card.errors, status: :unprocessable_content }
-        else
-          format.html { redirect_to @card, notice: "Card was successfully updated." }
-          format.json { render :show, status: :ok, location: @card }
-        end
-      else
+      if failed_messages.any?
+        @card.errors.add(:base, "Image upload failed: #{failed_messages.join('; ')}")
         format.html { render :edit, status: :unprocessable_content }
         format.json { render json: @card.errors, status: :unprocessable_content }
+      elsif @card.errors.any?
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @card.errors, status: :unprocessable_content }
+      else
+        format.html { redirect_to @card, notice: "Card was successfully updated." }
+        format.json { render :show, status: :ok, location: @card }
       end
     end
   end
