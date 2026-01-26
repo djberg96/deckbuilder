@@ -47,18 +47,34 @@
               </div>
             <% end %>
           </div>
+        <% else %>
+          <div class="d-flex flex-column justify-content-center align-items-center" style="min-height:200px;">
+            <h6 class="mb-3">Add Image?</h6>
+            <div class="mb-2 text-center w-100">
+              <%= file_field_tag 'card[new_images][]', multiple: true, accept: 'image/*', class: 'form-control d-inline-block w-75' %>
+              <div class="form-text">Maximum size per image: 64 KB.</div>
+              <% if @card && @card.errors[:base].any? %>
+                <% msgs = @card.errors[:base].select { |m| m =~ /Image upload failed/ } %>
+                <% if msgs.any? %>
+                  <div class="alert alert-danger mt-2" id="server-image-error"><%= msgs.join('; ') %></div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
 
-        <div class="mb-2 text-center">
-          <%= file_field_tag 'card[new_images][]', multiple: true, accept: 'image/*', class: 'form-control d-inline-block w-75' %>
-          <div class="form-text">Maximum size per image: 64 KB.</div>
-          <% if @card && @card.errors[:base].any? %>
-            <% msgs = @card.errors[:base].select { |m| m =~ /Image upload failed/ } %>
-            <% if msgs.any? %>
-              <div class="alert alert-danger mt-2" id="server-image-error"><%= msgs.join('; ') %></div>
+        <% if card.card_images.any? %>
+          <div class="mb-2 text-center">
+            <div class="form-text">Maximum size per image: 64 KB.</div>
+            <% if @card && @card.errors[:base].any? %>
+              <% msgs = @card.errors[:base].select { |m| m =~ /Image upload failed/ } %>
+              <% if msgs.any? %>
+                <div class="alert alert-danger mt-2" id="server-image-error"><%= msgs.join('; ') %></div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
+
       </div>
     </div>
   </div>
