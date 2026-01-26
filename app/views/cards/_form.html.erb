@@ -27,11 +27,27 @@
 
   <h5>Data Attributes</h5>
   <div id="data-attributes">
-    <% if card.data.present? && card.data.is_a?(Hash) %>
-      <% card.data.each do |key, value| %>
+    <%
+      data_hash = if card.data.respond_to?(:to_h)
+        card.data.to_h
+      elsif card.data.respond_to?(:each_pair)
+        h = {}
+        card.data.each_pair { |k, v| h[k.to_s] = v }
+        h
+      elsif card.data.is_a?(Hash)
+        card.data
+      else
+        {}
+      end
+
+      data_hash = data_hash.transform_keys(&:to_s) if data_hash.is_a?(Hash)
+    %>
+
+    <% if data_hash.is_a?(Hash) && data_hash.any? %>
+      <% data_hash.each do |key, value| %>
         <div class="row mb-2 data-attribute">
           <div class="col-md-4">
-            <input type="text" class="form-control data-key" name="card[data][<%= key %>]" value="<%= key %>">
+            <input type="text" class="form-control data-key" value="<%= key %>">
           </div>
           <div class="col-md-6">
             <input type="text" class="form-control data-value" name="card[data][<%= key %>]" value="<%= value %>">
