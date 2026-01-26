@@ -79,5 +79,22 @@ RSpec.describe Card, type: :model do
         expect(c.errors[:data].join).to match(/bad-key/)
       end
     end
+
+    context 'when stored data contains overly long values' do
+      it 'is invalid when a value is longer than 128 characters and reports the offending keys' do
+        c = Card.new(name: 'LongValues', game: create(:game))
+        long_value = 'a' * 129
+        c[:data] = { 'type' => long_value }
+        expect(c).not_to be_valid
+        expect(c.errors[:data].join).to match(/type/)
+      end
+
+      it 'is valid when values are exactly 128 characters or shorter' do
+        c = Card.new(name: 'EdgeValues', game: create(:game))
+        ok_value = 'b' * 128
+        c[:data] = { 'type' => ok_value }
+        expect(c).to be_valid
+      end
+    end
   end
 end

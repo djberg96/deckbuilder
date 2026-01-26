@@ -8,6 +8,9 @@ class Card < ApplicationRecord
   # Ensure stored data keys are alphanumeric only (letters and numbers)
   validate :data_keys_format
 
+  # Ensure no data attribute value exceeds 128 characters
+  validate :data_values_length
+
   def add_to_deck(deck, quantity = 1)
     deck_cards.create(:card => self, :deck => deck, :quantity => quantity)
   end
@@ -39,6 +42,14 @@ class Card < ApplicationRecord
     invalid = self[:data].keys.select { |k| !(k =~ /\A[A-Za-z0-9]+\z/) }
     if invalid.any?
       errors.add(:data, "contains invalid keys: #{invalid.join(', ')}")
+    end
+  end
+
+  def data_values_length
+    return unless self[:data].is_a?(Hash)
+    too_long = self[:data].select { |_, v| v.to_s.length > 128 }.keys
+    if too_long.any?
+      errors.add(:data, "contains values longer than 128 characters: #{too_long.join(', ')}")
     end
   end
 end
