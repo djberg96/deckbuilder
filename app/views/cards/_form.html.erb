@@ -1,4 +1,4 @@
-<%= form_with(model: card, html: { class: 'needs-validation' }) do |form| %>
+<%= form_with(model: card, html: { class: 'needs-validation', id: 'card-form' }) do |form| %>
   <% if card.errors.any? %>
     <div class="alert alert-danger">
       <h4 class="alert-heading"><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h4>
@@ -27,11 +27,27 @@
 
   <h5>Data Attributes</h5>
   <div id="data-attributes">
-    <% if card.data.present? && card.data.is_a?(Hash) %>
-      <% card.data.each do |key, value| %>
+    <%
+      data_hash = if card.data.respond_to?(:to_h)
+        card.data.to_h
+      elsif card.data.respond_to?(:each_pair)
+        h = {}
+        card.data.each_pair { |k, v| h[k.to_s] = v }
+        h
+      elsif card.data.is_a?(Hash)
+        card.data
+      else
+        {}
+      end
+
+      data_hash = data_hash.transform_keys(&:to_s) if data_hash.is_a?(Hash)
+    %>
+
+    <% if data_hash.is_a?(Hash) && data_hash.any? %>
+      <% data_hash.each do |key, value| %>
         <div class="row mb-2 data-attribute">
           <div class="col-md-4">
-            <input type="text" class="form-control data-key" name="card[data][<%= key %>]" value="<%= key %>">
+            <input type="text" class="form-control data-key" value="<%= key %>">
           </div>
           <div class="col-md-6">
             <input type="text" class="form-control data-value" name="card[data][<%= key %>]" value="<%= value %>">
@@ -84,5 +100,76 @@ $(document).off('input', '.data-key').on('input', '.data-key', function() {
   } else {
     valueInput.attr('name', 'card[data][__new__]');
   }
+  // Clear any inline validation markers when the key changes
+  $(this).removeClass('is-invalid');
+  $(this).closest('.data-attribute').find('.invalid-feedback').remove();
+
+  // Re-enable submit buttons on change (in case they were disabled earlier)
+  var btns = $('#card-form').find('input[type=submit], button[type=submit]');
+  btns.prop('disabled', false).removeAttr('disabled');
+});
+
+// On-submit serializer: ensure only alphanumeric keys are submitted and avoid duplicate inputs
+$(document).off('submit', '#card-form').on('submit', '#card-form', function(e) {
+  var form = $(this);
+  var pairs = [];
+  var valid = true;
+  var invalidElem = null;
+
+  // Collect and validate visible attribute rows without mutating the DOM yet
+  $('.data-attribute').each(function() {
+    if (this.offsetParent === null) { return; } // skip template
+
+    var key = $(this).find('.data-key').val() || '';
+    key = key.toString().trim();
+    var val = $(this).find('.data-value').val() || '';
+
+    if (key === '') { return; }
+
+    if (!/^[A-Za-z0-9]+$/.test(key)) {
+      valid = false;
+      invalidElem = $(this).find('.data-key');
+      return false; // break
+    }
+
+    pairs.push({ key: key, value: val, row: $(this) });
+  });
+
+  if (!valid) {
+    e.preventDefault();
+    // show inline error next to the offending key
+    if (invalidElem) {
+      invalidElem.addClass('is-invalid');
+      invalidElem.after('<div class="invalid-feedback">Keys may contain only letters and numbers.</div>');
+      invalidElem.focus();
+    }
+
+    // Re-enable submit buttons in case Rails UJS or other handlers disabled them on click
+    // Use setTimeout to ensure this runs after other click handlers that may disable the button
+    setTimeout(function() {
+      var btns = form.find('input[type=submit], button[type=submit]');
+      btns.each(function() {
+        var $b = $(this);
+        // restore original text if rails-ujs stored it
+        var original = $b.data('ujs:enable-with') || $b.data('enable-with');
+        if (original) {
+          if ($b.is('input')) { $b.val(original); } else { $b.html(original); }
+        }
+        $b.prop('disabled', false);
+        $b.removeAttr('disabled');
+      });
+    }, 0);
+
+    return false;
+  }
+
+  // Passed validation: remove previous hidden helper inputs, then inject fresh ones and remove visible names
+  form.find('input[type="hidden"][name^="card[data]"]').remove();
+  pairs.forEach(function(p) {
+    $('<input>').attr({ type: 'hidden', name: 'card[data][' + p.key + ']', value: p.value }).appendTo(form);
+    p.row.find('.data-value').removeAttr('name');
+  });
+
+  // allow submit to continue
 });
 </script>

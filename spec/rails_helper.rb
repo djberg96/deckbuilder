@@ -24,7 +24,8 @@ require 'capybara/rspec'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
+# Auto-require files under spec/support for test helpers and driver registration
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -71,6 +72,16 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+  end
+
+  # Use truncation for system specs that use JS (selenium) because those run in a separate
+  # thread/process and cannot see transactional fixtures.
+  config.before(:each, type: :system, js: true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.after(:each, type: :system, js: true) do
+    DatabaseCleaner.strategy = :transaction
   end
 
   config.around(:each) do |example|

@@ -69,5 +69,15 @@ RSpec.describe Card, type: :model do
       expect(card.data.type).to eq('Creature')
       expect(card.data.power).to eq(5)
     end
+
+    context 'when stored data contains invalid keys' do
+      it 'is invalid and reports the invalid keys' do
+        c = Card.new(name: 'BadKeys', game: create(:game))
+        # bypass setter, write raw hash to simulate legacy/malicious data
+        c[:data] = { 'good' => 1, 'bad-key' => 2 }
+        expect(c).not_to be_valid
+        expect(c.errors[:data].join).to match(/bad-key/)
+      end
+    end
   end
 end

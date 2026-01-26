@@ -66,9 +66,9 @@ class CardsController < ApplicationController
     def card_params
       cp = params.require(:card).permit(:name, :description, :game_id, data: {})
       if cp[:data].is_a?(Hash)
-        # Remove placeholder/new attribute entries and blank keys
+        # Remove placeholder/new attribute entries, blank keys, and keys that contain non-alphanumeric characters
         cp[:data] = cp[:data].transform_keys(&:to_s).reject do |k, _|
-          k.strip.empty? || k.match?(/\A(__new__|new_)/i)
+          k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9]+\z/)
         end
       end
       cp
