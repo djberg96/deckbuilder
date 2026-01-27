@@ -1,6 +1,25 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h1 class="mb-0">Decks</h1>
-  <%= link_to 'New Deck', new_deck_path, class: 'btn btn-primary' %>
+
+  <div class="d-flex align-items-center">
+    <div class="me-2">
+      <div class="input-group">
+        <label class="input-group-text" for="deck_filter_column">Filter by</label>
+        <%= select_tag :filter_column, options_for_select([['All', ''], ['Game', 'game'], ['Owner', 'owner']], params[:filter_column]), id: 'deck_filter_column', class: 'form-select form-select-sm' %>
+      </div>
+    </div>
+
+    <div class="me-2" id="deck-filter-value-container" style="display:none">
+      <div class="input-group">
+        <label class="input-group-text" for="deck_filter_value">Value</label>
+        <select id="deck_filter_value" class="form-select form-select-sm">
+          <option value="">Select</option>
+        </select>
+      </div>
+    </div>
+
+    <%= link_to 'New Deck', new_deck_path, class: 'btn btn-primary' %>
+  </div>
 </div>
 
 <div class="card shadow-sm">
@@ -18,7 +37,7 @@
       <tbody class="align-middle">
         <% @decks.each do |deck| %>
           <% row_class = (deck.private? && defined?(@user) && @user == deck.user) ? 'table-warning' : '' %>
-          <tr class="<%= row_class %>" data-deck-id="<%= deck.id %>">
+          <tr class="<%= row_class %>" data-deck-id="<%= deck.id %>" data-game-id="<%= deck.game&.id %>" data-owner-id="<%= deck.user_id %>">
             <td><%= link_to deck.name, deck %>
               <% if deck.private? %>
                 <% if defined?(@user) && @user == deck.user %>
@@ -48,3 +67,80 @@
     </table>
   </div>
 </div>
+
+<script>
+// Client-side deck filtering by column + value
+function clientFilterDecks(column, value) {
+  var rows = document.querySelectorAll('tbody.align-middle tr[data-game-id]');
+  rows.forEach(function(r) {
+    if (!column || !value) { r.style.display = ''; return; }
+    if (column === 'game') {
+      if (r.dataset.gameId === value.toString()) r.style.display = ''; else r.style.display = 'none';
+    } else if (column === 'owner') {
+      if (r.dataset.ownerId === value.toString()) r.style.display = ''; else r.style.display = 'none';
+    } else {
+      r.style.display = '';
+    }
+  });
+}
+
+function updateUrlParam(key, value) {
+  var url = new URL(window.location.href);
+  if (!value || value === '') { url.searchParams.delete(key); } else { url.searchParams.set(key, value); }
+  window.history.replaceState({}, '', url.toString());
+}
+
+function populateFilterValueSelect(column) {
+  var container = document.getElementById('deck-filter-value-container');
+  var sel = document.getElementById('deck_filter_value');
+  sel.innerHTML = '<option value="">Select</option>';
+  if (!column || column === '') { container.style.display = 'none'; return; }
+  container.style.display = '';
+  if (column === 'game') {
+    var items = <%= @games.map { |g| { id: g.id, name: g.name } }.to_json.html_safe %>;
+    items.forEach(function(i){ sel.appendChild(new Option(i.name, i.id)); });
+  } else if (column === 'owner') {
+    var items = <%= @owners.map { |u| { id: u.id, name: u.username } }.to_json.html_safe %>;
+    items.forEach(function(i){ sel.appendChild(new Option(i.name, i.id)); });
+  }
+}
+
+function attachDeckFilters() {
+  var col = document.getElementById('deck_filter_column');
+  var val = document.getElementById('deck_filter_value');
+  if (!col || col.dataset.attached) return;
+
+  col.addEventListener('change', function() {
+    populateFilterValueSelect(col.value);
+    updateUrlParam('filter_column', col.value);
+    // clear current value
+    updateUrlParam('filter_value', '');
+    clientFilterDecks(col.value, '');
+  });
+
+  val.addEventListener('change', function() {
+    var v = val.value;
+    var c = col.value;
+    clientFilterDecks(c, v);
+    updateUrlParam('filter_value', v);
+  });
+
+  // apply initial values from URL
+  var params = new URL(window.location.href).searchParams;
+  var initCol = params.get('filter_column');
+  var initVal = params.get('filter_value');
+  if (initCol) {
+    col.value = initCol;
+    populateFilterValueSelect(initCol);
+    if (initVal) {
+      val.value = initVal;
+      clientFilterDecks(initCol, initVal);
+    }
+  }
+
+  col.dataset.attached = 'true';
+}
+
+document.addEventListener('DOMContentLoaded', attachDeckFilters);
+document.addEventListener('turbo:load', attachDeckFilters);
+</script>

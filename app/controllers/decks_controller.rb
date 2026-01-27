@@ -3,7 +3,22 @@ class DecksController < ApplicationController
 
   # GET /decks or /decks.json
   def index
-    @decks = Deck.all
+    @games = Game.order(:name)
+    @owners = User.order(:username)
+
+    # base query includes associations for efficiency
+    decks_scope = Deck.includes(:game, :user).order(:name)
+
+    if params[:filter_column].present? && params[:filter_value].present?
+      case params[:filter_column]
+      when 'game'
+        decks_scope = decks_scope.where(game_deck: { game_id: params[:filter_value] }).references(:game_deck)
+      when 'owner'
+        decks_scope = decks_scope.where(user_id: params[:filter_value])
+      end
+    end
+
+    @decks = decks_scope
   end
 
   # GET /decks/1 or /decks/1.json
