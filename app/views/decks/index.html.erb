@@ -1,6 +1,62 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h1 class="mb-0">Decks</h1>
-  <%= link_to 'New Deck', new_deck_path, class: 'btn btn-primary' %>
+
+  <div class="d-flex align-items-center">
+    <div class="me-2">
+      <div class="input-group">
+        <label class="input-group-text" for="deck_filter_column">Filter by</label>
+        <%= select_tag :filter_column, options_for_select([['All', ''], ['Game', 'game'], ['Owner', 'owner']], params[:filter_column]), id: 'deck_filter_column', class: 'form-select form-select-sm', onchange: "populateFilterValueSelect(this.value); updateUrlParam('filter_column', this.value); updateUrlParam('filter_value', ''); if (!this.value || this.value === '') { clientFilterDecks('', ''); }" %>
+      </div>
+    </div>
+
+    <div class="me-2" id="deck-filter-value-container" style="display:none">
+      <div class="input-group">
+        <label class="input-group-text" for="deck_filter_value">Value</label>
+        <select id="deck_filter_value" class="form-select form-select-sm" onchange="clientFilterDecks(document.getElementById('deck_filter_column').value, this.value); updateUrlParam('filter_value', this.value);">
+          <option value="">Select</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex-grow-1 d-flex justify-content-center me-2">
+      <div class="form-check form-check-inline">
+        <style>
+          /* keep the checkbox accessible but visually hidden */
+          #hide_private_others.visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+          /* show eye when unchecked, eye-slash when checked */
+          #hide_private_others + label .icon-eye { display: inline; }
+          #hide_private_others + label .icon-eye-slash { display: none; }
+          #hide_private_others:checked + label .icon-eye { display: none; }
+          #hide_private_others:checked + label .icon-eye-slash { display: inline; }
+
+          /* icon sizing, alignment and affordance */
+          #hide_private_others + label svg { width: 20px; height: 20px; display: inline-block; vertical-align: middle; transition: transform .12s ease, color .12s ease; cursor: pointer; }
+          #hide_private_others + label:active svg { transform: scale(0.92); }
+
+          /* slight hover/focus hint */
+          #hide_private_others + label:hover svg, #hide_private_others + label:focus { color: #0d6efd; }
+        </style>
+
+        <input class="form-check-input visually-hidden" type="checkbox" id="hide_private_others" aria-label="Hide other users' private decks" <%== 'checked' if params[:hide_private_others].present? %> onchange="(function(v){ clientToggleHidePrivateOthers(v); updateUrlParam('hide_private_others', v? '1' : ''); var lbl = document.querySelector('label[for=\'hide_private_others\']'); if (lbl) lbl.setAttribute('aria-pressed', v? 'true' : 'false'); })(this.checked);">
+
+        <label class="form-check-label hide-private-toggle" for="hide_private_others" title="Hide other users' private decks" role="button" tabindex="0" aria-pressed="<%= params[:hide_private_others].present? ? 'true' : 'false' %>">
+          <!-- Eye (visible when NOT hiding) -->
+          <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8z"/>
+            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" fill="#fff"/>
+          </svg>
+          <!-- Eye with bold diagonal slash (visible when hiding) -->
+          <svg class="icon-eye-slash" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" aria-hidden="true" role="img">
+            <path d="M1 8s3-5 7-5 7 5 7 5-3 5-7 5S1 8 1 8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="8" cy="8" r="2.2" fill="currentColor" />
+            <line x1="3" y1="13" x2="13" y2="3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </label>
+      </div>
+    </div>
+
+    <%= link_to 'New Deck', new_deck_path, class: 'btn btn-primary' %>
+  </div>
 </div>
 
 <div class="card shadow-sm">
@@ -9,13 +65,35 @@
       <thead class="table-light">
         <tr>
           <th>Name</th>
+          <th>Game</th>
+          <th>Owner</th>
+          <th class="text-center">Total Cards</th>
           <th class="text-end">Actions</th>
         </tr>
       </thead>
       <tbody class="align-middle">
         <% @decks.each do |deck| %>
-          <tr>
-            <td><%= link_to deck.name, deck %></td>
+          <% row_class = (deck.private? && defined?(@user) && @user == deck.user) ? 'table-warning' : '' %>
+          <tr class="<%= row_class %>" data-deck-id="<%= deck.id %>" data-game-id="<%= deck.game&.id %>" data-owner-id="<%= deck.user_id %>" data-private="<%= deck.private? %>" data-owned="<%= (@user && @user == deck.user) %>">
+            <td><%= link_to deck.name, deck %>
+              <% if deck.private? %>
+                <% if defined?(@user) && @user == deck.user %>
+                  <span class="badge bg-secondary ms-2">Private</span>
+                <% else %>
+                  <span class="badge bg-light text-muted ms-2">Private</span>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= deck.game&.name %></td>
+            <td>
+              <% if deck.private? && defined?(@user) && @user != deck.user %>
+                <!-- owner name hidden for private decks owned by others -->
+                <em>Private</em>
+              <% else %>
+                <%= deck.user.username %>
+              <% end %>
+            </td>
+            <td class="text-center"><%= deck.total_cards %></td>
             <td class="text-end">
               <%= link_to 'Edit', edit_deck_path(deck), class: 'btn btn-outline-primary btn-sm me-1' %>
               <%= link_to 'Delete', deck, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
@@ -26,3 +104,121 @@
     </table>
   </div>
 </div>
+
+<script>
+// Client-side deck filtering by column + value
+function clientFilterDecks(column, value) {
+  var rows = document.querySelectorAll('tbody.align-middle tr[data-game-id]');
+  rows.forEach(function(r) {
+    if (!column || !value) { r.style.display = ''; return; }
+    if (column === 'game') {
+      if (r.dataset.gameId === value.toString()) r.style.display = ''; else r.style.display = 'none';
+    } else if (column === 'owner') {
+      if (r.dataset.ownerId === value.toString()) r.style.display = ''; else r.style.display = 'none';
+    } else {
+      r.style.display = '';
+    }
+  });
+}
+
+function updateUrlParam(key, value) {
+  var url = new URL(window.location.href);
+  if (!value || value === '') { url.searchParams.delete(key); } else { url.searchParams.set(key, value); }
+  window.history.replaceState({}, '', url.toString());
+}
+
+function populateFilterValueSelect(column) {
+  var container = document.getElementById('deck-filter-value-container');
+  var sel = document.getElementById('deck_filter_value');
+  sel.innerHTML = '<option value="">Select</option>';
+  if (!column || column === '') { container.style.display = 'none'; return; }
+  container.style.display = '';
+  if (column === 'game') {
+    var items = <%= @games.map { |g| { id: g.id, name: g.name } }.to_json.html_safe %>;
+    items.forEach(function(i){ sel.appendChild(new Option(i.name, i.id)); });
+  } else if (column === 'owner') {
+    var items = <%= @owners.map { |u| { id: u.id, name: u.username } }.to_json.html_safe %>;
+    items.forEach(function(i){ sel.appendChild(new Option(i.name, i.id)); });
+  }
+}
+
+function attachDeckFilters() {
+  var col = document.getElementById('deck_filter_column');
+  var val = document.getElementById('deck_filter_value');
+  if (!col || col.dataset.attached) return;
+
+  function colHandler() {
+    populateFilterValueSelect(col.value);
+    // if 'All' is selected (empty value), clear filters and show all
+    if (!col.value || col.value === '') {
+      if (val) { val.value = ''; }
+      updateUrlParam('filter_column', '');
+      updateUrlParam('filter_value', '');
+      clientFilterDecks('', '');
+      return;
+    }
+
+    updateUrlParam('filter_column', col.value);
+    // clear current value
+    updateUrlParam('filter_value', '');
+    clientFilterDecks(col.value, '');
+  }
+  function valHandler() {
+    var v = val.value;
+    var c = col.value;
+    clientFilterDecks(c, v);
+    updateUrlParam('filter_value', v);
+  }
+
+  // attach multiple events to handle Firefox and other browser quirks
+  col.addEventListener('change', colHandler);
+  col.addEventListener('input', colHandler);
+  col.addEventListener('mouseup', colHandler);
+  col.addEventListener('keyup', function(e) { if (e.key === 'Enter') colHandler(); });
+  window.addEventListener('pageshow', colHandler);
+
+  val.addEventListener('change', valHandler);
+  val.addEventListener('input', valHandler);
+  val.addEventListener('mouseup', valHandler);
+  val.addEventListener('keyup', function(e) { if (e.key === 'Enter') valHandler(); });
+
+  // apply initial values from URL
+  var params = new URL(window.location.href).searchParams;
+  var initCol = params.get('filter_column');
+  var initVal = params.get('filter_value');
+  if (initCol) {
+    col.value = initCol;
+    populateFilterValueSelect(initCol);
+    if (initVal) {
+      val.value = initVal;
+      clientFilterDecks(initCol, initVal);
+    }
+  }
+
+  // handle optional hide_private_others flag
+  var hidePrivate = params.get('hide_private_others');
+  var hideCheckbox = document.getElementById('hide_private_others');
+  if (hideCheckbox) {
+    if (hidePrivate) {
+      hideCheckbox.checked = true;
+      clientToggleHidePrivateOthers(true);
+    }
+    hideCheckbox.addEventListener('change', function() { clientToggleHidePrivateOthers(hideCheckbox.checked); updateUrlParam('hide_private_others', hideCheckbox.checked? '1' : ''); });
+  }
+
+  col.dataset.attached = 'true';
+}
+
+document.addEventListener('DOMContentLoaded', attachDeckFilters);
+document.addEventListener('turbo:load', attachDeckFilters);
+
+// Toggle hiding private decks owned by others
+function clientToggleHidePrivateOthers(shouldHide) {
+  var rows = document.querySelectorAll('tbody.align-middle tr');
+  rows.forEach(function(r) {
+    var isPrivate = r.getAttribute('data-private') === 'true' || r.dataset.private === 'true';
+    var isOwned = r.getAttribute('data-owned') === 'true' || r.dataset.owned === 'true';
+    if (shouldHide && isPrivate && !isOwned) { r.style.display = 'none'; } else { r.style.display = ''; }
+  });
+}
+</script>
