@@ -247,21 +247,143 @@ $(document).off('submit', '#card-form').on('submit', '#card-form', function(e) {
   }
 
   $(document).off('change', 'input[name="card[new_images][]"]').on('change', 'input[name="card[new_images][]"]', function() {
-    var files = this.files || [];
-    var tooBig = [];
+    var input = this;
+    var files = input.files || [];
+    var tooBigList = [];
     for (var i = 0; i < files.length; i++) {
       var f = files[i];
       if (f.size > MAX_BYTES) {
-        tooBig.push(f.name + ' (' + Math.round(f.size / 1024) + ' KB)');
+        tooBigList.push({ name: f.name, size: f.size, index: i });
       }
     }
-    if (tooBig.length > 0) {
-      var msg = 'The following files exceed 64 KB: ' + tooBig.join(', ') + '. Please choose smaller files.';
-      showImageSizeError(msg);
+
+    if (tooBigList.length > 0) {
+      var msg = 'The following files exceed 64 KB: ' + tooBigList.map(function(x){ return x.name + ' (' + Math.round(x.size/1024) + ' KB)'; }).join(', ') + '.\n\nClick OK to attempt automatic resize to 64 KB where possible, or Cancel to keep originals.';
+      if (!window.confirm(msg)) {
+        showImageSizeError('One or more selected files exceed 64 KB. Please choose smaller files.');
+        return;
+      }
+
+      // User chose to attempt automatic resize
+      (async function() {
+        showImageSizeError('Resizing images...');
+        var resizedMap = {}; // index -> File
+
+        for (var j = 0; j < tooBigList.length; j++) {
+          var info = tooBigList[j];
+          var original = files[info.index];
+          try {
+            var resized = await attemptResizeImageFile(original, MAX_BYTES);
+            if (resized && resized.size <= MAX_BYTES) {
+              resizedMap[info.index] = resized;
+            }
+          } catch (err) {
+            // ignore and mark as failed
+          }
+        }
+
+        // build new FileList replacement
+        var dt = new DataTransfer();
+        for (var k = 0; k < files.length; k++) {
+          if (resizedMap.hasOwnProperty(k)) {
+            dt.items.add(resizedMap[k]);
+          } else {
+            dt.items.add(files[k]);
+          }
+        }
+        input.files = dt.files;
+
+        // check remaining oversized
+        var stillTooBig = [];
+        for (var m = 0; m < input.files.length; m++) {
+          if (input.files[m].size > MAX_BYTES) {
+            stillTooBig.push(input.files[m].name + ' (' + Math.round(input.files[m].size / 1024) + ' KB)');
+          }
+        }
+
+        if (stillTooBig.length > 0) {
+          showImageSizeError('Could not resize the following files to <= 64 KB: ' + stillTooBig.join(', ') + '. Please choose smaller files.');
+          return;
+        }
+
+        clearImageSizeError();
+        // trigger a synthetic input event so any preview code can run
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      })();
+
     } else {
       clearImageSizeError();
     }
   });
+
+  // helper: attempt to resize an image file to be <= maxBytes
+  function canvasToBlob(canvas, type, quality) {
+    return new Promise(function(resolve) { canvas.toBlob(function(b){ resolve(b); }, type, quality); });
+  }
+
+  async function attemptResizeImageFile(file, maxBytes) {
+    if (!file.type || file.type.indexOf('image') !== 0) { return null; }
+
+    // load image
+    var dataUrl = await new Promise(function(resolve, reject) {
+      var r = new FileReader();
+      r.onload = function(e) { resolve(e.target.result); };
+      r.onerror = function() { reject(new Error('read')); };
+      r.readAsDataURL(file);
+    });
+
+    var img = await new Promise(function(resolve, reject) {
+      var i = new Image();
+      i.onload = function() { resolve(i); };
+      i.onerror = function() { reject(new Error('image')); };
+      i.src = dataUrl;
+    }).catch(function(){ return null; });
+
+    if (!img) { return null; }
+
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+
+    var width = img.width;
+    var height = img.height;
+
+    // Try converting to JPEG first to get better compression
+    var type = 'image/jpeg';
+
+    // iterative attempts: reduce quality, then scale down
+    var quality = 0.92;
+    var minQuality = 0.45;
+    var scaleFactor = 0.9;
+    var minWidth = 120;
+    var minHeight = 120;
+
+    var attemptCount = 0;
+    while (attemptCount < 30) {
+      attemptCount++;
+      canvas.width = Math.max(1, Math.floor(width));
+      canvas.height = Math.max(1, Math.floor(height));
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      var blob = await canvasToBlob(canvas, type, quality);
+      if (!blob) { return null; }
+      if (blob.size <= maxBytes) {
+        return new File([blob], file.name.replace(/\.png$|\.jpg$|\.jpeg$/i, '.jpg'), { type: blob.type });
+      }
+
+      // decrease quality until minQuality, then scale down
+      if (quality > minQuality) {
+        quality = Math.max(minQuality, quality - 0.12);
+      } else {
+        width = Math.floor(width * scaleFactor);
+        height = Math.floor(height * scaleFactor);
+        if (width < minWidth || height < minHeight) { break; }
+      }
+    }
+
+    return null;
+  }
 
   // double-check on submit (do not unbind existing submit handlers)
   $(document).on('submit', '#card-form', function(e) {
