@@ -11,7 +11,14 @@ RSpec.describe 'cards/show.html.erb', type: :view do
     expect(rendered).to match(/data:image\/png;base64,/)
     expect(rendered).to match(/Description:.*Nice card/m)
     expect(rendered).to match(/class="row"/)
+
     # ensure Details header appears after the main block
     expect(rendered.index('Details')).to be > rendered.index('Description:')
+
+    # details keys should be alphabetically sorted by key (case-insensitive)
+    card[:data] = { 'zeta' => 'Z', 'Alpha' => 'A' }
+    render
+    # keys are displayed uppercased in the dt tags
+    expect(rendered.index('ALPHA')).to be < rendered.index('ZETA')
   end
 end

@@ -35,7 +35,7 @@
       <% data_hash = @card.data.respond_to?(:to_h) ? @card.data.to_h : @card.data %>
       <% if data_hash.is_a?(Hash) %>
         <dl class="row details-list">
-          <% data_hash.each_pair do |key, value| %>
+          <% data_hash.sort_by { |k, _| k.to_s.downcase }.each do |key, value| %>
             <dt class="col-sm-3"><%= key.upcase %></dt>
             <dd class="col-sm-9"><%= value %></dd>
           <% end %>
