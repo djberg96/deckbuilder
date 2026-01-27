@@ -20,14 +20,14 @@ RSpec.describe 'Decks hide private toggle', type: :system do
     expect(page).to have_content('Owners Deck')
     expect(page).to have_content('Public Deck')
 
-    # check the hide checkbox
-    find('#hide_private_others').click
+    # toggle the hide control (now an icon/label)
+    find('label[for="hide_private_others"]').click
 
     expect(page).not_to have_content('Owners Deck')
     expect(page).to have_content('Public Deck')
 
-    # uncheck - should show again
-    find('#hide_private_others').click
+    # toggle again - should show again
+    find('label[for="hide_private_others"]').click
     expect(page).to have_content('Owners Deck')
   end
 end
