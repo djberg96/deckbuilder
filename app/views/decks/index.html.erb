@@ -5,14 +5,14 @@
     <div class="me-2">
       <div class="input-group">
         <label class="input-group-text" for="deck_filter_column">Filter by</label>
-        <%= select_tag :filter_column, options_for_select([['All', ''], ['Game', 'game'], ['Owner', 'owner']], params[:filter_column]), id: 'deck_filter_column', class: 'form-select form-select-sm' %>
+        <%= select_tag :filter_column, options_for_select([['All', ''], ['Game', 'game'], ['Owner', 'owner']], params[:filter_column]), id: 'deck_filter_column', class: 'form-select form-select-sm', onchange: "populateFilterValueSelect(this.value); updateUrlParam('filter_column', this.value); updateUrlParam('filter_value', '');" %>
       </div>
     </div>
 
     <div class="me-2" id="deck-filter-value-container" style="display:none">
       <div class="input-group">
         <label class="input-group-text" for="deck_filter_value">Value</label>
-        <select id="deck_filter_value" class="form-select form-select-sm">
+        <select id="deck_filter_value" class="form-select form-select-sm" onchange="clientFilterDecks(document.getElementById('deck_filter_column').value, this.value); updateUrlParam('filter_value', this.value);">
           <option value="">Select</option>
         </select>
       </div>
@@ -110,20 +110,31 @@ function attachDeckFilters() {
   var val = document.getElementById('deck_filter_value');
   if (!col || col.dataset.attached) return;
 
-  col.addEventListener('change', function() {
+  function colHandler() {
     populateFilterValueSelect(col.value);
     updateUrlParam('filter_column', col.value);
     // clear current value
     updateUrlParam('filter_value', '');
     clientFilterDecks(col.value, '');
-  });
-
-  val.addEventListener('change', function() {
+  }
+  function valHandler() {
     var v = val.value;
     var c = col.value;
     clientFilterDecks(c, v);
     updateUrlParam('filter_value', v);
-  });
+  }
+
+  // attach multiple events to handle Firefox and other browser quirks
+  col.addEventListener('change', colHandler);
+  col.addEventListener('input', colHandler);
+  col.addEventListener('mouseup', colHandler);
+  col.addEventListener('keyup', function(e) { if (e.key === 'Enter') colHandler(); });
+  window.addEventListener('pageshow', colHandler);
+
+  val.addEventListener('change', valHandler);
+  val.addEventListener('input', valHandler);
+  val.addEventListener('mouseup', valHandler);
+  val.addEventListener('keyup', function(e) { if (e.key === 'Enter') valHandler(); });
 
   // apply initial values from URL
   var params = new URL(window.location.href).searchParams;
