@@ -5,7 +5,7 @@
     <%= form_with url: cards_path, method: :get, local: true, html: { class: 'd-inline' } do %>
       <div class="input-group">
         <label class="input-group-text" for="filter_game">Filter</label>
-        <%= select_tag :game_id, options_for_select([['All games', '']] + (@games || []).map { |g| [g.name, g.id] }, params[:game_id]), id: 'filter_game', class: 'form-select' %>
+        <%= select_tag :game_id, options_for_select([['All games', '']] + (@games || []).map { |g| [g.name, g.id] }, params[:game_id]), id: 'filter_game', class: 'form-select', onchange: 'this.form.submit()' %>
       </div>
     <% end %>
     <%= link_to 'New Card', new_card_path, class: 'btn btn-primary ms-2' %>
@@ -40,10 +40,15 @@
 
 <script>
 // submit filter form when selection changes
-document.addEventListener('DOMContentLoaded', function() {
+function attachFilterSubmit() {
   var sel = document.getElementById('filter_game');
-  if (sel) {
+  if (sel && !sel.dataset.filterHandlerAttached) {
     sel.addEventListener('change', function() { sel.form.submit(); });
+    sel.dataset.filterHandlerAttached = 'true';
   }
-});
+}
+
+// Attach on initial load and Turbo navigation events
+document.addEventListener('DOMContentLoaded', attachFilterSubmit);
+document.addEventListener('turbo:load', attachFilterSubmit);
 </script>
