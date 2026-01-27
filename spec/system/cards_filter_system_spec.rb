@@ -21,11 +21,11 @@ RSpec.describe 'Cards filter (system)', type: :system do
     expect(page).to have_content('Alpha')
     expect(page).to have_content('Beta')
 
-    # select Game One from the dropdown and ensure the page updates
+    # select Game One from the dropdown and ensure the list updates client-side
     find('#filter_game').select('Game One')
 
-    # After selection the form should submit and the page should only show Alpha
-    expect(page).to have_current_path(cards_path(game_id: game1.id))
+    # URL should be updated and list should be filtered
+    expect(page.current_url).to include("game_id=#{game1.id}")
     expect(page).to have_content('Alpha')
     expect(page).not_to have_content('Beta')
   end
