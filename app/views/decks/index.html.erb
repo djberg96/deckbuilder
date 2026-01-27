@@ -19,8 +19,14 @@
     </div>
 
     <div class="form-check form-check-inline me-2">
-      <input class="form-check-input" type="checkbox" id="hide_private_others" <%== 'checked' if params[:hide_private_others].present? %> onchange="(function(v){ clientToggleHidePrivateOthers(v); updateUrlParam('hide_private_others', v? '1' : ''); })(this.checked);">
-      <label class="form-check-label" for="hide_private_others">Hide other users' private decks</label>
+      <input class="form-check-input" type="checkbox" id="hide_private_others" aria-label="Hide other users' private decks" <%== 'checked' if params[:hide_private_others].present? %> onchange="(function(v){ clientToggleHidePrivateOthers(v); updateUrlParam('hide_private_others', v? '1' : ''); })(this.checked);">
+      <label class="form-check-label" for="hide_private_others" title="Hide other users' private decks" role="button">
+        <!-- Icon-only label; tooltip shows the full text on hover -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8z"/>
+          <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" fill="#fff"/>
+        </svg>
+      </label>
     </div>
 
     <%= link_to 'New Deck', new_deck_path, class: 'btn btn-primary' %>
