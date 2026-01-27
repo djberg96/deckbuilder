@@ -5,7 +5,7 @@
     <div class="me-2">
       <div class="input-group">
         <label class="input-group-text" for="deck_filter_column">Filter by</label>
-        <%= select_tag :filter_column, options_for_select([['All', ''], ['Game', 'game'], ['Owner', 'owner']], params[:filter_column]), id: 'deck_filter_column', class: 'form-select form-select-sm', onchange: "populateFilterValueSelect(this.value); updateUrlParam('filter_column', this.value); updateUrlParam('filter_value', '');" %>
+        <%= select_tag :filter_column, options_for_select([['All', ''], ['Game', 'game'], ['Owner', 'owner']], params[:filter_column]), id: 'deck_filter_column', class: 'form-select form-select-sm', onchange: "populateFilterValueSelect(this.value); updateUrlParam('filter_column', this.value); updateUrlParam('filter_value', ''); if (!this.value || this.value === '') { clientFilterDecks('', ''); }" %>
       </div>
     </div>
 
@@ -149,6 +149,15 @@ function attachDeckFilters() {
 
   function colHandler() {
     populateFilterValueSelect(col.value);
+    // if 'All' is selected (empty value), clear filters and show all
+    if (!col.value || col.value === '') {
+      if (val) { val.value = ''; }
+      updateUrlParam('filter_column', '');
+      updateUrlParam('filter_value', '');
+      clientFilterDecks('', '');
+      return;
+    }
+
     updateUrlParam('filter_column', col.value);
     // clear current value
     updateUrlParam('filter_value', '');

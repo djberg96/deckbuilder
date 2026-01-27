@@ -34,5 +34,13 @@ RSpec.describe 'Decks filter (system)', type: :system do
     expect(page.current_url).to include('filter_value=' + owner.id.to_s)
     expect(page).to have_content('Deck A')
     expect(page).not_to have_content('Deck B')
+
+    # selecting 'All' should clear filters and show all decks
+    find('#deck_filter_column').select('All')
+
+    expect(page.current_url).not_to include('filter_column=')
+    expect(page.current_url).not_to include('filter_value=')
+    expect(page).to have_content('Deck A')
+    expect(page).to have_content('Deck B')
   end
 end
