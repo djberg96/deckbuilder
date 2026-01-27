@@ -1,7 +1,15 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h1 class="mb-0">Cards</h1>
-  <%= link_to 'New Card', new_card_path, class: 'btn btn-primary' %>
+  <div class="d-flex align-items-center">
+    <div class="me-2">
+      <div class="input-group">
+        <label class="input-group-text" for="filter_game">Filter</label>
+        <%= select_tag :game_id, options_for_select([['All games', '']] + (@games || []).map { |g| [g.name, g.id] }, params[:game_id]), id: 'filter_game', class: 'form-select form-select-sm', onchange: "clientFilterByGame(this.value); updateUrlGameParam(this.value);" %>
+      </div>
+    </div>
+    <%= link_to 'New Card', new_card_path, class: 'btn btn-primary' %>
+  </div>
 </div>
 
 <div class="card shadow-sm">
@@ -16,7 +24,7 @@
       </thead>
       <tbody class="align-middle">
         <% @cards.each do |card| %>
-          <tr>
+          <tr data-game-id="<%= card.game_id %>">
             <td><%= link_to card.name, card %></td>
             <td><%= link_to card.game.name, game_path(card.game) %></td>
             <td class="text-end">
@@ -29,3 +37,58 @@
     </table>
   </div>
 </div>
+
+<script>
+// Client-side filtering: hide/show rows based on selected game and update URL
+function clientFilterByGame(gameId) {
+  var rows = document.querySelectorAll('tbody.align-middle tr[data-game-id]');
+  rows.forEach(function(r) {
+    if (!gameId || gameId === '') { r.style.display = ''; return; }
+    if (r.dataset.gameId === gameId.toString()) { r.style.display = ''; } else { r.style.display = 'none'; }
+  });
+}
+
+function updateUrlGameParam(gameId) {
+  var url = new URL(window.location.href);
+  if (!gameId || gameId === '') {
+    url.searchParams.delete('game_id');
+  } else {
+    url.searchParams.set('game_id', gameId);
+  }
+  window.history.replaceState({}, '', url.toString());
+}
+
+function attachClientFilter() {
+  var sel = document.getElementById('filter_game');
+  if (!sel || sel.dataset.clientHandlerAttached) return;
+
+  function handler() {
+    var v = sel.value;
+    clientFilterByGame(v);
+    updateUrlGameParam(v);
+  }
+
+  // register multiple events to handle browser quirks (esp. Firefox)
+  sel.addEventListener('change', handler);
+  sel.addEventListener('input', handler);
+  sel.addEventListener('keyup', function(e) { if (e.key === 'Enter') handler(); });
+  sel.addEventListener('mouseup', handler);
+  sel.addEventListener('blur', handler);
+
+  // pageshow covers bfcache/back navigation
+  window.addEventListener('pageshow', function() { handler(); });
+
+  sel.dataset.clientHandlerAttached = 'true';
+
+  // apply initial filter if a param is present
+  var params = new URL(window.location.href).searchParams;
+  if (params.get('game_id')) {
+    clientFilterByGame(params.get('game_id'));
+    // set select value if not set
+    if (!sel.value) sel.value = params.get('game_id');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', attachClientFilter);
+document.addEventListener('turbo:load', attachClientFilter);
+</script>
