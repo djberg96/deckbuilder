@@ -1,14 +1,16 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h1 class="mb-0">Cards</h1>
-  <div>
-    <%= form_with url: cards_path, method: :get, local: true, html: { class: 'd-inline' } do %>
-      <div class="input-group">
-        <label class="input-group-text" for="filter_game">Filter</label>
-        <%= select_tag :game_id, options_for_select([['All games', '']] + (@games || []).map { |g| [g.name, g.id] }, params[:game_id]), id: 'filter_game', class: 'form-select', onchange: 'this.form.submit()' %>
-      </div>
-    <% end %>
-    <%= link_to 'New Card', new_card_path, class: 'btn btn-primary ms-2' %>
+  <div class="d-flex align-items-center">
+    <div class="me-2">
+      <%= form_with url: cards_path, method: :get, local: true, html: { class: 'd-inline' } do %>
+        <div class="input-group">
+          <label class="input-group-text" for="filter_game">Filter</label>
+          <%= select_tag :game_id, options_for_select([['All games', '']] + (@games || []).map { |g| [g.name, g.id] }, params[:game_id]), id: 'filter_game', class: 'form-select form-select-sm' %>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to 'New Card', new_card_path, class: 'btn btn-primary' %>
   </div>
 </div>
 
