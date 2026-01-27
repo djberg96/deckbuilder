@@ -3,7 +3,7 @@ class CardsController < ApplicationController
 
   # GET /cards or /cards.json
   def index
-    @cards = Card.all
+    @cards = Card.order(:name)
   end
 
   # GET /cards/1 or /cards/1.json
