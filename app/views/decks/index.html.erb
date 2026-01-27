@@ -9,6 +9,8 @@
       <thead class="table-light">
         <tr>
           <th>Name</th>
+          <th>Game</th>
+          <th class="text-center">Total Cards</th>
           <th class="text-end">Actions</th>
         </tr>
       </thead>
@@ -16,6 +18,8 @@
         <% @decks.each do |deck| %>
           <tr>
             <td><%= link_to deck.name, deck %></td>
+            <td><%= deck.game&.name %></td>
+            <td class="text-center"><%= deck.total_cards %></td>
             <td class="text-end">
               <%= link_to 'Edit', edit_deck_path(deck), class: 'btn btn-outline-primary btn-sm me-1' %>
               <%= link_to 'Delete', deck, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
