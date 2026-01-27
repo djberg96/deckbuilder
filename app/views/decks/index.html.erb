@@ -18,39 +18,41 @@
       </div>
     </div>
 
-    <div class="form-check form-check-inline me-2">
-      <style>
-        /* keep the checkbox accessible but visually hidden */
-        #hide_private_others.visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
-        /* show eye when unchecked, eye-slash when checked */
-        #hide_private_others + label .icon-eye { display: inline; }
-        #hide_private_others + label .icon-eye-slash { display: none; }
-        #hide_private_others:checked + label .icon-eye { display: none; }
-        #hide_private_others:checked + label .icon-eye-slash { display: inline; }
+    <div class="flex-grow-1 d-flex justify-content-center me-2">
+      <div class="form-check form-check-inline">
+        <style>
+          /* keep the checkbox accessible but visually hidden */
+          #hide_private_others.visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+          /* show eye when unchecked, eye-slash when checked */
+          #hide_private_others + label .icon-eye { display: inline; }
+          #hide_private_others + label .icon-eye-slash { display: none; }
+          #hide_private_others:checked + label .icon-eye { display: none; }
+          #hide_private_others:checked + label .icon-eye-slash { display: inline; }
 
-        /* icon sizing, alignment and affordance */
-        #hide_private_others + label svg { width: 20px; height: 20px; display: inline-block; vertical-align: middle; transition: transform .12s ease, color .12s ease; cursor: pointer; }
-        #hide_private_others + label:active svg { transform: scale(0.92); }
+          /* icon sizing, alignment and affordance */
+          #hide_private_others + label svg { width: 20px; height: 20px; display: inline-block; vertical-align: middle; transition: transform .12s ease, color .12s ease; cursor: pointer; }
+          #hide_private_others + label:active svg { transform: scale(0.92); }
 
-        /* slight hover/focus hint */
-        #hide_private_others + label:hover svg, #hide_private_others + label:focus { color: #0d6efd; }
-      </style>
+          /* slight hover/focus hint */
+          #hide_private_others + label:hover svg, #hide_private_others + label:focus { color: #0d6efd; }
+        </style>
 
-      <input class="form-check-input visually-hidden" type="checkbox" id="hide_private_others" aria-label="Hide other users' private decks" <%== 'checked' if params[:hide_private_others].present? %> onchange="(function(v){ clientToggleHidePrivateOthers(v); updateUrlParam('hide_private_others', v? '1' : ''); var lbl = document.querySelector('label[for=\'hide_private_others\']'); if (lbl) lbl.setAttribute('aria-pressed', v? 'true' : 'false'); })(this.checked);">
+        <input class="form-check-input visually-hidden" type="checkbox" id="hide_private_others" aria-label="Hide other users' private decks" <%== 'checked' if params[:hide_private_others].present? %> onchange="(function(v){ clientToggleHidePrivateOthers(v); updateUrlParam('hide_private_others', v? '1' : ''); var lbl = document.querySelector('label[for=\'hide_private_others\']'); if (lbl) lbl.setAttribute('aria-pressed', v? 'true' : 'false'); })(this.checked);">
 
-      <label class="form-check-label hide-private-toggle" for="hide_private_others" title="Hide other users' private decks" role="button" tabindex="0" aria-pressed="<%= params[:hide_private_others].present? ? 'true' : 'false' %>">
-        <!-- Eye (visible when NOT hiding) -->
-        <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8z"/>
-          <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" fill="#fff"/>
-        </svg>
-        <!-- Eye with bold diagonal slash (visible when hiding) -->
-        <svg class="icon-eye-slash" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" aria-hidden="true" role="img">
-          <path d="M1 8s3-5 7-5 7 5 7 5-3 5-7 5S1 8 1 8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-          <circle cx="8" cy="8" r="2.2" fill="currentColor" />
-          <line x1="3" y1="13" x2="13" y2="3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-        </svg>
-      </label>
+        <label class="form-check-label hide-private-toggle" for="hide_private_others" title="Hide other users' private decks" role="button" tabindex="0" aria-pressed="<%= params[:hide_private_others].present? ? 'true' : 'false' %>">
+          <!-- Eye (visible when NOT hiding) -->
+          <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8z"/>
+            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" fill="#fff"/>
+          </svg>
+          <!-- Eye with bold diagonal slash (visible when hiding) -->
+          <svg class="icon-eye-slash" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" aria-hidden="true" role="img">
+            <path d="M1 8s3-5 7-5 7 5 7 5-3 5-7 5S1 8 1 8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="8" cy="8" r="2.2" fill="currentColor" />
+            <line x1="3" y1="13" x2="13" y2="3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </label>
+      </div>
     </div>
 
     <%= link_to 'New Deck', new_deck_path, class: 'btn btn-primary' %>
