@@ -3,7 +3,12 @@ class CardsController < ApplicationController
 
   # GET /cards or /cards.json
   def index
-    @cards = Card.order(:name)
+    @games = Game.order(:name)
+    if params[:game_id].present?
+      @cards = Card.where(game_id: params[:game_id]).order(:name)
+    else
+      @cards = Card.order(:name)
+    end
   end
 
   # GET /cards/1 or /cards/1.json

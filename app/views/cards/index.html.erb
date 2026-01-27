@@ -1,7 +1,15 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h1 class="mb-0">Cards</h1>
-  <%= link_to 'New Card', new_card_path, class: 'btn btn-primary' %>
+  <div>
+    <%= form_with url: cards_path, method: :get, local: true, html: { class: 'd-inline' } do %>
+      <div class="input-group">
+        <label class="input-group-text" for="filter_game">Filter</label>
+        <%= select_tag :game_id, options_for_select([['All games', '']] + (@games || []).map { |g| [g.name, g.id] }, params[:game_id]), id: 'filter_game', class: 'form-select' %>
+      </div>
+    <% end %>
+    <%= link_to 'New Card', new_card_path, class: 'btn btn-primary ms-2' %>
+  </div>
 </div>
 
 <div class="card shadow-sm">
@@ -29,3 +37,13 @@
     </table>
   </div>
 </div>
+
+<script>
+// submit filter form when selection changes
+document.addEventListener('DOMContentLoaded', function() {
+  var sel = document.getElementById('filter_game');
+  if (sel) {
+    sel.addEventListener('change', function() { sel.form.submit(); });
+  }
+});
+</script>
