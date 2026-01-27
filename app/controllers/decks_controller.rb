@@ -21,7 +21,7 @@ class DecksController < ApplicationController
   # GET /decks/1/edit
   def edit
     @games = Game.all
-    @cards_by_game = Card.all.map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
+    @cards_by_game = Card.order(:name).map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
   end
 
   # POST /decks or /decks.json
@@ -35,7 +35,7 @@ class DecksController < ApplicationController
         format.json { render :show, status: :created, location: @deck }
       else
         @games = Game.all
-        @cards_by_game = Card.all.map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
+        @cards_by_game = Card.order(:name).map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
         format.html { render :new, status: :unprocessable_content }
         format.json { render json: @deck.errors, status: :unprocessable_content }
       end
@@ -45,7 +45,7 @@ class DecksController < ApplicationController
   # PATCH/PUT /decks/1 or /decks/1.json
   def update
     @games = Game.all
-    @cards_by_game = Card.all.map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
+    @cards_by_game = Card.order(:name).map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
     respond_to do |format|
       if @deck.update(deck_params)
         format.html { redirect_to @deck, notice: "Deck was successfully updated." }

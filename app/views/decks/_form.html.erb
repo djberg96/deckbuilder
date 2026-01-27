@@ -93,6 +93,8 @@ $(document).ready(function() {
 $(document).off('change', '#deck_game_deck_attributes_game_id').on('change', '#deck_game_deck_attributes_game_id', function() {
   var gameId = $(this).val();
   var cards = gameId ? cardsByGame.filter(c => c.game_id == gameId) : cardsByGame;
+  // sort alphabetically by name
+  cards.sort(function(a,b){ return (a.name || '').localeCompare(b.name || ''); });
   $('.card-select').each(function() {
     var select = $(this);
     var currentValue = select.val();
