@@ -10,15 +10,33 @@
         <tr>
           <th>Name</th>
           <th>Game</th>
+          <th>Owner</th>
           <th class="text-center">Total Cards</th>
           <th class="text-end">Actions</th>
         </tr>
       </thead>
       <tbody class="align-middle">
         <% @decks.each do |deck| %>
-          <tr>
-            <td><%= link_to deck.name, deck %></td>
+          <% row_class = (deck.private? && defined?(@user) && @user == deck.user) ? 'table-warning' : '' %>
+          <tr class="<%= row_class %>" data-deck-id="<%= deck.id %>">
+            <td><%= link_to deck.name, deck %>
+              <% if deck.private? %>
+                <% if defined?(@user) && @user == deck.user %>
+                  <span class="badge bg-secondary ms-2">Private</span>
+                <% else %>
+                  <span class="badge bg-light text-muted ms-2">Private</span>
+                <% end %>
+              <% end %>
+            </td>
             <td><%= deck.game&.name %></td>
+            <td>
+              <% if deck.private? && defined?(@user) && @user != deck.user %>
+                <!-- owner name hidden for private decks owned by others -->
+                <em>Private</em>
+              <% else %>
+                <%= deck.user.username %>
+              <% end %>
+            </td>
             <td class="text-center"><%= deck.total_cards %></td>
             <td class="text-end">
               <%= link_to 'Edit', edit_deck_path(deck), class: 'btn btn-outline-primary btn-sm me-1' %>
