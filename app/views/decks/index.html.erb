@@ -18,6 +18,11 @@
       </div>
     </div>
 
+    <div class="form-check form-check-inline me-2">
+      <input class="form-check-input" type="checkbox" id="hide_private_others" <%== 'checked' if params[:hide_private_others].present? %> onchange="(function(v){ clientToggleHidePrivateOthers(v); updateUrlParam('hide_private_others', v? '1' : ''); })(this.checked);">
+      <label class="form-check-label" for="hide_private_others">Hide other users' private decks</label>
+    </div>
+
     <%= link_to 'New Deck', new_deck_path, class: 'btn btn-primary' %>
   </div>
 </div>
@@ -37,7 +42,7 @@
       <tbody class="align-middle">
         <% @decks.each do |deck| %>
           <% row_class = (deck.private? && defined?(@user) && @user == deck.user) ? 'table-warning' : '' %>
-          <tr class="<%= row_class %>" data-deck-id="<%= deck.id %>" data-game-id="<%= deck.game&.id %>" data-owner-id="<%= deck.user_id %>">
+          <tr class="<%= row_class %>" data-deck-id="<%= deck.id %>" data-game-id="<%= deck.game&.id %>" data-owner-id="<%= deck.user_id %>" data-private="<%= deck.private? %>" data-owned="<%= (@user && @user == deck.user) %>">
             <td><%= link_to deck.name, deck %>
               <% if deck.private? %>
                 <% if defined?(@user) && @user == deck.user %>
@@ -149,9 +154,30 @@ function attachDeckFilters() {
     }
   }
 
+  // handle optional hide_private_others flag
+  var hidePrivate = params.get('hide_private_others');
+  var hideCheckbox = document.getElementById('hide_private_others');
+  if (hideCheckbox) {
+    if (hidePrivate) {
+      hideCheckbox.checked = true;
+      clientToggleHidePrivateOthers(true);
+    }
+    hideCheckbox.addEventListener('change', function() { clientToggleHidePrivateOthers(hideCheckbox.checked); updateUrlParam('hide_private_others', hideCheckbox.checked? '1' : ''); });
+  }
+
   col.dataset.attached = 'true';
 }
 
 document.addEventListener('DOMContentLoaded', attachDeckFilters);
 document.addEventListener('turbo:load', attachDeckFilters);
+
+// Toggle hiding private decks owned by others
+function clientToggleHidePrivateOthers(shouldHide) {
+  var rows = document.querySelectorAll('tbody.align-middle tr');
+  rows.forEach(function(r) {
+    var isPrivate = r.getAttribute('data-private') === 'true' || r.dataset.private === 'true';
+    var isOwned = r.getAttribute('data-owned') === 'true' || r.dataset.owned === 'true';
+    if (shouldHide && isPrivate && !isOwned) { r.style.display = 'none'; } else { r.style.display = ''; }
+  });
+}
 </script>

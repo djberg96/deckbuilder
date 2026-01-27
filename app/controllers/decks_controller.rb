@@ -18,6 +18,11 @@ class DecksController < ApplicationController
       end
     end
 
+    # Optionally hide private decks owned by others
+    if params[:hide_private_others].present? && @user
+      decks_scope = decks_scope.where('NOT (private = ? AND user_id != ?)', true, @user.id)
+    end
+
     @decks = decks_scope
   end
 
