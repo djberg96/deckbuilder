@@ -66,6 +66,7 @@ class GamesController < ApplicationController
     def game_params
       params.require(:game).permit(
         :name,
+        :edition,
         :description,
         :minimum_cards_per_deck,
         :maximum_cards_per_deck,

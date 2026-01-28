@@ -89,6 +89,13 @@ RSpec.describe GamesController, type: :controller do
         expect(game.description).to eq('Updated description')
       end
 
+      it 'updates the edition when supplied' do
+        game = Game.create! valid_attributes.merge(edition: '2021')
+        put :update, params: { id: game.to_param, game: { edition: '2025' } }
+        game.reload
+        expect(game.edition).to eq('2025')
+      end
+
       it 'redirects to the game' do
         game = Game.create! valid_attributes
         put :update, params: { id: game.to_param, game: valid_attributes }
