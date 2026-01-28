@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_01_26_160000) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_28_103200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_26_160000) do
   create_table "game_decks", force: :cascade do |t|
     t.bigint "game_id"
     t.bigint "deck_id"
-    t.integer "quantity"
     t.index ["deck_id"], name: "index_game_decks_on_deck_id"
     t.index ["game_id", "deck_id"], name: "index_game_decks_on_game_id_and_deck_id", unique: true
     t.index ["game_id"], name: "index_game_decks_on_game_id"

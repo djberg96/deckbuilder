@@ -38,18 +38,10 @@ RSpec.describe Game, type: :model do
       expect { game.add_deck(deck) }.to change(GameDeck, :count).by(1)
     end
 
-    it 'adds a deck with specified quantity' do
-      game.add_deck(deck, 3)
-      game_deck = game.game_decks.last
-      expect(game_deck).to be_present
-      expect(game_deck.quantity).to eq(3)
-    end
-
-    it 'increments quantity when adding the same deck multiple times' do
-      game.add_deck(deck, 2)
-      game.add_deck(deck, 3)
-      gd = game.game_decks.find_by(deck: deck)
-      expect(gd.quantity).to eq(5)
+    it 'does not create duplicate association rows when called multiple times' do
+      game.add_deck(deck)
+      game.add_deck(deck)
+      expect(game.game_decks.count).to eq(1)
     end
   end
 
@@ -63,9 +55,9 @@ RSpec.describe Game, type: :model do
     it 'counts all associated decks' do
       deck1 = create(:deck)
       deck2 = create(:deck)
-      game.add_deck(deck1, 2)
-      game.add_deck(deck2, 3)
-      expect(game.game_decks.count).to eq(2)
+      game.add_deck(deck1)
+      game.add_deck(deck2)
+      expect(game.total_decks).to eq(2)
     end
   end
 end
