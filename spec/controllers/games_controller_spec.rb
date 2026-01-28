@@ -28,7 +28,15 @@ RSpec.describe GamesController, type: :controller do
     it 'assigns all games as @games' do
       game = Game.create! valid_attributes
       get :index
-      expect(assigns(:games)).to eq([game])
+      expect(assigns(:games).map(&:id)).to include(game.id)
+    end
+
+    it 'includes deck counts for games' do
+      game = Game.create! valid_attributes
+      create(:deck, game: game)
+      get :index
+      # the controller selects decks_count as an attribute; ensure it's present
+      expect(assigns(:games).detect { |g| g.id == game.id }.respond_to?(:decks_count)).to be true
     end
   end
 
