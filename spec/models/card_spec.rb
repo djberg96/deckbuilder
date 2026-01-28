@@ -79,6 +79,21 @@ RSpec.describe Card, type: :model do
         expect(c).not_to be_valid
         expect(c.errors[:data].join).to match(/bad-key/)
       end
+
+      it 'accepts keys with single spaces and scrunches multiple spaces' do
+        c = Card.new(name: 'SpaceKeys', game: create(:game))
+        c.data = { 'Rules  Text' => 'Flying', 'Mana   Cost' => '1U' }
+        expect(c[:data].keys).to include('Rules Text')
+        expect(c[:data].keys).to include('Mana Cost')
+        expect(c).to be_valid
+      end
+
+      it 'rejects keys with non allowed characters like hyphens' do
+        c = Card.new(name: 'StillBad', game: create(:game))
+        c.data = { 'Has-Hyphen' => 'x' }
+        expect(c).not_to be_valid
+        expect(c.errors[:data].join).to match(/Has-Hyphen/)
+      end
     end
 
     context 'when stored data contains overly long values' do

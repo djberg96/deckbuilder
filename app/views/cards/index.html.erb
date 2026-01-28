@@ -8,8 +8,75 @@
         <%= select_tag :game_id, options_for_select([['All games', '']] + (@games || []).map { |g| [g.name, g.id] }, params[:game_id]), id: 'filter_game', class: 'form-select form-select-sm', onchange: "clientFilterByGame(this.value); updateUrlGameParam(this.value);" %>
       </div>
     </div>
+
+    <button class="btn btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#importCardsModal">Import</button>
+
     <%= link_to 'New Card', new_card_path, class: 'btn btn-primary' %>
   </div>
+
+  <!-- Import modal -->
+  <div class="modal fade" id="importCardsModal" tabindex="-1" aria-labelledby="importCardsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form action="<%= import_cards_path %>" method="post" enctype="multipart/form-data">
+          <div class="modal-header">
+            <h5 class="modal-title" id="importCardsModalLabel">Import Cards (JSON or XML)</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= csrf_meta_tags %>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <div class="mb-3">
+              <label for="import_game_id" class="form-label">Target Game</label>
+              <select id="import_game_id" name="import[game_id]" class="form-select">
+                <option value="">-- select existing --</option>
+                <% @games.each do |g| %>
+                  <option value="<%= g.id %>"><%= g.name %> (<%= g.edition %>)</option>
+                <% end %>
+                <option value="__new__">Create new game...</option>
+              </select>
+            </div>
+
+            <div class="row mb-3" id="new-game-fields" style="display:none;">
+              <div class="col">
+                <input type="text" name="import[new_game_name]" class="form-control" placeholder="Game name">
+              </div>
+              <div class="col">
+                <input type="text" name="import[new_game_edition]" class="form-control" placeholder="Edition (optional)">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="import_file" class="form-label">Upload file (JSON or XML)</label>
+              <input class="form-control" type="file" id="import_file" name="import[file]" accept=".json,.xml,text/json,text/xml,application/xml,application/json">
+            </div>
+
+            <div class="mb-3">
+              <label for="import_raw_text" class="form-label">Or paste content</label>
+              <textarea id="import_raw_text" name="import[raw_text]" rows="8" class="form-control" placeholder='Paste JSON array or XML with <cards><card>...'></textarea>
+            </div>
+
+            <div class="form-text">Card entries should include at least a <code>name</code>. Other fields will be stored in the card's data attributes.</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Import</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      var sel = document.getElementById('import_game_id');
+      if (!sel) return;
+      sel.addEventListener('change', function(){
+        var nf = document.getElementById('new-game-fields');
+        if (sel.value === '__new__') { nf.style.display = ''; } else { nf.style.display = 'none'; }
+      });
+    })();
+  </script>
 </div>
 
 <div class="card shadow-sm">
@@ -27,7 +94,13 @@
         <% @cards.each do |card| %>
           <tr data-game-id="<%= card.game_id %>">
             <td><%= link_to card.name, card %></td>
-            <td><%= link_to card.game.name, game_path(card.game) %></td>
+            <td>
+              <% if card.game %>
+                <%= link_to card.game.name, game_path(card.game) %>
+              <% else %>
+                <em>No game</em>
+              <% end %>
+            </td>
             <td><%= card.game&.edition.present? ? card.game.edition : '-' %></td>
             <td class="text-end">
               <%= link_to 'Edit', edit_card_path(card), class: 'btn btn-outline-primary btn-sm me-1' %>

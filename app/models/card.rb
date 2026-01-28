@@ -31,19 +31,26 @@ class Card < ApplicationRecord
 
   def data=(value)
     h = value.is_a?(Hash) ? value : (value.present? ? JSON.parse(value) : {})
-    # remove placeholder/new keys, blank keys, and non-alphanumeric keys (letters+numbers only)
-    h = h.transform_keys(&:to_s).reject do |k, _|
-      k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9]+\z/)
+    # normalize keys: stringify, strip, and scrunch multiple spaces to single space
+    normalized = h.transform_keys(&:to_s).map do |k, v|
+      nk = k.to_s.strip.gsub(/ {2,}/, ' ') # collapse consecutive spaces into one
+      [nk, v]
+    end.to_h
+
+    # remove placeholder/new keys, blank keys, and keys that contain characters other than letters, numbers, or single spaces
+    filtered = normalized.reject do |k, _|
+      k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9 ]+\z/)
     end
-    self[:data] = h
-    @data_struct = OpenStruct.new(h)
+
+    self[:data] = filtered
+    @data_struct = OpenStruct.new(filtered)
   end
 
   private
 
   def data_keys_format
     return unless self[:data].is_a?(Hash)
-    invalid = self[:data].keys.select { |k| !(k =~ /\A[A-Za-z0-9]+\z/) }
+    invalid = self[:data].keys.select { |k| !(k =~ /\A[A-Za-z0-9 ]+\z/) }
     if invalid.any?
       errors.add(:data, "contains invalid keys: #{invalid.join(', ')}")
     end

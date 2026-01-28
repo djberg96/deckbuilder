@@ -20,6 +20,117 @@ class CardsController < ApplicationController
     @card = Card.new
   end
 
+  # POST /cards/import
+  def import
+    # Accept file upload (json or xml) or raw text
+    content = nil
+    if params[:import] && params[:import][:file]
+      uploaded = params[:import][:file]
+      content = uploaded.read
+    elsif params[:import] && params[:import][:raw_text].present?
+      content = params[:import][:raw_text]
+    end
+
+    if content.blank?
+      redirect_to cards_path, alert: 'No import content provided.' and return
+    end
+
+    # determine or create target game
+    Rails.logger.info "IMPORT PARAMS: "+(params[:import].inspect rescue 'nil')
+    game = nil
+    if params[:import] && params[:import][:game_id].present? && params[:import][:game_id].to_s =~ /\A\d+\z/
+      game = Game.find_by(id: params[:import][:game_id])
+    end
+
+    # If user provided a new game name, create / find it (force-create regardless of previous game lookup)
+    if params[:import]
+      new_name = params[:import][:new_game_name].to_s.strip
+      new_edition = params[:import][:new_game_edition].to_s.strip
+      if new_name.present?
+        game = Game.where(name: new_name, edition: new_edition).first_or_create do |g|
+          # set minimal defaults so model validations pass
+          g.minimum_cards_per_deck = 1
+          g.maximum_individual_cards = 1
+        end
+      end
+    end
+
+    # parse content (try JSON first, then XML)
+    parsed = nil
+    begin
+      parsed_json = JSON.parse(content)
+      parsed = parsed_json.is_a?(Array) ? parsed_json : (parsed_json['cards'] || parsed_json)
+    rescue JSON::ParserError
+      # try XML using REXML
+      require 'rexml/document'
+      doc = REXML::Document.new(content)
+      parsed = []
+      REXML::XPath.each(doc, '//card') do |node|
+        obj = {}
+        node.elements.each do |el|
+          if el.has_elements?
+            # nested data - collect child elements as a hash
+            h = {}
+            el.elements.each { |c| h[c.name] = c.text }
+            obj[el.name] = h
+          else
+            obj[el.name] = el.text
+          end
+        end
+        parsed << obj
+      end
+    end
+
+    created = []
+    errors = []
+
+    Card.transaction do
+      parsed.each_with_index do |entry, idx|
+        # entry can be a hash of attributes
+        name = entry['name'] || entry[:name]
+        data = entry['data'] || entry[:attributes] || {}
+        description = entry['description'] || entry[:description]
+
+        # If no game yet, try to use game info from entry (game/edition)
+        if game.nil? && (entry['game'] || entry['game_name'] || entry['game_name'])
+          gname = entry['game'] || entry['game_name']
+          gedition = entry['edition'] || entry['game_edition'] || ''
+          game = Game.find_or_create_by(name: gname, edition: gedition)
+        end
+
+        unless game
+          errors << "Row "+(idx+1).to_s+": no game specified"
+          next
+        end
+
+        c = Card.new(name: name, description: description, game: game)
+        if data.is_a?(Hash)
+          c.data = data
+        else
+          # try to treat remaining keys as data attributes
+          if entry.is_a?(Hash)
+            data_keys = entry.reject { |k,_| ['name','description','game','game_name','edition','game_edition'].include?(k.to_s) }
+            c.data = data_keys
+          end
+        end
+
+        unless c.save
+          errors << "Row "+(idx+1).to_s+": "+c.errors.full_messages.join('; ')
+        else
+          created << c
+        end
+      end
+
+      raise ActiveRecord::Rollback if errors.any?
+    end
+
+    if errors.any?
+      redirect_to cards_path, alert: "Import failed: " + errors.join(' | ')
+    else
+      redirect_to cards_path, notice: "Imported #{created.size} cards."
+    end
+  end
+
   # GET /cards/1/edit
   def edit
   end

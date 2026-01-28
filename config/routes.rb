@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   resources :games
   resources :decks
-  resources :cards
+  resources :cards do
+    collection do
+      post :import
+    end
+  end
   resources :groups do
     delete 'remove_user/:user_id', to: 'groups#remove_user', as: :remove_user
   end
