@@ -12,13 +12,13 @@ class Game < ApplicationRecord
 
   validates :name, uniqueness: {scope: :edition, message: "Game/Edition already exists"}
 
-  def add_deck(deck, quantity = 1)
-    gd = game_decks.find_or_initialize_by(deck: deck)
-    gd.quantity = gd.quantity.to_i + quantity.to_i
-    gd.save!
+  def add_deck(deck)
+    # Ensure a single association row per deck/game.
+    game_decks.find_or_create_by(deck: deck)
   end
 
   def total_decks
-    game_decks.sum(:quantity)
+    # Count distinct associated decks (exclude malformed rows with no deck_id)
+    game_decks.where.not(deck_id: nil).count
   end
 end

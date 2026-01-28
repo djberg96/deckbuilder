@@ -94,6 +94,6 @@ class DecksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deck_params
-      params.require(:deck).permit(:deck, :name, :description, :private, game_deck_attributes: [:game_id], deck_cards_attributes: [:id, :card_id, :quantity, :_destroy])
+      params.require(:deck).permit(:deck, :name, :description, :private, game_deck_attributes: [:id, :game_id], deck_cards_attributes: [:id, :card_id, :quantity, :_destroy])
     end
 end

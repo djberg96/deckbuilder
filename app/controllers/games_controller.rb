@@ -6,7 +6,7 @@ class GamesController < ApplicationController
     # Load games with aggregated deck counts to avoid N+1 queries
     @games = Game.left_joins(:game_decks)
                  .group('games.id')
-                 .select('games.*, COALESCE(SUM(game_decks.quantity), 0) AS decks_count')
+                 .select('games.*, COALESCE(COUNT(game_decks.deck_id), 0) AS decks_count')
   end
 
   # GET /games/1 or /games/1.json
