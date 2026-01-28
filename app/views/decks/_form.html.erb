@@ -28,7 +28,7 @@
   <%= form.fields_for :game_deck do |game_deck_form| %>
     <div class="mb-3">
       <%= game_deck_form.label :game_id, "Game", class: 'form-label' %>
-      <%= game_deck_form.select :game_id, options_from_collection_for_select(@games || [], :id, :name), { prompt: "Select a game" }, class: 'form-control' %>
+      <%= game_deck_form.select :game_id, options_for_select((@games || []).map { |g| [g.edition.present? ? "#{g.name} / #{g.edition}" : g.name, g.id] }, game_deck_form.object.game_id), { prompt: "Select a game" }, class: 'form-control' %>
     </div>
   <% end %>
 
