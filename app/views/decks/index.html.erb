@@ -66,6 +66,7 @@
         <tr>
           <th>Name</th>
           <th>Game</th>
+          <th>Edition</th>
           <th>Owner</th>
           <th class="text-center">Total Cards</th>
           <th class="text-end">Actions</th>
@@ -86,7 +87,14 @@
             </td>
             <td>
               <% if deck.game %>
-                <%= deck.game.edition.present? ? "#{deck.game.name} / #{deck.game.edition}" : deck.game.name %>
+                <%= deck.game.name %>
+              <% else %>
+                -
+              <% end %>
+            </td>
+            <td>
+              <% if deck.game && deck.game.edition.present? %>
+                <%= deck.game.edition %>
               <% else %>
                 -
               <% end %>

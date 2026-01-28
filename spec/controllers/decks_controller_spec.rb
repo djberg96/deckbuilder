@@ -23,18 +23,19 @@ RSpec.describe DecksController, type: :controller do
       expect(assigns(:decks)).to eq([deck])
     end
 
-    it 'shows game name with edition on index when present' do
+    it 'shows game name and edition in separate columns on index when present' do
       game = create(:game, edition: 'Limited')
       deck = create(:deck, user: user, game: game)
       get :index
-      expect(response.body).to include("#{game.name} / #{game.edition}")
+      expect(response.body).to include(game.name)
+      expect(response.body).to include(game.edition)
     end
 
     it 'includes game name/edition in the filter dropdown' do
       game = create(:game, edition: 'Limited')
       deck = create(:deck, user: user, game: game)
       get :index
-      # the filter select options include the game display value
+      # the filter select options include the game display value (Name / Edition)
       expect(response.body).to match(/<option\s+value="#{game.id}"[^>]*>\s*#{Regexp.escape(game.name)}\s*\/\s*#{Regexp.escape(game.edition)}\s*<\/:?option>/i)
     end
   end
