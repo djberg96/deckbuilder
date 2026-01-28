@@ -13,7 +13,9 @@ class Game < ApplicationRecord
   validates :name, uniqueness: {scope: :edition, message: "Game/Edition already exists"}
 
   def add_deck(deck, quantity = 1)
-    game_decks.create(:deck => deck, :quantity => quantity)
+    gd = game_decks.find_or_initialize_by(deck: deck)
+    gd.quantity = gd.quantity.to_i + quantity.to_i
+    gd.save!
   end
 
   def total_decks

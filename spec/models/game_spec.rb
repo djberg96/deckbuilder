@@ -42,6 +42,14 @@ RSpec.describe Game, type: :model do
       game.add_deck(deck, 3)
       game_deck = game.game_decks.last
       expect(game_deck).to be_present
+      expect(game_deck.quantity).to eq(3)
+    end
+
+    it 'increments quantity when adding the same deck multiple times' do
+      game.add_deck(deck, 2)
+      game.add_deck(deck, 3)
+      gd = game.game_decks.find_by(deck: deck)
+      expect(gd.quantity).to eq(5)
     end
   end
 
