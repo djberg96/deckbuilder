@@ -38,6 +38,12 @@
 </div>
 
 <div class="text-end mt-3 mb-4">
+  <div class="btn-group me-2" role="group">
+    <%= link_to 'Export JSON', deck_path(@deck, format: :json), class: 'btn btn-outline-secondary', target: '_blank' %>
+    <%= link_to 'Export XML', deck_path(@deck, format: :xml), class: 'btn btn-outline-secondary', target: '_blank' %>
+    <%= link_to 'Export PDF', deck_path(@deck, format: :pdf), class: 'btn btn-outline-secondary', target: '_blank' %>
+  </div>
+
   <%= link_to 'Edit', edit_deck_path(@deck), class: 'btn btn-primary me-2' %>
   <%= link_to 'Back', decks_path, class: 'btn btn-outline-primary' %>
 </div>
