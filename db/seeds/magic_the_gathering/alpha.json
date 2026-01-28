@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Air Elemental",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature - Elemental",
+      "Rarity": "Uncommon",
+      "Rules Text": "Flying.",
+      "Flavor Text": "These spirits of the air are winsome and wild and cannot be truly contained. Only marginally intelligent, they often substitute whimsy for strategy, delighting in mischief and mayhem.",
+      "Artist": "Richard Thomas",
+      "P/T": "4/4",
+      "Mana Cost": "3UU"
+    }
+  },
+  {
+    "name": "Ancestral Recall",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Rarity": "Rare",
+      "Rules Text": "Target player draws three cards.",
+      "Artist": "Mark Poole",
+      "Mana Cost": "U"
+    }
+  }
+]
