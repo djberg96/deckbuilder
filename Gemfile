@@ -13,6 +13,11 @@ gem 'terser'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'jbuilder'
+
+# PDF generation
+gem 'prawn'
+gem 'prawn-table'
+
 gem 'bcrypt'
 gem 'pg'
 gem 'lograge'

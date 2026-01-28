@@ -1,3 +1,10 @@
+begin
+  require 'prawn'
+  require 'prawn-table'
+rescue LoadError => e
+  Rails.logger.error "PDF generation gem missing: #{e.message}"
+end
+
 class DecksController < ApplicationController
   before_action :set_deck, only: %i[ show edit update destroy ]
 
@@ -28,6 +35,44 @@ class DecksController < ApplicationController
 
   # GET /decks/1 or /decks/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json { render :show }
+      format.xml do
+        render xml: @deck.to_xml(
+          :include => {
+            :game => { :only => [:id, :name, :edition] },
+            :deck_cards => { :include => { :card => { :only => [:id, :name] } }, :only => [:id, :quantity] }
+          },
+          :except => [:created_at, :updated_at]
+        )
+      end
+      format.pdf do
+        # Build a simple, nicely formatted PDF using Prawn
+        pdf = Prawn::Document.new(page_size: 'A4')
+        pdf.font_size 18
+        pdf.text "Deck: #{@deck.name}", style: :bold
+        pdf.move_down 6
+        pdf.font_size 12
+        pdf.text "Owner: #{@deck.user&.username || 'Unknown'}"
+        if @deck.game
+          pdf.text "Game: #{@deck.game.name}#{@deck.game.edition.present? ? " (#{@deck.game.edition})" : ''}"
+        end
+        pdf.move_down 12
+        pdf.text "Cards", style: :bold
+        pdf.move_down 6
+        table_data = [["Card", "Quantity"]]
+        @deck.deck_cards.includes(:card).each do |dc|
+          table_data << [dc.card.name, dc.quantity.to_s]
+        end
+        pdf.table(table_data, header: true, width: pdf.bounds.width) do
+          row(0).font_style = :bold
+          columns(1).align = :right
+        end
+
+        send_data pdf.render, filename: "#{@deck.name.parameterize}-deck.pdf", type: 'application/pdf', disposition: 'attachment'
+      end
+    end
   end
 
   # GET /decks/new
