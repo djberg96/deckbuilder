@@ -15,4 +15,16 @@ RSpec.describe 'Cards index', type: :request do
     # ensure Alpha occurs before Zeta
     expect(body.index('Alpha')).to be < body.index('Zeta')
   end
+
+  it 'shows edition for game when present' do
+    game = create(:game, edition: '1E - Limited Edition Alpha')
+    card = create(:card, game: game)
+
+    user = create(:user, username: 'idxuser2', password: 'password123')
+    post login_path, params: { username: user.username, password: 'password123' }
+
+    get cards_path
+    expect(response).to have_http_status(:ok)
+    expect(response.body).to include('1E - Limited Edition Alpha')
+  end
 end
