@@ -84,7 +84,13 @@
                 <% end %>
               <% end %>
             </td>
-            <td><%= deck.game&.name %></td>
+            <td>
+              <% if deck.game %>
+                <%= deck.game.edition.present? ? "#{deck.game.name} / #{deck.game.edition}" : deck.game.name %>
+              <% else %>
+                -
+              <% end %>
+            </td>
             <td>
               <% if deck.private? && defined?(@user) && @user != deck.user %>
                 <!-- owner name hidden for private decks owned by others -->
@@ -134,7 +140,7 @@ function populateFilterValueSelect(column) {
   if (!column || column === '') { container.style.display = 'none'; return; }
   container.style.display = '';
   if (column === 'game') {
-    var items = <%= @games.map { |g| { id: g.id, name: g.name } }.to_json.html_safe %>;
+    var items = <%= @games.map { |g| { id: g.id, name: (g.edition.present? ? "#{g.name} / #{g.edition}" : g.name) } }.to_json.html_safe %>;
     items.forEach(function(i){ sel.appendChild(new Option(i.name, i.id)); });
   } else if (column === 'owner') {
     var items = <%= @owners.map { |u| { id: u.id, name: u.username } }.to_json.html_safe %>;

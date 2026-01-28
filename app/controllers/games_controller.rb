@@ -3,7 +3,10 @@ class GamesController < ApplicationController
 
   # GET /games or /games.json
   def index
-    @games = Game.all
+    # Load games with aggregated deck counts to avoid N+1 queries
+    @games = Game.left_joins(:game_decks)
+                 .group('games.id')
+                 .select('games.*, COALESCE(SUM(game_decks.quantity), 0) AS decks_count')
   end
 
   # GET /games/1 or /games/1.json
@@ -66,6 +69,7 @@ class GamesController < ApplicationController
     def game_params
       params.require(:game).permit(
         :name,
+        :edition,
         :description,
         :minimum_cards_per_deck,
         :maximum_cards_per_deck,

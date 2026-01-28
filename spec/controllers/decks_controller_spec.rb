@@ -22,6 +22,21 @@ RSpec.describe DecksController, type: :controller do
       get :index
       expect(assigns(:decks)).to eq([deck])
     end
+
+    it 'shows game name with edition on index when present' do
+      game = create(:game, edition: 'Limited')
+      deck = create(:deck, user: user, game: game)
+      get :index
+      expect(response.body).to include("#{game.name} / #{game.edition}")
+    end
+
+    it 'includes game name/edition in the filter dropdown' do
+      game = create(:game, edition: 'Limited')
+      deck = create(:deck, user: user, game: game)
+      get :index
+      # the filter select options include the game display value
+      expect(response.body).to match(/<option\s+value="#{game.id}"[^>]*>\s*#{Regexp.escape(game.name)}\s*\/\s*#{Regexp.escape(game.edition)}\s*<\/:?option>/i)
+    end
   end
 
   describe 'GET #show' do

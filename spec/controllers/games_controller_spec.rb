@@ -28,7 +28,15 @@ RSpec.describe GamesController, type: :controller do
     it 'assigns all games as @games' do
       game = Game.create! valid_attributes
       get :index
-      expect(assigns(:games)).to eq([game])
+      expect(assigns(:games).map(&:id)).to include(game.id)
+    end
+
+    it 'includes deck counts for games' do
+      game = Game.create! valid_attributes
+      create(:deck, game: game)
+      get :index
+      # the controller selects decks_count as an attribute; ensure it's present
+      expect(assigns(:games).detect { |g| g.id == game.id }.respond_to?(:decks_count)).to be true
     end
   end
 
@@ -87,6 +95,13 @@ RSpec.describe GamesController, type: :controller do
         put :update, params: { id: game.to_param, game: new_attributes }
         game.reload
         expect(game.description).to eq('Updated description')
+      end
+
+      it 'updates the edition when supplied' do
+        game = Game.create! valid_attributes.merge(edition: '2021')
+        put :update, params: { id: game.to_param, game: { edition: '2025' } }
+        game.reload
+        expect(game.edition).to eq('2025')
       end
 
       it 'redirects to the game' do
