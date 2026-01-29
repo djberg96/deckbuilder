@@ -216,10 +216,18 @@ class CardsController < ApplicationController
 
   # DELETE /cards/1 or /cards/1.json
   def destroy
-    @card.destroy
-    respond_to do |format|
-      format.html { redirect_to cards_url, notice: "Card was successfully destroyed." }
-      format.json { head :no_content }
+    begin
+      @card.destroy
+      respond_to do |format|
+        format.html { redirect_to cards_url, notice: "Card was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    rescue ActiveRecord::DeleteRestrictionError => e
+      logger.info "Delete restriction preventing card destroy: #{e.message}"
+      respond_to do |format|
+        format.html { redirect_to card_path(@card), alert: "Cannot delete this card because it's referenced in one or more decks. Remove it from those decks before deleting." }
+        format.json { render json: { error: 'delete_restricted', message: e.message }, status: :unprocessable_entity }
+      end
     end
   end
 

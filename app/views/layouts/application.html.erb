@@ -55,6 +55,12 @@
           <%= alert %>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Show a popup alert in addition to the banner so users see the message immediately.
+            try { alert(<%= j(alert) %>); } catch(e) { console.warn('Alert popup failed', e); }
+          });
+        </script>
       <% end %>
       <%= yield %>
     </div>

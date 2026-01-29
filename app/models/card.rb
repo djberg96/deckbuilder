@@ -1,6 +1,6 @@
 class Card < ApplicationRecord
   has_many :deck_cards
-  has_many :decks, :through => :deck_cards
+  has_many :decks, :through => :deck_cards, dependent: :restrict_with_exception
 
   # images stored separately in card_images table
   has_many :card_images, dependent: :destroy
