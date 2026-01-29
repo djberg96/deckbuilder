@@ -72,12 +72,12 @@ RSpec.describe Card, type: :model do
     end
 
     context 'when stored data contains invalid keys' do
-      it 'is invalid and reports the invalid keys' do
+      it 'accepts ASCII keys including hyphens when data is assigned directly' do
         c = Card.new(name: 'BadKeys', game: create(:game))
         # bypass setter, write raw hash to simulate legacy/malicious data
         c[:data] = { 'good' => 1, 'bad-key' => 2 }
-        expect(c).not_to be_valid
-        expect(c.errors[:data].join).to match(/bad-key/)
+        expect(c).to be_valid
+        expect(c[:data].keys).to include('bad-key')
       end
 
       it 'accepts keys with single spaces and scrunches multiple spaces' do
@@ -88,11 +88,12 @@ RSpec.describe Card, type: :model do
         expect(c).to be_valid
       end
 
-      it 'rejects keys with non allowed characters like hyphens' do
+      it 'rejects keys with non-ASCII characters' do
         c = Card.new(name: 'StillBad', game: create(:game))
-        c.data = { 'Has-Hyphen' => 'x' }
+        # en-dash (Unicode) is non-ASCII and should be rejected
+        c.data = { "Has–Dash" => 'x' }
         expect(c).not_to be_valid
-        expect(c.errors[:data].join).to match(/Has-Hyphen/)
+        expect(c.errors[:data].join).to match(/Has–Dash/)
       end
     end
 

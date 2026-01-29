@@ -82,53 +82,60 @@ class CardsController < ApplicationController
     end
 
     created = []
-    errors = []
+    failures = []
 
-    Card.transaction do
-      parsed.each_with_index do |entry, idx|
-        # entry can be a hash of attributes
-        name = entry['name'] || entry[:name]
-        data = entry['data'] || entry[:attributes] || {}
-        description = entry['description'] || entry[:description]
+    # Process entries individually: save valid ones, record failures, and continue.
+    parsed.each_with_index do |entry, idx|
+      # entry can be a hash of attributes
+      name = entry['name'] || entry[:name]
+      data = entry['data'] || entry[:attributes] || {}
+      description = entry['description'] || entry[:description]
 
-        # If no game yet, try to use game info from entry (game/edition)
-        if game.nil? && (entry['game'] || entry['game_name'] || entry['game_name'])
-          gname = entry['game'] || entry['game_name']
-          gedition = entry['edition'] || entry['game_edition'] || ''
-          game = Game.find_or_create_by(name: gname, edition: gedition)
-        end
+      # If no game yet, try to use game info from entry (game/edition)
+      if game.nil? && (entry['game'] || entry['game_name'] || entry['game_name'])
+        gname = entry['game'] || entry['game_name']
+        gedition = entry['edition'] || entry['game_edition'] || ''
+        game = Game.find_or_create_by(name: gname, edition: gedition)
+      end
 
-        unless game
-          errors << "Row "+(idx+1).to_s+": no game specified"
-          next
-        end
+      unless game
+        failures << { index: idx+1, name: name, reason: 'no game specified' }
+        next
+      end
 
-        c = Card.new(name: name, description: description, game: game)
-        if data.is_a?(Hash)
-          c.data = data
-        else
-          # try to treat remaining keys as data attributes
-          if entry.is_a?(Hash)
-            data_keys = entry.reject { |k,_| ['name','description','game','game_name','edition','game_edition'].include?(k.to_s) }
-            c.data = data_keys
-          end
-        end
-
-        unless c.save
-          errors << "Row "+(idx+1).to_s+": "+c.errors.full_messages.join('; ')
-        else
-          created << c
+      c = Card.new(name: name, description: description, game: game)
+      if data.is_a?(Hash)
+        c.data = data
+      else
+        # try to treat remaining keys as data attributes
+        if entry.is_a?(Hash)
+          data_keys = entry.reject { |k,_| ['name','description','game','game_name','edition','game_edition'].include?(k.to_s) }
+          c.data = data_keys
         end
       end
 
-      raise ActiveRecord::Rollback if errors.any?
+      if c.save
+        created << c
+      else
+        failures << { index: idx+1, name: name, reason: c.errors.full_messages }
+      end
     end
 
-    if errors.any?
-      redirect_to cards_path, alert: "Import failed: " + errors.join(' | ')
-    else
-      redirect_to cards_path, notice: "Imported #{created.size} cards."
-    end
+    # Write report to tmp to give a detailed summary of what succeeded/failed
+    report = {
+      total: parsed.size,
+      created: created.size,
+      failed: failures.length,
+      failures: failures.first(200)
+    }
+
+    timestamp = Time.now.utc.strftime('%Y%m%d%H%M%S')
+    report_path = Rails.root.join('tmp', "cards_import_report_")
+    report_file = Rails.root.join('tmp', "cards_import_report_#{timestamp}.json")
+    File.write(report_file, JSON.pretty_generate(report))
+
+    notice_msg = "Imported #{created.size} cards. #{failures.length} failed. Report: #{report_file.relative_path_from(Rails.root)}"
+    redirect_to cards_path, notice: notice_msg
   end
 
   # GET /cards/1/edit

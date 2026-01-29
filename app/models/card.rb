@@ -9,7 +9,7 @@ class Card < ApplicationRecord
 
   validates :name, :uniqueness => {:scope => :game_id}
 
-  # Ensure stored data keys are alphanumeric only (letters and numbers)
+  # Ensure stored data keys are ASCII only
   validate :data_keys_format
 
   # Ensure no data attribute value exceeds 512 characters
@@ -38,11 +38,12 @@ class Card < ApplicationRecord
     end.to_h
 
     # record invalid keys (before we silently drop them) so validation can report them
-    @data_invalid_keys = normalized.keys.select { |k| !k.match?(/\A[A-Za-z0-9 ]+\z/) }
+    # allow ASCII characters for keys (spaces allowed)
+    @data_invalid_keys = normalized.keys.select { |k| !k.match?( /\A[[:ascii:]]+\z/ ) }
 
-    # remove placeholder/new keys, blank keys, and keys that contain characters other than letters, numbers, or single spaces
+    # remove placeholder/new keys, blank keys, and keys that contain non-ASCII characters
     filtered = normalized.reject do |k, _|
-      k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9 ]+\z/)
+      k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?( /\A[[:ascii:]]+\z/ )
     end
 
     self[:data] = filtered
@@ -58,7 +59,8 @@ class Card < ApplicationRecord
 
     # also check persisted/raw hash keys if present
     if self[:data].is_a?(Hash)
-      invalid += self[:data].keys.select { |k| !(k =~ /\A[A-Za-z0-9 ]+\z/) }
+      # consider keys invalid when they contain non-ASCII characters
+      invalid += self[:data].keys.select { |k| k.to_s !~ /[[:ascii:]]/ }
     end
 
     invalid.uniq!
