@@ -12,7 +12,7 @@ class Card < ApplicationRecord
   # Ensure stored data keys are alphanumeric only (letters and numbers)
   validate :data_keys_format
 
-  # Ensure no data attribute value exceeds 128 characters
+  # Ensure no data attribute value exceeds 512 characters
   validate :data_values_length
 
   def add_to_deck(deck, quantity = 1)
@@ -37,6 +37,9 @@ class Card < ApplicationRecord
       [nk, v]
     end.to_h
 
+    # record invalid keys (before we silently drop them) so validation can report them
+    @data_invalid_keys = normalized.keys.select { |k| !k.match?(/\A[A-Za-z0-9 ]+\z/) }
+
     # remove placeholder/new keys, blank keys, and keys that contain characters other than letters, numbers, or single spaces
     filtered = normalized.reject do |k, _|
       k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9 ]+\z/)
@@ -49,8 +52,16 @@ class Card < ApplicationRecord
   private
 
   def data_keys_format
-    return unless self[:data].is_a?(Hash)
-    invalid = self[:data].keys.select { |k| !(k =~ /\A[A-Za-z0-9 ]+\z/) }
+    invalid = []
+    # include any invalid keys recorded by the setter (keys that were dropped)
+    invalid += @data_invalid_keys if defined?(@data_invalid_keys) && @data_invalid_keys.any?
+
+    # also check persisted/raw hash keys if present
+    if self[:data].is_a?(Hash)
+      invalid += self[:data].keys.select { |k| !(k =~ /\A[A-Za-z0-9 ]+\z/) }
+    end
+
+    invalid.uniq!
     if invalid.any?
       errors.add(:data, "contains invalid keys: #{invalid.join(', ')}")
     end
@@ -58,9 +69,9 @@ class Card < ApplicationRecord
 
   def data_values_length
     return unless self[:data].is_a?(Hash)
-    too_long = self[:data].select { |_, v| v.to_s.length > 128 }.keys
+    too_long = self[:data].select { |_, v| v.to_s.length > 512 }.keys
     if too_long.any?
-      errors.add(:data, "contains values longer than 128 characters: #{too_long.join(', ')}")
+      errors.add(:data, "contains values longer than 512 characters: #{too_long.join(', ')}")
     end
   end
 end
