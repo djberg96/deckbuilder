@@ -51,4 +51,26 @@ RSpec.describe 'decks/_form.html.erb', type: :view do
     rendered_select = rendered.match(/<select[^>]*class="form-control card-select"[^>]*>(.*?)<\/select>/m)[1]
     expect(rendered_select.index('>Alpha')).to be < rendered_select.index('>Zeta')
   end
+
+  it 'includes games max mapping and sets max on existing quantity inputs' do
+    game = create(:game, maximum_individual_cards: 3)
+    assign(:games, Game.all)
+
+    # build a deck with a persisted deck_card so we get a quantity input
+    user = create(:user)
+    deck = create(:deck, user: user)
+    deck.build_game_deck(game: game)
+    dc = deck.deck_cards.create!(card: create(:card, game: game), quantity: 2)
+
+    assign(:deck, deck)
+    assign(:cards_by_game, Card.all.map { |c| { id: c.id, name: c.name, game_id: c.game_id } })
+
+    render partial: 'decks/form', locals: { deck: deck, games: games, cards_by_game: cards_by_game }
+
+    # gamesByMax mapping should be present and include our game's max
+    expect(rendered).to match(/var gamesByMax = .*"#{game.id}"\s*:\s*#{game.maximum_individual_cards}/)
+
+    # existing quantity input should have max attribute
+    expect(rendered).to have_selector('input[type="number"][max="3"]')
+  end
 end

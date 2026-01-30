@@ -39,6 +39,7 @@
         <div class="row mb-3 deck-card-fields">
           <div class="col-md-8">
             <% if deck_card_form.object.persisted? %>
+              <%= deck_card_form.hidden_field :id %>
               <%= deck_card_form.hidden_field :card_id %>
               <label class="form-label">Card</label>
               <input type="text" class="form-control" value="<%= deck_card_form.object.card.name %>" disabled>
@@ -49,7 +50,8 @@
           </div>
           <div class="col-md-3">
             <%= deck_card_form.label :quantity, "Quantity", class: 'form-label' %>
-            <%= deck_card_form.number_field :quantity, class: 'form-control', min: 1, value: deck_card_form.object.quantity || 1 %>
+            <% max_attr = deck.game&.maximum_individual_cards %>
+            <%= deck_card_form.number_field :quantity, class: 'form-control', min: 1, max: max_attr, value: deck_card_form.object.quantity || 1 %>
           </div>
           <div class="col-md-1 d-flex align-items-end">
             <%= deck_card_form.check_box :_destroy, class: 'form-check-input me-2' %>
@@ -69,7 +71,7 @@
       </div>
       <div class="col-md-3">
         <label class="form-label">Quantity</label>
-        <input type="number" class="form-control" name="deck[deck_cards_attributes][INDEX][quantity]" min="1" value="1">
+        <input type="number" class="form-control" name="deck[deck_cards_attributes][INDEX][quantity]" min="1" value="1" data-from-template="true">
       </div>
       <div class="col-md-1 d-flex align-items-end">
         <button type="button" class="btn btn-danger btn-sm remove-card">Remove</button>
@@ -83,8 +85,29 @@
 <% end %>
 
 <script>
+var gamesByMax = <%= @games.map { |g| [g.id, g.maximum_individual_cards || ''] }.to_h.to_json.html_safe %>;
 var cardsByGame = <%= @cards_by_game.to_json.html_safe %>;
 var nextIndex = <%= @deck.deck_cards.size %>;
+
+var updateQuantityMax = function(gameId) {
+  var max = gamesByMax[gameId] || '';
+  // set max attribute for existing quantity inputs
+  $('#cards-container input[type="number"]').each(function() {
+    if (max) {
+      $(this).attr('max', max);
+      // clamp current value if above max
+      var val = parseInt($(this).val()) || 0;
+      if (val > parseInt(max)) { $(this).val(max); }
+    } else {
+      $(this).removeAttr('max');
+    }
+  });
+  // set template's quantity input max as well
+  var $tpl = $('#card-template').find('input[type="number"]');
+  if ($tpl.length) {
+    if (max) { $tpl.attr('max', max); } else { $tpl.removeAttr('max'); }
+  }
+};
 
 $(document).ready(function() {
   $('#deck_game_deck_attributes_game_id').trigger('change');
@@ -112,6 +135,7 @@ $(document).off('change', '#deck_game_deck_attributes_game_id').on('change', '#d
   } else {
     $('#cards-section').hide();
   }
+  updateQuantityMax(gameId);
 });
 
 $(document).off('click', '#add-card').on('click', '#add-card', function(e) {
@@ -122,10 +146,20 @@ $(document).off('click', '#add-card').on('click', '#add-card', function(e) {
   var newHtml = template.replace(/INDEX/g, nextIndex);
   $('#cards-container').append(newHtml);
   nextIndex++;
-  // Trigger change to populate the new select
+  // Trigger change to populate the new select and set max
   $('#deck_game_deck_attributes_game_id').trigger('change');
   $button.prop('disabled', false);
   return false;
+});
+
+// clamp quantity input values to min/max
+$(document).off('input change', '#cards-container input[type="number"]').on('input change', '#cards-container input[type="number"]', function() {
+  var $i = $(this);
+  var val = parseInt($i.val()) || 0;
+  var min = parseInt($i.attr('min')) || 1;
+  var max = parseInt($i.attr('max')) || null;
+  if (val < min) $i.val(min);
+  if (max && val > max) $i.val(max);
 });
 
 $(document).off('click', '.remove-card').on('click', '.remove-card', function() {
