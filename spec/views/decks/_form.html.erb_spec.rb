@@ -52,6 +52,25 @@ RSpec.describe 'decks/_form.html.erb', type: :view do
     expect(rendered_select.index('>Alpha')).to be < rendered_select.index('>Zeta')
   end
 
+  it 'renders a remove button for existing deck cards' do
+    # create a persisted deck with a deck_card so the persisted branch is rendered
+    game = create(:game)
+    card = create(:card, game: game, name: 'Exists')
+    deck = create(:deck, user: create(:user))
+    deck.build_game_deck(game: game)
+    dc = deck.deck_cards.create!(card: card, quantity: 1)
+
+    assign(:deck, deck)
+    assign(:games, games)
+    assign(:cards_by_game, cards_by_game)
+
+    render partial: 'decks/form', locals: { deck: deck, games: games, cards_by_game: cards_by_game }
+
+    expect(rendered).to have_selector('button.remove-existing-card', text: 'Remove')
+    # persisted rows should include the nested deck_card id so _destroy will target it
+    expect(rendered).to have_selector('input[type="hidden"][name*="[id]"]')
+  end
+
   it 'includes games max mapping and sets max on existing quantity inputs' do
     game = create(:game, maximum_individual_cards: 3)
     assign(:games, Game.all)
@@ -72,5 +91,6 @@ RSpec.describe 'decks/_form.html.erb', type: :view do
 
     # existing quantity input should have max attribute
     expect(rendered).to have_selector('input[type="number"][max="3"]')
+  end
   end
 end

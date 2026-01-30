@@ -32,9 +32,13 @@
     </div>
   <% end %>
 
-  <div id="cards-section" style="display:none">
+  <div id="cards-section" style="<%= 'display:block' if deck.deck_cards.any? %>">
     <h5><%= deck.new_record? ? 'Add cards' : 'Add or Edit cards' %></h5>
     <div id="cards-container">
+      <style>
+        /* subtle styling to indicate an item marked for destruction */
+        .marked-for-destruction { opacity: 0.5; text-decoration: line-through; }
+      </style>
       <%= form.fields_for :deck_cards do |deck_card_form| %>
         <div class="row mb-3 deck-card-fields">
           <div class="col-md-8">
@@ -54,8 +58,8 @@
             <%= deck_card_form.number_field :quantity, class: 'form-control', min: 1, max: max_attr, value: deck_card_form.object.quantity || 1 %>
           </div>
           <div class="col-md-1 d-flex align-items-end">
-            <%= deck_card_form.check_box :_destroy, class: 'form-check-input me-2' %>
-            <label class="form-check-label">Delete</label>
+            <%= deck_card_form.hidden_field :_destroy, value: '0', class: 'destroy-flag' %>
+            <button type="button" class="btn btn-danger btn-sm remove-existing-card">Remove</button>
           </div>
         </div>
       <% end %>
@@ -87,7 +91,6 @@
 <script>
 var gamesByMax = <%= @games.map { |g| [g.id, g.maximum_individual_cards || ''] }.to_h.to_json.html_safe %>;
 var cardsByGame = <%= @cards_by_game.to_json.html_safe %>;
-var nextIndex = <%= @deck.deck_cards.size %>;
 
 var updateQuantityMax = function(gameId) {
   var max = gamesByMax[gameId] || '';
@@ -109,9 +112,25 @@ var updateQuantityMax = function(gameId) {
   }
 };
 
-$(document).ready(function() {
+var initDeckForm = function() {
+  // Recalculate nextIndex based on current DOM so rapid reloads / Turbo visits are correct
+  nextIndex = $('#cards-container .deck-card-fields').length;
   $('#deck_game_deck_attributes_game_id').trigger('change');
-});
+};
+
+// Trigger on initial page load and on Turbo navigations (including frame renders)
+$(document).ready(initDeckForm);
+document.addEventListener('turbo:load', initDeckForm);
+document.addEventListener('turbo:frame-load', initDeckForm);
+document.addEventListener('turbo:render', initDeckForm);
+  $('#deck_game_deck_attributes_game_id').trigger('change');
+};
+
+// Trigger on initial page load and on Turbo navigations (including frame renders)
+$(document).ready(initDeckForm);
+document.addEventListener('turbo:load', initDeckForm);
+document.addEventListener('turbo:frame-load', initDeckForm);
+document.addEventListener('turbo:render', initDeckForm);
 
 $(document).off('change', '#deck_game_deck_attributes_game_id').on('change', '#deck_game_deck_attributes_game_id', function() {
   var gameId = $(this).val();
@@ -164,5 +183,30 @@ $(document).off('input change', '#cards-container input[type="number"]').on('inp
 
 $(document).off('click', '.remove-card').on('click', '.remove-card', function() {
   $(this).closest('.deck-card-fields').remove();
+});
+
+// Handle removal of persisted deck cards: mark for destruction and toggle Undo
+$(document).off('click', '.remove-existing-card').on('click', '.remove-existing-card', function(e) {
+  e.preventDefault();
+  var $btn = $(this);
+  var $row = $btn.closest('.deck-card-fields');
+  var $destroyInput = $row.find('input.destroy-flag');
+  if (!$destroyInput.length) {
+    // fallback to remove entirely
+    $row.remove();
+    return;
+  }
+
+  if ($destroyInput.val() === '1') {
+    // undo
+    $destroyInput.val('0');
+    $row.removeClass('marked-for-destruction');
+    $btn.removeClass('btn-secondary').addClass('btn-danger').text('Remove');
+  } else {
+    // mark for destruction
+    $destroyInput.val('1');
+    $row.addClass('marked-for-destruction');
+    $btn.removeClass('btn-danger').addClass('btn-secondary').text('Undo');
+  }
 });
 </script>

@@ -115,6 +115,7 @@ class DecksController < ApplicationController
   def update
     @games = Game.all
     @cards_by_game = Card.order(:name).map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
+
     respond_to do |format|
       if @deck.update(deck_params)
         format.html { redirect_to @deck, notice: "Deck was successfully updated." }
