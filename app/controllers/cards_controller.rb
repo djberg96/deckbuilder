@@ -4,11 +4,31 @@ class CardsController < ApplicationController
   # GET /cards or /cards.json
   def index
     @games = Game.order(:name)
-    if params[:game_id].present?
-      @cards = Card.where(game_id: params[:game_id]).order(:name)
-    else
-      @cards = Card.order(:name)
+
+    # Pagination: per-page options allowed: 10, 25, 50 (persist selection in session)
+    allowed_per_page = [10, 25, 50]
+    if params[:per_page].present? && params[:per_page].to_s =~ /\A\d+\z/
+      per_page_param = params[:per_page].to_i
+      session[:cards_per_page] = per_page_param if allowed_per_page.include?(per_page_param)
     end
+    @per_page = (session[:cards_per_page] || 25).to_i
+
+    page = params[:page].to_i
+    page = 1 if page < 1
+
+    base = if params[:game_id].present?
+      Card.where(game_id: params[:game_id]).order(:name)
+    else
+      Card.order(:name)
+    end
+
+    @total_count = base.count
+    @total_pages = (@total_count.to_f / @per_page).ceil
+    page = @total_pages if page > @total_pages && @total_pages > 0
+    @current_page = page
+
+    offset = (@current_page - 1) * @per_page
+    @cards = base.offset(offset).limit(@per_page)
   end
 
   # GET /cards/1 or /cards/1.json
