@@ -52,8 +52,8 @@
             <%= deck_card_form.number_field :quantity, class: 'form-control', min: 1, value: deck_card_form.object.quantity || 1 %>
           </div>
           <div class="col-md-1 d-flex align-items-end">
-            <%= deck_card_form.check_box :_destroy, class: 'form-check-input me-2' %>
-            <label class="form-check-label">Delete</label>
+            <%= deck_card_form.hidden_field :_destroy, value: '0', class: 'destroy-flag' %>
+            <button type="button" class="btn btn-danger btn-sm remove-existing-card">Remove</button>
           </div>
         </div>
       <% end %>
@@ -86,9 +86,13 @@
 var cardsByGame = <%= @cards_by_game.to_json.html_safe %>;
 var nextIndex = <%= @deck.deck_cards.size %>;
 
-$(document).ready(function() {
+var initDeckForm = function() {
   $('#deck_game_deck_attributes_game_id').trigger('change');
-});
+};
+
+// Trigger on initial page load and on Turbo navigations
+$(document).ready(initDeckForm);
+document.addEventListener('turbo:load', initDeckForm);
 
 $(document).off('change', '#deck_game_deck_attributes_game_id').on('change', '#deck_game_deck_attributes_game_id', function() {
   var gameId = $(this).val();
@@ -130,5 +134,30 @@ $(document).off('click', '#add-card').on('click', '#add-card', function(e) {
 
 $(document).off('click', '.remove-card').on('click', '.remove-card', function() {
   $(this).closest('.deck-card-fields').remove();
+});
+
+// Handle removal of persisted deck cards: mark for destruction and toggle Undo
+$(document).off('click', '.remove-existing-card').on('click', '.remove-existing-card', function(e) {
+  e.preventDefault();
+  var $btn = $(this);
+  var $row = $btn.closest('.deck-card-fields');
+  var $destroyInput = $row.find('input.destroy-flag');
+  if (!$destroyInput.length) {
+    // fallback to remove entirely
+    $row.remove();
+    return;
+  }
+
+  if ($destroyInput.val() === '1') {
+    // undo
+    $destroyInput.val('0');
+    $row.removeClass('marked-for-destruction');
+    $btn.removeClass('btn-secondary').addClass('btn-danger').text('Remove');
+  } else {
+    // mark for destruction
+    $destroyInput.val('1');
+    $row.addClass('marked-for-destruction');
+    $btn.removeClass('btn-danger').addClass('btn-secondary').text('Undo');
+  }
 });
 </script>

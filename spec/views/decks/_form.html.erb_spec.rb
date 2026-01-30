@@ -51,4 +51,21 @@ RSpec.describe 'decks/_form.html.erb', type: :view do
     rendered_select = rendered.match(/<select[^>]*class="form-control card-select"[^>]*>(.*?)<\/select>/m)[1]
     expect(rendered_select.index('>Alpha')).to be < rendered_select.index('>Zeta')
   end
+
+  it 'renders a remove button for existing deck cards' do
+    # create a persisted deck with a deck_card so the persisted branch is rendered
+    game = create(:game)
+    card = create(:card, game: game, name: 'Exists')
+    deck = create(:deck, user: create(:user))
+    deck.build_game_deck(game: game)
+    dc = deck.deck_cards.create!(card: card, quantity: 1)
+
+    assign(:deck, deck)
+    assign(:games, games)
+    assign(:cards_by_game, cards_by_game)
+
+    render partial: 'decks/form', locals: { deck: deck, games: games, cards_by_game: cards_by_game }
+
+    expect(rendered).to have_selector('button.remove-existing-card', text: 'Remove')
+  end
 end

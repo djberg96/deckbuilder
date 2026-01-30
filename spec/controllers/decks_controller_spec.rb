@@ -101,6 +101,20 @@ RSpec.describe DecksController, type: :controller do
         expect(deck.name).to eq('Updated Deck')
       end
 
+      it 'removes nested deck_cards when _destroy is set' do
+        # prepare deck with a persisted deck card
+        deck = create(:deck, user: user)
+        deck.build_game_deck(game: game)
+        deck.save!
+        c = create(:card, game: game)
+        dc = deck.deck_cards.create!(card: c, quantity: 1)
+
+        params = valid_attributes.merge(deck_cards_attributes: { '0' => { 'id' => dc.id, '_destroy' => '1' } })
+        put :update, params: { id: deck.to_param, deck: params }
+        deck.reload
+        expect(deck.deck_cards).to be_empty
+      end
+
       it 'redirects to the deck' do
         deck = create(:deck, user: user)
         put :update, params: { id: deck.to_param, deck: valid_attributes }

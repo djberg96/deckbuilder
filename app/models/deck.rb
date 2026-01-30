@@ -10,7 +10,8 @@ class Deck < ApplicationRecord
   belongs_to :user
 
   accepts_nested_attributes_for :game_deck
-  accepts_nested_attributes_for :deck_cards
+  # Ignore nested deck_card entries that don't select a card and allow destroying via _destroy
+  accepts_nested_attributes_for :deck_cards, reject_if: proc { |attrs| attrs['card_id'].blank? }, allow_destroy: true
 
   validates :game_deck, :presence => true
 
