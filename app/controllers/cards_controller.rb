@@ -68,9 +68,9 @@ class CardsController < ApplicationController
       new_edition = params[:import][:new_game_edition].to_s.strip
       if new_name.present?
         game = Game.where(name: new_name, edition: new_edition).first_or_create do |g|
-          # set minimal defaults so model validations pass
+          # set sensible defaults so model validations pass and typical games allow multiple copies
           g.minimum_cards_per_deck = 1
-          g.maximum_individual_cards = 1
+          g.maximum_individual_cards = 4
         end
       end
     end

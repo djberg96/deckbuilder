@@ -80,6 +80,17 @@ RSpec.describe DecksController, type: :controller do
         post :create, params: { deck: valid_attributes }
         expect(response).to redirect_to(Deck.last)
       end
+
+      it 'ignores blank nested deck_card entries when creating via controller' do
+        card = create(:card, game: game)
+        params = valid_attributes.merge(deck_cards_attributes: { '0' => { 'card_id' => card.id, 'quantity' => 2 }, '1' => { 'card_id' => '', 'quantity' => 1 } })
+        expect {
+          post :create, params: { deck: params }
+        }.to change(Deck, :count).by(1)
+        deck = Deck.last
+        expect(deck.deck_cards.size).to eq(1)
+        expect(deck.deck_cards.first.card_id).to eq(card.id)
+      end
     end
 
     context 'with invalid params' do

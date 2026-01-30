@@ -85,6 +85,10 @@ class DecksController < ApplicationController
 
   # GET /decks/1/edit
   def edit
+    # Ensure the deck has a game_deck association so the edit form's game select
+    # contains a value and the cards UI (Add/Delete) is shown.
+    @deck.build_game_deck unless @deck.game_deck
+
     @games = Game.all
     @cards_by_game = Card.order(:name).map { |c| {id: c.id, name: c.name, game_id: c.game_id} }
   end
