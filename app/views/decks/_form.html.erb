@@ -32,13 +32,18 @@
     </div>
   <% end %>
 
-  <div id="cards-section" style="display:none">
+  <div id="cards-section" style="<%= 'display:block' if deck.deck_cards.any? %>">
     <h5><%= deck.new_record? ? 'Add cards' : 'Add or Edit cards' %></h5>
     <div id="cards-container">
+      <style>
+        /* subtle styling to indicate an item marked for destruction */
+        .marked-for-destruction { opacity: 0.5; text-decoration: line-through; }
+      </style>
       <%= form.fields_for :deck_cards do |deck_card_form| %>
         <div class="row mb-3 deck-card-fields">
           <div class="col-md-8">
             <% if deck_card_form.object.persisted? %>
+              <%= deck_card_form.hidden_field :id %>
               <%= deck_card_form.hidden_field :card_id %>
               <label class="form-label">Card</label>
               <input type="text" class="form-control" value="<%= deck_card_form.object.card.name %>" disabled>
@@ -84,15 +89,18 @@
 
 <script>
 var cardsByGame = <%= @cards_by_game.to_json.html_safe %>;
-var nextIndex = <%= @deck.deck_cards.size %>;
 
 var initDeckForm = function() {
+  // Recalculate nextIndex based on current DOM so rapid reloads / Turbo visits are correct
+  nextIndex = $('#cards-container .deck-card-fields').length;
   $('#deck_game_deck_attributes_game_id').trigger('change');
 };
 
-// Trigger on initial page load and on Turbo navigations
+// Trigger on initial page load and on Turbo navigations (including frame renders)
 $(document).ready(initDeckForm);
 document.addEventListener('turbo:load', initDeckForm);
+document.addEventListener('turbo:frame-load', initDeckForm);
+document.addEventListener('turbo:render', initDeckForm);
 
 $(document).off('change', '#deck_game_deck_attributes_game_id').on('change', '#deck_game_deck_attributes_game_id', function() {
   var gameId = $(this).val();

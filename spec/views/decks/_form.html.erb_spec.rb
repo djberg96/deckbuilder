@@ -67,5 +67,7 @@ RSpec.describe 'decks/_form.html.erb', type: :view do
     render partial: 'decks/form', locals: { deck: deck, games: games, cards_by_game: cards_by_game }
 
     expect(rendered).to have_selector('button.remove-existing-card', text: 'Remove')
+    # persisted rows should include the nested deck_card id so _destroy will target it
+    expect(rendered).to have_selector('input[type="hidden"][name*="[id]"]')
   end
 end
