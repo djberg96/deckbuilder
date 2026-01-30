@@ -70,4 +70,27 @@ RSpec.describe 'decks/_form.html.erb', type: :view do
     # persisted rows should include the nested deck_card id so _destroy will target it
     expect(rendered).to have_selector('input[type="hidden"][name*="[id]"]')
   end
+
+  it 'includes games max mapping and sets max on existing quantity inputs' do
+    game = create(:game, maximum_individual_cards: 3)
+    assign(:games, Game.all)
+
+    # build a deck with a persisted deck_card so we get a quantity input
+    user = create(:user)
+    deck = create(:deck, user: user)
+    deck.build_game_deck(game: game)
+    dc = deck.deck_cards.create!(card: create(:card, game: game), quantity: 2)
+
+    assign(:deck, deck)
+    assign(:cards_by_game, Card.all.map { |c| { id: c.id, name: c.name, game_id: c.game_id } })
+
+    render partial: 'decks/form', locals: { deck: deck, games: games, cards_by_game: cards_by_game }
+
+    # gamesByMax mapping should be present and include our game's max
+    expect(rendered).to match(/var gamesByMax = .*"#{game.id}"\s*:\s*#{game.maximum_individual_cards}/)
+
+    # existing quantity input should have max attribute
+    expect(rendered).to have_selector('input[type="number"][max="3"]')
+  end
+  end
 end

@@ -13,6 +13,20 @@ class Deck < ApplicationRecord
   # Ignore nested deck_card entries that don't select a card and allow destroying via _destroy
   accepts_nested_attributes_for :deck_cards, reject_if: proc { |attrs| attrs['card_id'].blank? }, allow_destroy: true
 
+  # Defensive cleanup: remove any nested deck_cards that reference no card or a non-existent card
+  before_validation :reject_invalid_deck_cards
+
+  private def reject_invalid_deck_cards
+    deck_cards.each do |dc|
+      # mark for destruction if no card_id provided or referenced card does not exist
+      if dc.card_id.blank? || !Card.exists?(dc.card_id)
+        dc.mark_for_destruction
+      end
+    end
+  end
+
+  public
+
   validates :game_deck, :presence => true
 
   # The same user cannot have the same deck name more than once.
@@ -27,6 +41,8 @@ class Deck < ApplicationRecord
   # Add +quantity+ of +card+ to the deck. By default it will add one card.
   #
   def add(card, quantity = 1)
+    raise ArgumentError, 'card must be provided' if card.nil?
+
     if dc = deck_cards.find_by(:card => card)
       dc.quantity += quantity
       dc.save!
