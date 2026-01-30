@@ -1,15 +1,600 @@
 [
   {
+    "name": "Animate Wall",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "Enchant Wall\nEnchanted Wall can attack as though it didn't have defender.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Armageddon",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{3}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "Destroy all lands.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Balance",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{1}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "Each player chooses a number of lands they control equal to the number of lands controlled by the player who controls the fewest, then sacrifices the rest. Players discard cards and sacrifice creatures the same way.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Benalish Hero",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Soldier",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)",
+      "P/T": "1/1",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Black Ward",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nEnchanted creature has protection from black. This effect doesn't remove this Aura.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Blaze of Glory",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "Cast this spell only during combat before blockers are declared.\nTarget creature defending player controls can block any number of creatures this turn. It blocks each attacking creature this turn if able.",
+      "P/T": null,
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Blessing",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "Enchant creature\n{W}: Enchanted creature gets +1/+1 until end of turn.",
+      "P/T": null,
+      "Artist": "Julie Baroh"
+    }
+  },
+  {
+    "name": "Blue Ward",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nEnchanted creature has protection from blue. This effect doesn't remove this Aura.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Castle",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{3}{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Untapped creatures you control get +0/+2.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Circle of Protection: Blue",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{1}{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "{1}: The next time a blue source of your choice would deal damage to you this turn, prevent that damage.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Circle of Protection: Green",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{1}{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "{1}: The next time a green source of your choice would deal damage to you this turn, prevent that damage.",
+      "P/T": null,
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Circle of Protection: Red",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{1}{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "{1}: The next time a red source of your choice would deal damage to you this turn, prevent that damage.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Circle of Protection: White",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{1}{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "{1}: The next time a white source of your choice would deal damage to you this turn, prevent that damage.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Consecrate Land",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant land\nEnchanted land has indestructible and can't be enchanted by other Auras.",
+      "P/T": null,
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Conversion",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{2}{W}{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "At the beginning of your upkeep, sacrifice this enchantment unless you pay {W}{W}.\nAll Mountains are Plains.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Crusade",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{W}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "White creatures get +1/+1.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Death Ward",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "Regenerate target creature.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Disenchant",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{1}{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "Destroy target artifact or enchantment.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Farmstead",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}{W}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "Enchant land\nEnchanted land has \"At the beginning of your upkeep, you may pay {W}{W}. If you do, you gain 1 life.\"",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Green Ward",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nEnchanted creature has protection from green. This effect doesn't remove this Aura.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Guardian Angel",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{X}{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "Prevent the next X damage that would be dealt to any target this turn. Until end of turn, you may pay {1} any time you could cast an instant. If you do, prevent the next 1 damage that would be dealt to that permanent or player this turn.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Healing Salve",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "Choose one —\n• Target player gains 3 life.\n• Prevent the next 3 damage that would be dealt to any target this turn.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Holy Armor",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\nEnchanted creature gets +0/+2.\n{W}: Enchanted creature gets +0/+1 until end of turn.",
+      "P/T": null,
+      "Artist": "Melissa A. Benson"
+    }
+  },
+  {
+    "name": "Holy Strength",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\nEnchanted creature gets +1/+2.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Island Sanctuary",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{1}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "If you would draw a card during your draw step, instead you may skip that draw. If you do, until your next turn, you can't be attacked except by creatures with flying and/or islandwalk.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Karma",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{2}{W}{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "At the beginning of each player's upkeep, this enchantment deals damage to that player equal to the number of Swamps they control.",
+      "P/T": null,
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Lance",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nEnchanted creature has first strike.",
+      "P/T": null,
+      "Artist": "Rob Alexander"
+    }
+  },
+  {
+    "name": "Mesa Pegasus",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Pegasus",
+      "Mana Cost": "{1}{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "Flying; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)",
+      "P/T": "1/1",
+      "Artist": "Melissa A. Benson"
+    }
+  },
+  {
+    "name": "Northern Paladin",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Knight",
+      "Mana Cost": "{2}{W}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "{W}{W}, {T}: Destroy target black permanent.",
+      "P/T": "3/3",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Pearled Unicorn",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Unicorn",
+      "Mana Cost": "{2}{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "2/2",
+      "Artist": "Cornelius Brudi"
+    }
+  },
+  {
+    "name": "Personal Incarnation",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Avatar Incarnation",
+      "Mana Cost": "{3}{W}{W}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "{0}: The next 1 damage that would be dealt to this creature this turn is dealt to its owner instead. Only this creatures owner may activate this ability.\nWhen this creature dies, its owner loses half their life, rounded up.",
+      "P/T": "6/6",
+      "Artist": "Kev Brockschmidt"
+    }
+  },
+  {
+    "name": "Purelace",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "Target spell or permanent becomes white. (Mana symbols on that permanent remain unchanged.)",
+      "P/T": null,
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Red Ward",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nEnchanted creature has protection from red. This effect doesn't remove this Aura.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Resurrection",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{2}{W}{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Return target creature card from your graveyard to the battlefield.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Reverse Damage",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{1}{W}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Righteousness",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "Target blocking creature gets +7/+7 until end of turn.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Samite Healer",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Cleric",
+      "Mana Cost": "{1}{W}",
+      "Color": "W",
+      "Rarity": "Common",
+      "Rules Text": "{T}: Prevent the next 1 damage that would be dealt to any target this turn.",
+      "P/T": "1/1",
+      "Artist": "Tom Wänerstrand"
+    }
+  },
+  {
+    "name": "Savannah Lions",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Cat",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "",
+      "P/T": "2/1",
+      "Artist": "Daniel Gelon"
+    }
+  },
+  {
+    "name": "Serra Angel",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Angel",
+      "Mana Cost": "{3}{W}{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Flying\nVigilance (Attacking doesn't cause this creature to tap.)",
+      "P/T": "4/4",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Swords to Plowshares",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Exile target creature. Its controller gains life equal to its power.",
+      "P/T": null,
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Veteran Bodyguard",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human",
+      "Mana Cost": "{3}{W}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "As long as this creature is untapped, all damage that would be dealt to you by unblocked creatures is dealt to this creature instead.",
+      "P/T": "2/5",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Wall of Swords",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wall",
+      "Mana Cost": "{3}{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Defender (This creature can't attack.)\nFlying",
+      "P/T": "3/5",
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "White Knight",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Knight",
+      "Mana Cost": "{W}{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "First strike (This creature deals combat damage before creatures without first strike.)\nProtection from black (This creature can't be blocked, targeted, dealt damage, or enchanted by anything black.)",
+      "P/T": "2/2",
+      "Artist": "Daniel Gelon"
+    }
+  },
+  {
+    "name": "White Ward",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{W}",
+      "Color": "W",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nEnchanted creature has protection from white. This effect doesn't remove this Aura.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Wrath of God",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{2}{W}{W}",
+      "Color": "W",
+      "Rarity": "Rare",
+      "Rules Text": "Destroy all creatures. They can't be regenerated.",
+      "P/T": null,
+      "Artist": "Quinton Hoover"
+    }
+  },
+  {
     "name": "Air Elemental",
     "edition": "1E - Limited Edition Alpha",
     "data": {
-      "Type": "Creature - Elemental",
+      "Type": "Creature — Elemental",
+      "Mana Cost": "{3}{U}{U}",
+      "Color": "U",
       "Rarity": "Uncommon",
-      "Rules Text": "Flying.",
-      "Flavor Text": "These spirits of the air are winsome and wild and cannot be truly contained. Only marginally intelligent, they often substitute whimsy for strategy, delighting in mischief and mayhem.",
-      "Artist": "Richard Thomas",
+      "Rules Text": "Flying",
       "P/T": "4/4",
-      "Mana Cost": "3UU"
+      "Artist": "Richard Thomas"
     }
   },
   {
@@ -17,10 +602,3171 @@
     "edition": "1E - Limited Edition Alpha",
     "data": {
       "Type": "Instant",
+      "Mana Cost": "{U}",
+      "Color": "U",
       "Rarity": "Rare",
       "Rules Text": "Target player draws three cards.",
-      "Artist": "Mark Poole",
-      "Mana Cost": "U"
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Animate Artifact",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{3}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant artifact\nAs long as enchanted artifact isn't a creature, it's an artifact creature with power and toughness each equal to its mana value.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Blue Elemental Blast",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Choose one —\n• Counter target red spell.\n• Destroy target red permanent.",
+      "P/T": null,
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Braingeyser",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{X}{U}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Target player draws X cards.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Clone",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Shapeshifter",
+      "Mana Cost": "{3}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "You may have this creature enter as a copy of any creature on the battlefield.",
+      "P/T": "0/0",
+      "Artist": "Julie Baroh"
+    }
+  },
+  {
+    "name": "Control Magic",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{2}{U}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nYou control enchanted creature.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Copy Artifact",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{1}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "You may have this enchantment enter as a copy of any artifact on the battlefield, except it's an enchantment in addition to its other types.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Counterspell",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{U}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Counter target spell.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Creature Bond",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{1}{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\nWhen enchanted creature dies, this Aura deals damage equal to that creature's toughness to the creature's controller.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Drain Power",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{U}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Target player activates a mana ability of each land they control. Then that player loses all unspent mana and you add the mana lost this way.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Feedback",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{2}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant enchantment\nAt the beginning of the upkeep of enchanted enchantment's controller, this Aura deals 1 damage to that player.",
+      "P/T": null,
+      "Artist": "Quinton Hoover"
+    }
+  },
+  {
+    "name": "Flight",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\nEnchanted creature has flying.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Invisibility",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{U}{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\nEnchanted creature can't be blocked except by Walls.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Jump",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Target creature gains flying until end of turn.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Lifetap",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{U}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Whenever a Forest an opponent controls becomes tapped, you gain 1 life.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Lord of Atlantis",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Merfolk",
+      "Mana Cost": "{U}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Other Merfolk get +1/+1 and have islandwalk. (They can't be blocked as long as defending player controls an Island.)",
+      "P/T": "2/2",
+      "Artist": "Melissa A. Benson"
+    }
+  },
+  {
+    "name": "Magical Hack",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Change the text of target spell or permanent by replacing all instances of one basic land type with another. (For example, you may change \"swampwalk\" to \"plainswalk.\" This effect lasts indefinitely.)",
+      "P/T": null,
+      "Artist": "Julie Baroh"
+    }
+  },
+  {
+    "name": "Mahamoti Djinn",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Djinn",
+      "Mana Cost": "{4}{U}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Flying (This creature can't be blocked except by creatures with flying or reach.)",
+      "P/T": "5/6",
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Mana Short",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{2}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Tap all lands target player controls and that player loses all unspent mana.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Merfolk of the Pearl Trident",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Merfolk",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "1/1",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Phantasmal Forces",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Illusion",
+      "Mana Cost": "{3}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Flying\nAt the beginning of your upkeep, sacrifice this creature unless you pay {U}.",
+      "P/T": "4/1",
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Phantasmal Terrain",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{U}{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Enchant land\nAs this Aura enters, choose a basic land type.\nEnchanted land is the chosen type.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Phantom Monster",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Illusion",
+      "Mana Cost": "{3}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Flying",
+      "P/T": "3/3",
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Pirate Ship",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Pirate",
+      "Mana Cost": "{4}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "This creature can't attack unless defending player controls an Island.\n{T}: This creature deals 1 damage to any target.\nWhen you control no Islands, sacrifice this creature.",
+      "P/T": "4/3",
+      "Artist": "Tom Wänerstrand"
+    }
+  },
+  {
+    "name": "Power Leak",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{1}{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Enchant enchantment\nAt the beginning of the upkeep of enchanted enchantment's controller, that player may pay any amount of mana. This Aura deals 2 damage to that player. Prevent X of that damage, where X is the amount of mana that player paid this way.",
+      "P/T": null,
+      "Artist": "Drew Tucker"
+    }
+  },
+  {
+    "name": "Power Sink",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{X}{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Counter target spell unless its controller pays {X}. If that player doesn't, they tap all lands with mana abilities they control and lose all unspent mana.",
+      "P/T": null,
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Prodigal Sorcerer",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Wizard Sorcerer",
+      "Mana Cost": "{2}{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "{T}: This creature deals 1 damage to any target.",
+      "P/T": "1/1",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Psionic Blast",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{2}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Psionic Blast deals 4 damage to any target and 2 damage to you.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Psychic Venom",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{1}{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Enchant land\nWhenever enchanted land becomes tapped, this Aura deals 2 damage to that land's controller.",
+      "P/T": null,
+      "Artist": "Brian Snõddy"
+    }
+  },
+  {
+    "name": "Sea Serpent",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Serpent",
+      "Mana Cost": "{5}{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "This creature can't attack unless defending player controls an Island.\nWhen you control no Islands, sacrifice this creature.",
+      "P/T": "5/5",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Siren's Call",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Cast this spell only during an opponent's turn, before attackers are declared.\nCreatures the active player controls attack this turn if able.\nAt the beginning of the next end step, destroy all non-Wall creatures that player controls that didn't attack this turn. Ignore this effect for each creature the player didn't control continuously since the beginning of the turn.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Sleight of Mind",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Change the text of target spell or permanent by replacing all instances of one color word with another. (For example, you may change \"target black spell\" to \"target blue spell.\" This effect lasts indefinitely.)",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Spell Blast",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{X}{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Counter target spell with mana value X. (For example, if that spell's mana cost is {3}{U}{U}, X is 5.)",
+      "P/T": null,
+      "Artist": "Brian Snõddy"
+    }
+  },
+  {
+    "name": "Stasis",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{1}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Players skip their untap steps.\nAt the beginning of your upkeep, sacrifice this enchantment unless you pay {U}.",
+      "P/T": null,
+      "Artist": "Fay Jones"
+    }
+  },
+  {
+    "name": "Steal Artifact",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{2}{U}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant artifact\nYou control enchanted artifact.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Thoughtlace",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Target spell or permanent becomes blue. (Mana symbols on that permanent remain unchanged.)",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Time Walk",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{1}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Take an extra turn after this one.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Timetwister",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{2}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Each player shuffles their hand and graveyard into their library, then draws seven cards. (Then put Timetwister into its owner's graveyard.)",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Twiddle",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "You may tap or untap target artifact, creature, or land.",
+      "P/T": null,
+      "Artist": "Rob Alexander"
+    }
+  },
+  {
+    "name": "Unsummon",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{U}",
+      "Color": "U",
+      "Rarity": "Common",
+      "Rules Text": "Return target creature to its owner's hand.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Vesuvan Doppelganger",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Shapeshifter",
+      "Mana Cost": "{3}{U}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "You may have this creature enter as a copy of any creature on the battlefield, except it doesn't copy that creature's color and it has \"At the beginning of your upkeep, you may have this creature become a copy of target creature, except it doesn't copy that creature's color and it has this ability.\"",
+      "P/T": "0/0",
+      "Artist": "Quinton Hoover"
+    }
+  },
+  {
+    "name": "Volcanic Eruption",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{X}{U}{U}{U}",
+      "Color": "U",
+      "Rarity": "Rare",
+      "Rules Text": "Destroy X target Mountains. Volcanic Eruption deals damage to each creature and each player equal to the number of Mountains put into a graveyard this way.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Wall of Air",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wall",
+      "Mana Cost": "{1}{U}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Defender, flying (This creature can't attack, and it can block creatures with flying.)",
+      "P/T": "1/5",
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Wall of Water",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wall",
+      "Mana Cost": "{1}{U}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "Defender (This creature can't attack.)\n{U}: This creature gets +1/+0 until end of turn.",
+      "P/T": "0/5",
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Water Elemental",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Elemental",
+      "Mana Cost": "{3}{U}{U}",
+      "Color": "U",
+      "Rarity": "Uncommon",
+      "Rules Text": "",
+      "P/T": "5/4",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Animate Dead",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{1}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature card in a graveyard\nWhen this Aura enters, if it's on the battlefield, it loses \"enchant creature card in a graveyard\" and gains \"enchant creature put onto the battlefield with this Aura.\" Return enchanted creature card to the battlefield under your control and attach this Aura to it. When this Aura leaves the battlefield, that creature's controller sacrifices it.\nEnchanted creature gets -1/-0.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Bad Moon",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{1}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Black creatures get +1/+1.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Black Knight",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Knight",
+      "Mana Cost": "{B}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "First strike (This creature deals combat damage before creatures without first strike.)\nProtection from white (This creature can't be blocked, targeted, dealt damage, or enchanted by anything white.)",
+      "P/T": "2/2",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Bog Wraith",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wraith",
+      "Mana Cost": "{3}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "Swampwalk (This creature can't be blocked as long as defending player controls a Swamp.)",
+      "P/T": "3/3",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Contract from Below",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Remove this card from your deck before playing if you're not playing for ante.\nDiscard your hand, ante the top card of your library, then draw seven cards.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Cursed Land",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{2}{B}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant land\nAt the beginning of the upkeep of enchanted land's controller, this Aura deals 1 damage to that player.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Dark Ritual",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Add {B}{B}{B}.",
+      "P/T": null,
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Darkpact",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{B}{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Remove this card from your deck before playing if you're not playing for ante.\nYou own target card in the ante. Exchange that card with the top card of your library.",
+      "P/T": null,
+      "Artist": "Quinton Hoover"
+    }
+  },
+  {
+    "name": "Deathgrip",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{B}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "{B}{B}: Counter target green spell.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Deathlace",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Target spell or permanent becomes black. (Mana symbols on that permanent remain unchanged.)",
+      "P/T": null,
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Demonic Attorney",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{1}{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Remove this card from your deck before playing if you're not playing for ante.\nEach player antes the top card of their library.",
+      "P/T": null,
+      "Artist": "Daniel Gelon"
+    }
+  },
+  {
+    "name": "Demonic Hordes",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Demon",
+      "Mana Cost": "{3}{B}{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "{T}: Destroy target land.\nAt the beginning of your upkeep, unless you pay {B}{B}{B}, tap this creature and sacrifice a land of an opponent's choice.",
+      "P/T": "5/5",
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Demonic Tutor",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{1}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "Search your library for a card, put that card into your hand, then shuffle.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Drain Life",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{X}{1}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Spend only black mana on X.\nDrain Life deals X damage to any target. You gain life equal to the damage dealt, but not more life than the player's life total before the damage was dealt, the planeswalker's loyalty before the damage was dealt, or the creature's toughness.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Drudge Skeletons",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Skeleton",
+      "Mana Cost": "{1}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "{B}: Regenerate this creature. (The next time this creature would be destroyed this turn, instead tap it, remove it from combat, and heal all damage on it.)",
+      "P/T": "1/1",
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Evil Presence",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant land\nEnchanted land is a Swamp.",
+      "P/T": null,
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Fear",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{B}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature (Target a creature as you cast this. This card enters attached to that creature.)\nEnchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Frozen Shade",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Shade",
+      "Mana Cost": "{2}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "{B}: This creature gets +1/+1 until end of turn.",
+      "P/T": "0/1",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Gloom",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{2}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "White spells cost {3} more to cast.\nActivated abilities of white enchantments cost {3} more to activate.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Howl from Beyond",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{X}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Target creature gets +X/+0 until end of turn.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Hypnotic Specter",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Specter",
+      "Mana Cost": "{1}{B}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "Flying\nWhenever this creature deals damage to an opponent, that player discards a card at random.",
+      "P/T": "2/2",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Lich",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{B}{B}{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "As this enchantment enters, you lose life equal to your life total.\nYou don't lose the game for having 0 or less life.\nIf you would gain life, draw that many cards instead.\nWhenever you're dealt damage, sacrifice that many nontoken permanents. If you can't, you lose the game.\nWhen this enchantment is put into a graveyard from the battlefield, you lose the game.",
+      "P/T": null,
+      "Artist": "Daniel Gelon"
+    }
+  },
+  {
+    "name": "Lord of the Pit",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Demon",
+      "Mana Cost": "{4}{B}{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Flying, trample\nAt the beginning of your upkeep, sacrifice a creature other than this creature. If you can't, this creature deals 7 damage to you.",
+      "P/T": "7/7",
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Mind Twist",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{X}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Target player discards X cards at random.",
+      "P/T": null,
+      "Artist": "Julie Baroh"
+    }
+  },
+  {
+    "name": "Nether Shadow",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Spirit",
+      "Mana Cost": "{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Haste\nAt the beginning of your upkeep, if this card is in your graveyard with three or more creature cards above it, you may put this card onto the battlefield.",
+      "P/T": "1/1",
+      "Artist": "Christopher Rush"
+    }
+  },
+  {
+    "name": "Nettling Imp",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Imp",
+      "Mana Cost": "{2}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "{T}: Choose target non-Wall creature the active player has controlled continuously since the beginning of the turn. That creature attacks this turn if able. Destroy it at the beginning of the next end step if it didn't attack this turn. Activate only during an opponent's turn, before attackers are declared.",
+      "P/T": "1/1",
+      "Artist": "Quinton Hoover"
+    }
+  },
+  {
+    "name": "Nightmare",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Nightmare Horse",
+      "Mana Cost": "{5}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Flying (This creature can't be blocked except by creatures with flying or reach.)\nNightmare's power and toughness are each equal to the number of Swamps you control.",
+      "P/T": "*/*",
+      "Artist": "Melissa A. Benson"
+    }
+  },
+  {
+    "name": "Paralyze",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\nWhen this Aura enters, tap enchanted creature.\nEnchanted creature doesn't untap during its controller's untap step.\nAt the beginning of the upkeep of enchanted creature's controller, that player may pay {4}. If the player does, untap the creature.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Pestilence",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{2}{B}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "At the beginning of the end step, if no creatures are on the battlefield, sacrifice this enchantment.\n{B}: This enchantment deals 1 damage to each creature and each player.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Plague Rats",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Rat",
+      "Mana Cost": "{2}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Plague Rats's power and toughness are each equal to the number of creatures named Plague Rats on the battlefield.",
+      "P/T": "*/*",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Raise Dead",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Return target creature card from your graveyard to your hand.",
+      "P/T": null,
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Royal Assassin",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Assassin",
+      "Mana Cost": "{1}{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "{T}: Destroy target tapped creature.",
+      "P/T": "1/1",
+      "Artist": "Tom Wänerstrand"
+    }
+  },
+  {
+    "name": "Sacrifice",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "As an additional cost to cast this spell, sacrifice a creature.\nAdd an amount of {B} equal to the sacrificed creature's mana value.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Scathe Zombies",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Zombie",
+      "Mana Cost": "{2}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "2/2",
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Scavenging Ghoul",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Zombie",
+      "Mana Cost": "{3}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "At the beginning of each end step, put a corpse counter on this creature for each creature that died this turn.\nRemove a corpse counter from this creature: Regenerate this creature.",
+      "P/T": "2/2",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Sengir Vampire",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Vampire",
+      "Mana Cost": "{3}{B}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "Flying (This creature can't be blocked except by creatures with flying or reach.)\nWhenever a creature dealt damage by this creature this turn dies, put a +1/+1 counter on this creature.",
+      "P/T": "4/4",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Simulacrum",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{1}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "You gain life equal to the damage dealt to you this turn. Simulacrum deals damage to target creature you control equal to the damage dealt to you this turn.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Sinkhole",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{B}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Destroy target land.",
+      "P/T": null,
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Terror",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{1}{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Destroy target nonartifact, nonblack creature. It can't be regenerated.",
+      "P/T": null,
+      "Artist": "Ron Spencer"
+    }
+  },
+  {
+    "name": "Unholy Strength",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\nEnchanted creature gets +2/+1.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Wall of Bone",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Skeleton Wall",
+      "Mana Cost": "{2}{B}",
+      "Color": "B",
+      "Rarity": "Uncommon",
+      "Rules Text": "Defender (This creature can't attack.)\n{B}: Regenerate this creature. (The next time this creature would be destroyed this turn, instead tap it, remove it from combat, and heal all damage on it.)",
+      "P/T": "1/4",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Warp Artifact",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Enchant artifact\nAt the beginning of the upkeep of enchanted artifact's controller, this Aura deals 1 damage to that player.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Weakness",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\nEnchanted creature gets -2/-1.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Will-o'-the-Wisp",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Spirit",
+      "Mana Cost": "{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Flying (This creature can't be blocked except by creatures with flying or reach.)\n{B}: Regenerate this creature. (The next time this creature would be destroyed this turn, instead tap it, remove it from combat, and heal all damage on it.)",
+      "P/T": "0/1",
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Word of Command",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Look at target opponent's hand and choose a card from it. You control that player until Word of Command finishes resolving. The player plays that card if able. While doing so, the player can activate mana abilities only if they're from lands that player controls and only if mana they produce is spent to activate other mana abilities of lands the player controls and/or to play that card. If the chosen card is cast as a spell, you control the player while that spell is resolving.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Zombie Master",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Zombie",
+      "Mana Cost": "{1}{B}{B}",
+      "Color": "B",
+      "Rarity": "Rare",
+      "Rules Text": "Other Zombie creatures have swampwalk. (They can't be blocked as long as defending player controls a Swamp.)\nOther Zombies have \"{B}: Regenerate this permanent.\"",
+      "P/T": "2/3",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Burrowing",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nEnchanted creature has mountainwalk. (It can't be blocked as long as defending player controls a Mountain.)",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Chaoslace",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Target spell or permanent becomes red. (Its mana symbols remain unchanged.)",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Disintegrate",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{X}{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "Disintegrate deals X damage to any target. If it's a creature, it can't be regenerated this turn, and if it would die this turn, exile it instead.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Dragon Whelp",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Dragon",
+      "Mana Cost": "{2}{R}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "Flying\n{R}: This creature gets +1/+0 until end of turn. If this ability has been activated four or more times this turn, sacrifice this creature at the beginning of the next end step.",
+      "P/T": "2/3",
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Dwarven Demolition Team",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Dwarf",
+      "Mana Cost": "{2}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "{T}: Destroy target Wall.",
+      "P/T": "1/1",
+      "Artist": "Kev Brockschmidt"
+    }
+  },
+  {
+    "name": "Dwarven Warriors",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Dwarf Warrior",
+      "Mana Cost": "{2}{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "{T}: Target creature with power 2 or less can't be blocked this turn.",
+      "P/T": "1/1",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Earth Elemental",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Elemental",
+      "Mana Cost": "{3}{R}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "",
+      "P/T": "4/5",
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Earthbind",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\nWhen this Aura enters, if enchanted creature has flying, this Aura deals 2 damage to that creature and this Aura gains \"Enchanted creature loses flying.\"",
+      "P/T": null,
+      "Artist": "Quinton Hoover"
+    }
+  },
+  {
+    "name": "Earthquake",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{X}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Earthquake deals X damage to each creature without flying and each player.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "False Orders",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "Cast this spell only during the declare blockers step.\nRemove target creature defending player controls from combat. Creatures it was blocking that had become blocked by only that creature this combat become unblocked. You may have it block an attacking creature of your choice.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Fire Elemental",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Elemental",
+      "Mana Cost": "{3}{R}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "",
+      "P/T": "5/4",
+      "Artist": "Melissa A. Benson"
+    }
+  },
+  {
+    "name": "Fireball",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{X}{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "This spell costs {1} more to cast for each target beyond the first.\nFireball deals X damage divided evenly, rounded down, among any number of targets.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Firebreathing",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature\n{R}: Enchanted creature gets +1/+0 until end of turn.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Flashfires",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{3}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "Destroy all Plains.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Fork",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{R}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Copy target instant or sorcery spell, except that the copy is red. You may choose new targets for the copy.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Goblin Balloon Brigade",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Goblin Warrior",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "{R}: This creature gains flying until end of turn.",
+      "P/T": "1/1",
+      "Artist": "Andi Rusu"
+    }
+  },
+  {
+    "name": "Goblin King",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Goblin",
+      "Mana Cost": "{1}{R}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Other Goblins get +1/+1 and have mountainwalk.",
+      "P/T": "2/2",
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Granite Gargoyle",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Gargoyle",
+      "Mana Cost": "{2}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Flying\n{R}: This creature gets +0/+1 until end of turn.",
+      "P/T": "2/2",
+      "Artist": "Christopher Rush"
+    }
+  },
+  {
+    "name": "Gray Ogre",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Ogre",
+      "Mana Cost": "{2}{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "2/2",
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Hill Giant",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Giant",
+      "Mana Cost": "{3}{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "3/3",
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Hurloon Minotaur",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Minotaur",
+      "Mana Cost": "{1}{R}{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "2/3",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Ironclaw Orcs",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Orc",
+      "Mana Cost": "{1}{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "This creature can't block creatures with power 2 or greater.",
+      "P/T": "2/2",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Keldon Warlord",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Barbarian",
+      "Mana Cost": "{2}{R}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "Keldon Warlord's power and toughness are each equal to the number of non-Wall creatures you control.",
+      "P/T": "*/*",
+      "Artist": "Kev Brockschmidt"
+    }
+  },
+  {
+    "name": "Lightning Bolt",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "Lightning Bolt deals 3 damage to any target.",
+      "P/T": null,
+      "Artist": "Christopher Rush"
+    }
+  },
+  {
+    "name": "Mana Flare",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{2}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Whenever a player taps a land for mana, that player adds one mana of any type that land produced.",
+      "P/T": null,
+      "Artist": "Christopher Rush"
+    }
+  },
+  {
+    "name": "Manabarbs",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{3}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Whenever a player taps a land for mana, this enchantment deals 1 damage to that player.",
+      "P/T": null,
+      "Artist": "Christopher Rush"
+    }
+  },
+  {
+    "name": "Mons's Goblin Raiders",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Goblin",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "1/1",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Orcish Artillery",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Orc Warrior",
+      "Mana Cost": "{1}{R}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "{T}: This creature deals 2 damage to any target and 3 damage to you.",
+      "P/T": "1/3",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Orcish Oriflamme",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{3}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "Attacking creatures you control get +1/+0.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Power Surge",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{R}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "At the beginning of each player's upkeep, this enchantment deals X damage to that player, where X is the number of untapped lands they controlled at the beginning of this turn.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Raging River",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{R}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Whenever one or more creatures you control attack, each defending player divides all creatures without flying they control into a \"left\" pile and a \"right\" pile. Then, for each attacking creature you control, choose \"left\" or \"right.\" That creature can't be blocked this combat except by creatures with flying and creatures in a pile with the chosen label.",
+      "P/T": null,
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Red Elemental Blast",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "Choose one —\n• Counter target blue spell.\n• Destroy target blue permanent.",
+      "P/T": null,
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Roc of Kher Ridges",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Bird",
+      "Mana Cost": "{3}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Flying",
+      "P/T": "3/3",
+      "Artist": "Andi Rusu"
+    }
+  },
+  {
+    "name": "Rock Hydra",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Hydra",
+      "Mana Cost": "{X}{R}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "This creature enters with X +1/+1 counters on it.\nFor each 1 damage that would be dealt to this creature, if it has a +1/+1 counter on it, remove a +1/+1 counter from it and prevent that 1 damage.\n{R}: Prevent the next 1 damage that would be dealt to this creature this turn.\n{R}{R}{R}: Put a +1/+1 counter on this creature. Activate only during your upkeep.",
+      "P/T": "0/0",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Sedge Troll",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Troll",
+      "Mana Cost": "{2}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "This creature gets +1/+1 as long as you control a Swamp.\n{B}: Regenerate this creature.",
+      "P/T": "2/2",
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Shatter",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{1}{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "Destroy target artifact.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Shivan Dragon",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Dragon",
+      "Mana Cost": "{4}{R}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Flying\n{R}: This creature gets +1/+0 until end of turn.",
+      "P/T": "5/5",
+      "Artist": "Melissa A. Benson"
+    }
+  },
+  {
+    "name": "Smoke",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{R}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Players can't untap more than one creature during their untap steps.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Stone Giant",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Giant",
+      "Mana Cost": "{2}{R}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "{T}: Target creature you control with toughness less than this creature's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.",
+      "P/T": "3/4",
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Stone Rain",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{2}{R}",
+      "Color": "R",
+      "Rarity": "Common",
+      "Rules Text": "Destroy target land.",
+      "P/T": null,
+      "Artist": "Daniel Gelon"
+    }
+  },
+  {
+    "name": "Tunnel",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "Destroy target Wall. It can't be regenerated.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Two-Headed Giant of Foriys",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Giant",
+      "Mana Cost": "{4}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Trample\nThis creature can block an additional creature each combat.",
+      "P/T": "4/4",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Uthden Troll",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Troll",
+      "Mana Cost": "{2}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "{R}: Regenerate this creature.",
+      "P/T": "2/2",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Wall of Fire",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wall",
+      "Mana Cost": "{1}{R}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "Defender (This creature can't attack.)\n{R}: This creature gets +1/+0 until end of turn.",
+      "P/T": "0/5",
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Wall of Stone",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wall",
+      "Mana Cost": "{1}{R}{R}",
+      "Color": "R",
+      "Rarity": "Uncommon",
+      "Rules Text": "Defender (This creature can't attack.)",
+      "P/T": "0/8",
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Wheel of Fortune",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{2}{R}",
+      "Color": "R",
+      "Rarity": "Rare",
+      "Rules Text": "Each player discards their hand, then draws seven cards.",
+      "P/T": null,
+      "Artist": "Daniel Gelon"
+    }
+  },
+  {
+    "name": "Aspect of Wolf",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{1}{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Enchant creature\nEnchanted creature gets +X/+Y, where X is half the number of Forests you control, rounded down, and Y is half the number of Forests you control, rounded up.",
+      "P/T": null,
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Berserk",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Cast this spell only before the combat damage step.\nTarget creature gains trample and gets +X/+0 until end of turn, where X is its power. At the beginning of the next end step, destroy that creature if it attacked this turn.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Birds of Paradise",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Bird",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Flying\n{T}: Add one mana of any color.",
+      "P/T": "0/1",
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Camouflage",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Cast this spell only during your declare attackers step.\nThis turn, instead of declaring blockers, each defending player chooses any number of creatures they control and divides them into a number of piles equal to the number of attacking creatures for whom that player is the defending player. Creatures those players control that can block additional creatures may likewise be put into additional piles. Assign each pile to a different one of those attacking creatures at random. Each creature in a pile that can block the creature that pile is assigned to does so. (Piles can be empty.)",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Channel",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{G}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Until end of turn, any time you could activate a mana ability, you may pay 1 life. If you do, add {C}.",
+      "P/T": null,
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Cockatrice",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Cockatrice",
+      "Mana Cost": "{3}{G}{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Flying\nWhenever this creature blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.",
+      "P/T": "2/4",
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Craw Wurm",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wurm",
+      "Mana Cost": "{4}{G}{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "6/4",
+      "Artist": "Daniel Gelon"
+    }
+  },
+  {
+    "name": "Elvish Archers",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Elf Archer",
+      "Mana Cost": "{1}{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "First strike",
+      "P/T": "2/1",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Fastbond",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "You may play any number of lands on each of your turns.\nWhenever you play a land, if it wasn't the first land you played this turn, this enchantment deals 1 damage to you.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Fog",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Prevent all combat damage that would be dealt this turn.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Force of Nature",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Elemental",
+      "Mana Cost": "{2}{G}{G}{G}{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nAt the beginning of your upkeep, this creature deals 8 damage to you unless you pay {G}{G}{G}{G}.",
+      "P/T": "8/8",
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Fungusaur",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Fungus Dinosaur",
+      "Mana Cost": "{3}{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Whenever this creature is dealt damage, put a +1/+1 counter on it.",
+      "P/T": "2/2",
+      "Artist": "Daniel Gelon"
+    }
+  },
+  {
+    "name": "Gaea's Liege",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Avatar",
+      "Mana Cost": "{3}{G}{G}{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "As long as Gaea's Liege isn't attacking, its power and toughness are each equal to the number of Forests you control. As long as Gaea's Liege is attacking, its power and toughness are each equal to the number of Forests defending player controls.\n{T}: Target land becomes a Forest until this creature leaves the battlefield.",
+      "P/T": "*/*",
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Giant Growth",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Target creature gets +3/+3 until end of turn.",
+      "P/T": null,
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Giant Spider",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Spider",
+      "Mana Cost": "{3}{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Reach (This creature can block creatures with flying.)",
+      "P/T": "2/4",
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Grizzly Bears",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Bear",
+      "Mana Cost": "{1}{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "2/2",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Hurricane",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{X}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Hurricane deals X damage to each creature with flying and each player.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Ice Storm",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{2}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Destroy target land.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Instill Energy",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nEnchanted creature can attack as though it had haste.\n{0}: Untap enchanted creature. Activate only during your turn and only once each turn.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Ironroot Treefolk",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Treefolk",
+      "Mana Cost": "{4}{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "",
+      "P/T": "3/5",
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Kudzu",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{1}{G}{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Enchant land\nWhen enchanted land becomes tapped, destroy it. That land's controller may attach this Aura to a land of their choice.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Ley Druid",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Druid",
+      "Mana Cost": "{2}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "{T}: Untap target land.",
+      "P/T": "1/1",
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Lifeforce",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{G}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "{G}{G}: Counter target black spell.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Lifelace",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Target spell or permanent becomes green. (Mana symbols on that permanent remain unchanged.)",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Living Artifact",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Enchant artifact\nWhenever you're dealt damage, put that many vitality counters on this Aura.\nAt the beginning of your upkeep, you may remove a vitality counter from this Aura. If you do, you gain 1 life.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Living Lands",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment",
+      "Mana Cost": "{3}{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "All Forests are 1/1 creatures that are still lands.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Llanowar Elves",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Elf Druid",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "{T}: Add {G}.",
+      "P/T": "1/1",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Lure",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{1}{G}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nAll creatures able to block enchanted creature do so.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Natural Selection",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Instant",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Look at the top three cards of target player's library, then put them back in any order. You may have that player shuffle.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Regeneration",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{1}{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Enchant creature (Target a creature as you cast this. This card enters attached to that creature.)\n{G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, instead tap it, remove it from combat, and heal all damage on it.)",
+      "P/T": null,
+      "Artist": "Quinton Hoover"
+    }
+  },
+  {
+    "name": "Regrowth",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{1}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Return target card from your graveyard to your hand.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Scryb Sprites",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Faerie",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Flying",
+      "P/T": "1/1",
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Shanodin Dryads",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Nymph Dryad",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Forestwalk (This creature can't be blocked as long as defending player controls a Forest.)",
+      "P/T": "1/1",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Stream of Life",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{X}{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Target player gains X life.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Thicket Basilisk",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Basilisk",
+      "Mana Cost": "{3}{G}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Whenever this creature blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.",
+      "P/T": "2/4",
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Timber Wolves",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wolf",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)",
+      "P/T": "1/1",
+      "Artist": "Melissa A. Benson"
+    }
+  },
+  {
+    "name": "Tranquility",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{2}{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Destroy all enchantments.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Tsunami",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Sorcery",
+      "Mana Cost": "{3}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Destroy all Islands.",
+      "P/T": null,
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Verduran Enchantress",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Human Druid",
+      "Mana Cost": "{1}{G}{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Whenever you cast an enchantment spell, you may draw a card.",
+      "P/T": "0/2",
+      "Artist": "Kev Brockschmidt"
+    }
+  },
+  {
+    "name": "Wall of Brambles",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Plant Wall",
+      "Mana Cost": "{2}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Defender (This creature can't attack.)\n{G}: Regenerate this creature.",
+      "P/T": "2/3",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Wall of Ice",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wall",
+      "Mana Cost": "{2}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Defender (This creature can't attack.)",
+      "P/T": "0/7",
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Wall of Wood",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Wall",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Defender (This creature can't attack.)",
+      "P/T": "0/3",
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Wanderlust",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{2}{G}",
+      "Color": "G",
+      "Rarity": "Uncommon",
+      "Rules Text": "Enchant creature\nAt the beginning of the upkeep of enchanted creature's controller, this Aura deals 1 damage to that player.",
+      "P/T": null,
+      "Artist": "Cornelius Brudi"
+    }
+  },
+  {
+    "name": "War Mammoth",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Creature — Elephant",
+      "Mana Cost": "{3}{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Trample",
+      "P/T": "3/3",
+      "Artist": "Jeff A. Menges"
+    }
+  },
+  {
+    "name": "Web",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Rare",
+      "Rules Text": "Enchant creature (Target a creature as you cast this. This card enters attached to that creature.)\nEnchanted creature gets +0/+2 and has reach. (It can block creatures with flying.)",
+      "P/T": null,
+      "Artist": "Rob Alexander"
+    }
+  },
+  {
+    "name": "Wild Growth",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Enchantment — Aura",
+      "Mana Cost": "{G}",
+      "Color": "G",
+      "Rarity": "Common",
+      "Rules Text": "Enchant land\nWhenever enchanted land is tapped for mana, its controller adds an additional {G}.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Ankh of Mishra",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{2}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "Whenever a land enters, this artifact deals 2 damage to that land's controller.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Basalt Monolith",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{3}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "This artifact doesn't untap during your untap step.\n{T}: Add {C}{C}{C}.\n{3}: Untap this artifact.",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Black Lotus",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{0}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{T}, Sacrifice this artifact: Add three mana of any one color.",
+      "P/T": null,
+      "Artist": "Christopher Rush"
+    }
+  },
+  {
+    "name": "Black Vise",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "As this artifact enters, choose an opponent.\nAt the beginning of the chosen player's upkeep, this artifact deals X damage to that player, where X is the number of cards in their hand minus 4.",
+      "P/T": null,
+      "Artist": "Richard Thomas"
+    }
+  },
+  {
+    "name": "Celestial Prism",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{3}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "{2}, {T}: Add one mana of any color.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Chaos Orb",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{2}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{1}, {T}: If this artifact is on the battlefield, flip it onto the battlefield from a height of at least one foot. If this artifact turns over completely at least once during the flip, destroy all nontoken permanents it touches. Then destroy this artifact.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Clockwork Beast",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact Creature — Beast",
+      "Mana Cost": "{6}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "This creature enters with seven +1/+0 counters on it.\nAt end of combat, if this creature attacked or blocked this combat, remove a +1/+0 counter from it.\n{X}, {T}: Put up to X +1/+0 counters on this creature. This ability can't cause the total number of +1/+0 counters on this creature to be greater than seven. Activate only during your upkeep.",
+      "P/T": "0/4",
+      "Artist": "Drew Tucker"
+    }
+  },
+  {
+    "name": "Conservator",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "{3}, {T}: Prevent the next 2 damage that would be dealt to you this turn.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Copper Tablet",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{2}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "At the beginning of each player's upkeep, this artifact deals 1 damage to that player.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Crystal Rod",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "Whenever a player casts a blue spell, you may pay {1}. If you do, you gain 1 life.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Cyclopean Tomb",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{2}, {T}: Put a mire counter on target non-Swamp land. That land is a Swamp for as long as it has a mire counter on it. Activate only during your upkeep.\nWhen this artifact is put into a graveyard from the battlefield, at the beginning of each of your upkeeps for the rest of the game, remove all mire counters from a land that a mire counter was put onto with this artifact but that a mire counter has not been removed from with this artifact.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Dingus Egg",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "Whenever a land is put into a graveyard from the battlefield, this artifact deals 2 damage to that land's controller.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Disrupting Scepter",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{3}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{3}, {T}: Target player discards a card. Activate only during your turn.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Forcefield",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{3}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{1}: The next time an unblocked creature of your choice would deal combat damage to you this turn, prevent all but 1 of that damage.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Gauntlet of Might",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "Red creatures get +1/+1.\nWhenever a Mountain is tapped for mana, its controller adds an additional {R}.",
+      "P/T": null,
+      "Artist": "Christopher Rush"
+    }
+  },
+  {
+    "name": "Glasses of Urza",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "{T}: Look at target player's hand.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Helm of Chatzuk",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{1}, {T}: Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Howling Mine",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{2}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "At the beginning of each player's draw step, if this artifact is untapped, that player draws an additional card.",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Icy Manipulator",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "{1}, {T}: Tap target artifact, creature, or land.",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Illusionary Mask",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{2}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{X}: You may choose a creature card in your hand whose mana cost could be paid by some amount of, or all of, the mana you spent on {X}. If you do, you may cast that card face down as a 2/2 creature spell without paying its mana cost. If the creature that spell becomes as it resolves has not been turned face up and would assign or deal damage, be dealt damage, or become tapped, instead it's turned face up and assigns or deals damage, is dealt damage, or becomes tapped. Activate only as a sorcery.",
+      "P/T": null,
+      "Artist": "Amy Weber"
+    }
+  },
+  {
+    "name": "Iron Star",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "Whenever a player casts a red spell, you may pay {1}. If you do, you gain 1 life.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Ivory Cup",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "Whenever a player casts a white spell, you may pay {1}. If you do, you gain 1 life.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Jade Monolith",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Jade Statue",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "{2}: This artifact becomes a 3/6 Golem artifact creature until end of combat. Activate only during combat.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Jayemdae Tome",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{4}, {T}: Draw a card.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Juggernaut",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact Creature — Juggernaut",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "This creature attacks each combat if able.\nThis creature can't be blocked by Walls.",
+      "P/T": "5/3",
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Kormus Bell",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "All Swamps are 1/1 black creatures that are still lands.",
+      "P/T": null,
+      "Artist": "Christopher Rush"
+    }
+  },
+  {
+    "name": "Library of Leng",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "You have no maximum hand size.\nIf an effect causes you to discard a card, discard it, but you may put it on top of your library instead of into your graveyard.",
+      "P/T": null,
+      "Artist": "Daniel Gelon"
+    }
+  },
+  {
+    "name": "Living Wall",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact Creature — Wall",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "Defender (This creature can't attack.)\n{1}: Regenerate this creature.",
+      "P/T": "0/6",
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Mana Vault",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "This artifact doesn't untap during your untap step.\nAt the beginning of your upkeep, you may pay {4}. If you do, untap this artifact.\nAt the beginning of your draw step, if this artifact is tapped, it deals 1 damage to you.\n{T}: Add {C}{C}{C}.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Meekstone",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "Creatures with power 3 or greater don't untap during their controllers' untap steps.",
+      "P/T": null,
+      "Artist": "Quinton Hoover"
+    }
+  },
+  {
+    "name": "Mox Emerald",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{0}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{T}: Add {G}.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Mox Jet",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{0}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{T}: Add {B}.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Mox Pearl",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{0}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{T}: Add {W}.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Mox Ruby",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{0}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{T}: Add {R}.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Mox Sapphire",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{0}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{T}: Add {U}.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Nevinyrral's Disk",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "This artifact enters tapped.\n{1}, {T}: Destroy all artifacts, creatures, and enchantments.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Obsianus Golem",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact Creature — Golem",
+      "Mana Cost": "{6}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "",
+      "P/T": "4/6",
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Rod of Ruin",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{4}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "{3}, {T}: This artifact deals 1 damage to any target.",
+      "P/T": null,
+      "Artist": "Christopher Rush"
+    }
+  },
+  {
+    "name": "Sol Ring",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "{T}: Add {C}{C}.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Soul Net",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "Whenever a creature dies, you may pay {1}. If you do, you gain 1 life.",
+      "P/T": null,
+      "Artist": "Dameon Willich"
+    }
+  },
+  {
+    "name": "Sunglasses of Urza",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{3}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "You may spend white mana as though it were red mana.",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "The Hive",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{5}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "{5}, {T}: Create a 1/1 colorless Insect artifact creature token with flying named Wasp. (It can't be blocked except by creatures with flying or reach.)",
+      "P/T": null,
+      "Artist": "Sandra Everingham"
+    }
+  },
+  {
+    "name": "Throne of Bone",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "Whenever a player casts a black spell, you may pay {1}. If you do, you gain 1 life.",
+      "P/T": null,
+      "Artist": "Anson Maddocks"
+    }
+  },
+  {
+    "name": "Time Vault",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{2}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "This artifact enters tapped.\nThis artifact doesn't untap during your untap step.\nIf you would begin your turn while this artifact is tapped, you may skip that turn instead. If you do, untap this artifact.\n{T}: Take an extra turn after this one.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Winter Orb",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{2}",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "As long as this artifact is untapped, players can't untap more than one land during their untap steps.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Wooden Sphere",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Artifact",
+      "Mana Cost": "{1}",
+      "Color": null,
+      "Rarity": "Uncommon",
+      "Rules Text": "Whenever a player casts a green spell, you may pay {1}. If you do, you gain 1 life.",
+      "P/T": null,
+      "Artist": "Mark Tedin"
+    }
+  },
+  {
+    "name": "Badlands",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Land — Swamp Mountain",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "({T}: Add {B} or {R}.)",
+      "P/T": null,
+      "Artist": "Rob Alexander"
+    }
+  },
+  {
+    "name": "Bayou",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Land — Swamp Forest",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "({T}: Add {B} or {G}.)",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Plateau",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Land — Mountain Plains",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "({T}: Add {R} or {W}.)",
+      "P/T": null,
+      "Artist": "Drew Tucker"
+    }
+  },
+  {
+    "name": "Savannah",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Land — Forest Plains",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "({T}: Add {G} or {W}.)",
+      "P/T": null,
+      "Artist": "Rob Alexander"
+    }
+  },
+  {
+    "name": "Scrubland",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Land — Plains Swamp",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "({T}: Add {W} or {B}.)",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Taiga",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Land — Mountain Forest",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "({T}: Add {R} or {G}.)",
+      "P/T": null,
+      "Artist": "Rob Alexander"
+    }
+  },
+  {
+    "name": "Tropical Island",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Land — Forest Island",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "({T}: Add {G} or {U}.)",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Tundra",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Land — Plains Island",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "({T}: Add {W} or {U}.)",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Underground Sea",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Land — Island Swamp",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Rare",
+      "Rules Text": "({T}: Add {U} or {B}.)",
+      "P/T": null,
+      "Artist": "Rob Alexander"
+    }
+  },
+  {
+    "name": "Plains",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Basic Land — Plains",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Common",
+      "Rules Text": "({T}: Add {W}.)",
+      "P/T": null,
+      "Artist": "Jesper Myrfors"
+    }
+  },
+  {
+    "name": "Island",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Basic Land — Island",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Common",
+      "Rules Text": "({T}: Add {U}.)",
+      "P/T": null,
+      "Artist": "Mark Poole"
+    }
+  },
+  {
+    "name": "Swamp",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Basic Land — Swamp",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Common",
+      "Rules Text": "({T}: Add {B}.)",
+      "P/T": null,
+      "Artist": "Dan Frazier"
+    }
+  },
+  {
+    "name": "Mountain",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Basic Land — Mountain",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Common",
+      "Rules Text": "({T}: Add {R}.)",
+      "P/T": null,
+      "Artist": "Douglas Shuler"
+    }
+  },
+  {
+    "name": "Forest",
+    "edition": "1E - Limited Edition Alpha",
+    "data": {
+      "Type": "Basic Land — Forest",
+      "Mana Cost": "",
+      "Color": null,
+      "Rarity": "Common",
+      "Rules Text": "({T}: Add {G}.)",
+      "P/T": null,
+      "Artist": "Christopher Rush"
     }
   }
 ]
