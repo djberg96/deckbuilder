@@ -52,11 +52,46 @@ RSpec.describe Deck, type: :model do
       expect(deck_card.quantity).to eq(3)
     end
 
+    it 'allows adding up to the game maximum' do
+      g = create(:game, maximum_individual_cards: 4)
+      d = create(:deck, game: g)
+      c = create(:card, game: g)
+      expect { d.add(c, 4) }.not_to raise_error
+      expect(d.deck_cards.find_by(card: c).quantity).to eq(4)
+    end
+
     it 'increments quantity if card already exists in deck' do
       deck.add(card, 2)
       deck.add(card, 1)
       deck_card = deck.deck_cards.find_by(card: card)
       expect(deck_card.quantity).to eq(3)
+    end
+
+    it 'raises when trying to add without a card' do
+      expect { deck.add(nil) }.to raise_error(ArgumentError, /card must be provided/)
+    end
+
+    it 'ignores nested deck card entries with blank card_id on save' do
+      user = create(:user)
+      g = create(:game)
+      d = Deck.new(name: 'BlankNested', user: user)
+      d.build_game_deck(game: g)
+      # simulate form-submitted nested attributes with an empty card select
+      d.assign_attributes(deck_cards_attributes: { '0' => { 'card_id' => '', 'quantity' => 1 } })
+      expect { d.save! }.not_to raise_error
+      expect(d.deck_cards).to be_empty
+    end
+
+    it 'ignores nested deck card entries that reference a non-existent card' do
+      user = create(:user)
+      g = create(:game)
+      d = Deck.new(name: 'BadRef', user: user)
+      d.build_game_deck(game: g)
+      # reference non-existent card id
+      non_id = (Card.maximum(:id) || 0) + 1000
+      d.assign_attributes(deck_cards_attributes: { '0' => { 'card_id' => non_id, 'quantity' => 2 } })
+      expect { d.save! }.not_to raise_error
+      expect(d.deck_cards).to be_empty
     end
   end
 
