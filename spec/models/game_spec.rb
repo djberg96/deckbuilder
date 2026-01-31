@@ -8,6 +8,12 @@ RSpec.describe Game, type: :model do
   end
 
   describe 'validations' do
+    it 'validates presence of name' do
+      game = build(:game, name: '')
+      expect(game).not_to be_valid
+      expect(game.errors[:name]).to include("can't be blank")
+    end
+
     it 'validates numericality of maximum_individual_cards' do
       game = build(:game, maximum_individual_cards: -1)
       expect(game).not_to be_valid
