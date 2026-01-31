@@ -9,6 +9,13 @@ RSpec.describe 'Card attributes (no-js)', type: :system do
     game = create(:game)
     card = create(:card, game: game, data: { 'type' => 'Creature' })
 
+    # login as a valid user so edit page is accessible
+    user = create(:user)
+    visit login_path
+    fill_in 'Username:', with: user.username
+    fill_in 'Password:', with: 'password123'
+    click_button 'Login'
+
     visit edit_card_path(card)
     # Save page html for debugging
     save_page('tmp/capybara/debug_edit_card.html')

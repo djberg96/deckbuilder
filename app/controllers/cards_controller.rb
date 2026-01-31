@@ -12,6 +12,8 @@ class CardsController < ApplicationController
       session[:cards_per_page] = per_page_param if allowed_per_page.include?(per_page_param)
     end
     @per_page = (session[:cards_per_page] || 25).to_i
+    # guard against unexpected zero/nil values stored in the session
+    @per_page = 25 if @per_page.nil? || @per_page <= 0
 
     page = params[:page].to_i
     page = 1 if page < 1
@@ -23,7 +25,7 @@ class CardsController < ApplicationController
     end
 
     @total_count = base.count
-    @total_pages = (@total_count.to_f / @per_page).ceil
+    @total_pages = @per_page > 0 ? (@total_count.to_f / @per_page).ceil : 1
     page = @total_pages if page > @total_pages && @total_pages > 0
     @current_page = page
 
@@ -67,11 +69,14 @@ class CardsController < ApplicationController
       new_name = params[:import][:new_game_name].to_s.strip
       new_edition = params[:import][:new_game_edition].to_s.strip
       if new_name.present?
+        Rails.logger.debug("DEBUG IMPORT: new_name='#{new_name}', new_edition='#{new_edition}'")
         game = Game.where(name: new_name, edition: new_edition).first_or_create do |g|
           # set sensible defaults so model validations pass and typical games allow multiple copies
           g.minimum_cards_per_deck = 1
+          g.maximum_cards_per_deck = 60
           g.maximum_individual_cards = 4
         end
+        Rails.logger.debug("DEBUG IMPORT: after create game id=#{game&.id} errors=#{game&.errors&.full_messages}")
       end
     end
 
@@ -125,12 +130,36 @@ class CardsController < ApplicationController
 
       c = Card.new(name: name, description: description, game: game)
       if data.is_a?(Hash)
-        c.data = data
+        # identify and reject rows with invalid keys (e.g. containing hyphens)
+        original_keys = data.transform_keys(&:to_s).keys
+        invalid_keys = original_keys.reject { |k| !(k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9]+\z/)) }
+
+        if invalid_keys.any?
+          failures << { index: idx+1, name: name, reason: "invalid attribute keys: #{invalid_keys.join(', ')}" }
+          next
+        end
+
+        # sanitize incoming data keys to match the same rules used in the web UI
+        sanitized_data = data.transform_keys(&:to_s).reject do |k, _|
+          k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9]+\z/)
+        end
+        c.data = sanitized_data
       else
         # try to treat remaining keys as data attributes
         if entry.is_a?(Hash)
           data_keys = entry.reject { |k,_| ['name','description','game','game_name','edition','game_edition'].include?(k.to_s) }
-          c.data = data_keys
+          original_keys = data_keys.transform_keys(&:to_s).keys
+          invalid_keys = original_keys.reject { |k| !(k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9]+\z/)) }
+
+          if invalid_keys.any?
+            failures << { index: idx+1, name: name, reason: "invalid attribute keys: #{invalid_keys.join(', ')}" }
+            next
+          end
+
+          sanitized_data = data_keys.transform_keys(&:to_s).reject do |k, _|
+            k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9]+\z/)
+          end
+          c.data = sanitized_data
         end
       end
 
@@ -142,8 +171,9 @@ class CardsController < ApplicationController
     end
 
     # Write report to tmp to give a detailed summary of what succeeded/failed
+    # Be defensive: parsed may be nil when parsing fails unexpectedly, so coerce to an array
     report = {
-      total: parsed.size,
+      total: Array(parsed).size,
       created: created.size,
       failed: failures.length,
       failures: failures.first(200)
@@ -264,7 +294,13 @@ class CardsController < ApplicationController
       cp.delete(:new_images)
       cp.delete(:remove_image_ids)
 
-      if cp[:data].is_a?(Hash)
+      # If the incoming params include a nested ActionController::Parameters for :data, explicitly permit its contents
+      if params[:card] && params[:card][:data].respond_to?(:permit!)
+        raw_data = params[:card][:data].permit!.to_h
+        cp[:data] = raw_data.transform_keys(&:to_s).reject do |k, _|
+          k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9]+\z/)
+        end
+      elsif cp[:data].is_a?(Hash)
         # Remove placeholder/new attribute entries, blank keys, and keys that contain non-alphanumeric characters
         cp[:data] = cp[:data].transform_keys(&:to_s).reject do |k, _|
           k.strip.empty? || k.match?(/\A(__new__|new_)/i) || !k.match?(/\A[A-Za-z0-9]+\z/)

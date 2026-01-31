@@ -5,11 +5,14 @@ class Game < ApplicationRecord
 
   validates :maximum_individual_cards,
     :numericality => {
-      :only_integer          => true,
-      :greater_than          => 0,
-      :less_than_or_equal_to => :minimum_cards_per_deck,
-    }
+      :only_integer                 => true,
+      :greater_than                 => 0,
+      :less_than_or_equal_to        => :maximum_cards_per_deck,
+    },
+    :allow_nil => true
 
+  # name is required for games
+  validates :name, presence: true
   validates :name, uniqueness: {scope: :edition, message: "Game/Edition already exists"}
 
   def add_deck(deck)

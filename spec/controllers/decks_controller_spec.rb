@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DecksController, type: :controller do
+  render_views
   let(:user) { create(:user) }
   let(:game) { create(:game) }
   let(:valid_attributes) { { name: 'Test Deck', description: 'A test deck', private: false, game_deck_attributes: { game_id: game.id } } }

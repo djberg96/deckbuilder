@@ -92,5 +92,4 @@ RSpec.describe 'decks/_form.html.erb', type: :view do
     # existing quantity input should have max attribute
     expect(rendered).to have_selector('input[type="number"][max="3"]')
   end
-  end
 end

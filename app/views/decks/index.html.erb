@@ -14,6 +14,13 @@
         <label class="input-group-text" for="deck_filter_value">Value</label>
         <select id="deck_filter_value" class="form-select form-select-sm" onchange="clientFilterDecks(document.getElementById('deck_filter_column').value, this.value); updateUrlParam('filter_value', this.value);">
           <option value="">Select</option>
+          <%# Server-side fallback options so controller specs (no JS) can see filter values %>
+          <% @games.each do |g| %>
+            <option value="<%= g.id %>"><%= g.edition.present? ? "#{g.name} / #{g.edition}" : g.name %></option>
+          <% end %>
+          <% @owners.each do |u| %>
+            <option value="<%= u.id %>"><%= u.username %></option>
+          <% end %>
         </select>
       </div>
     </div>
