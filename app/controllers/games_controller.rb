@@ -15,7 +15,8 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    @game = Game.new
+    # default the minimum cards per deck to 10 for new games
+    @game = Game.new(minimum_cards_per_deck: 10)
   end
 
   # GET /games/1/edit

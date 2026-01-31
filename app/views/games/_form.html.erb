@@ -27,7 +27,7 @@
 
   <div class="mb-3">
     <%= form.label :minimum_cards_per_deck, 'Minimum number of cards required', class: 'form-label' %>
-    <%= form.number_field :minimum_cards_per_deck, in: 30..60, class: 'form-control' %>
+    <%= form.number_field :minimum_cards_per_deck, min: 10, value: [game.minimum_cards_per_deck.to_i, 10].max, step: 1, class: 'form-control', oninput: "this.value = Math.max(10, this.valueAsNumber || 0)" %>
   </div>
 
   <div class="mb-3">
