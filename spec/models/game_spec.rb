@@ -20,6 +20,17 @@ RSpec.describe Game, type: :model do
       expect(game.errors[:maximum_individual_cards]).to be_present
     end
 
+    it 'validates minimum_cards_per_deck is at least 10' do
+      game = build(:game, minimum_cards_per_deck: 5)
+      expect(game).not_to be_valid
+      expect(game.errors[:minimum_cards_per_deck]).to be_present
+    end
+
+    it 'allows minimum_cards_per_deck equal to 10' do
+      game = build(:game, minimum_cards_per_deck: 10)
+      expect(game).to be_valid
+    end
+
     context 'uniqueness validation' do
       let!(:existing_game) { create(:game, name: 'Magic', edition: '2023') }
 

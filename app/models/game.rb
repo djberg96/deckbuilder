@@ -12,6 +12,12 @@ class Game < ApplicationRecord
 
   validates :name, presence: true, uniqueness: {scope: :edition, message: "Game/Edition already exists"}
 
+  validates :minimum_cards_per_deck,
+    :numericality => {
+      :only_integer => true,
+      :greater_than_or_equal_to => 10,
+    }
+
   def add_deck(deck)
     # Ensure a single association row per deck/game.
     game_decks.find_or_create_by(deck: deck)
