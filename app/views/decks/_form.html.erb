@@ -91,6 +91,7 @@
 <script>
 var gamesByMax = <%= @games.map { |g| [g.id, g.maximum_individual_cards || ''] }.to_h.to_json.html_safe %>;
 var cardsByGame = <%= @cards_by_game.to_json.html_safe %>;
+var nextIndex = 0;
 
 var updateQuantityMax = function(gameId) {
   var max = gamesByMax[gameId] || '';
@@ -117,20 +118,6 @@ var initDeckForm = function() {
   nextIndex = $('#cards-container .deck-card-fields').length;
   $('#deck_game_deck_attributes_game_id').trigger('change');
 };
-
-// Trigger on initial page load and on Turbo navigations (including frame renders)
-$(document).ready(initDeckForm);
-document.addEventListener('turbo:load', initDeckForm);
-document.addEventListener('turbo:frame-load', initDeckForm);
-document.addEventListener('turbo:render', initDeckForm);
-  $('#deck_game_deck_attributes_game_id').trigger('change');
-};
-
-// Trigger on initial page load and on Turbo navigations (including frame renders)
-$(document).ready(initDeckForm);
-document.addEventListener('turbo:load', initDeckForm);
-document.addEventListener('turbo:frame-load', initDeckForm);
-document.addEventListener('turbo:render', initDeckForm);
 
 $(document).off('change', '#deck_game_deck_attributes_game_id').on('change', '#deck_game_deck_attributes_game_id', function() {
   var gameId = $(this).val();
@@ -209,4 +196,7 @@ $(document).off('click', '.remove-existing-card').on('click', '.remove-existing-
     $btn.removeClass('btn-danger').addClass('btn-secondary').text('Undo');
   }
 });
+
+$(document).ready(initDeckForm);
+$(document).on('turbolinks:load', initDeckForm);
 </script>
